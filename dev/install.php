@@ -43,6 +43,7 @@ switch($mode)
 		$schema_data = array(
 			'mysql'		=> array(
 				"CREATE TABLE " . T_CONFIG . " (config_name TEXT NOT NULL, config_value TEXT NOT NULL) CHARACTER SET `utf8` COLLATE `utf8_bin`;",
+				"CREATE TABLE " . T_SEO_URLS . " (url_id INT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY, rewrite_url TEXT NOT NULL, real_url TEXT NOT NULL) CHARACTER SET `utf8` COLLATE `utf8_bin`;",
 				"INSERT INTO " . T_CONFIG . " (config_name, config_value) VALUES 
 					('site_name', 'My Bokeh Platform site'), 
 					('site_description', 'This is a Bokeh Platform powered site'), 
