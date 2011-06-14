@@ -163,7 +163,7 @@ unset($dbpass);
 # Check if install.php exist, else if is not in install.php page, redirect to error_box()
 if (file_exists($root_path . 'install.php'))
 {
-	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE') && !defined('IS_STYLESHEET'))
+	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
 	{
 		error_box("The file install.php exist. If you have installed Bokeh, please delete it, else go to install.php page.");
 	}
@@ -172,14 +172,14 @@ if (file_exists($root_path . 'install.php'))
 # Check if update.php exist, else if is not in update.php page, redirect to error_box()
 if (file_exists($root_path . 'update.php'))
 {
-	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE') && !defined('IS_STYLESHEET'))
+	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
 	{
 		error_box("The file update.php exist. If you have updated Bokeh, please delete it, else go to update.php page.");
 	}
 }
 
 # Execute some code only if Bokeh Platform is installed, and we are not in install.php page
-if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE') && !defined('IS_STYLESHEET'))
+if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
 {
 	# Get $config array from database, only if we are not in install.php page
 	generate_config_data();
