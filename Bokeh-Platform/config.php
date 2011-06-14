@@ -34,7 +34,8 @@ $config = array(
 	'server_protocol'	=> 'http',
 	'server_name'		=> 'www.mysite.com',
 	'server_port'		=> 80,
-	'server_path'		=> '/bokeh'
+	'server_path'		=> '/bokeh',
+	'timezone'		=> 'Europe/Rome'
 );
 
 /**

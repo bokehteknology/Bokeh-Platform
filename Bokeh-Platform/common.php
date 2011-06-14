@@ -71,6 +71,9 @@ $config['template'] = 'default';
 $config['date_format'] = 'j | Y';
 $config['hour_format'] = 'H:i';
 
+# Setting default timezone
+ini_set('date.timezone', $config['timezone']);
+
 # Require system files
 require($root_path . 'includes/functions.' . $phpEx);
 require($root_path . 'includes/' . $dbtype . '_db.' . $phpEx);
@@ -178,7 +181,7 @@ if (file_exists($root_path . 'update.php'))
 # Execute some code only if Bokeh Platform is installed, and we are not in install.php page
 if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
 {
-	# Get $config vars from database, only if we are not in install.php page
+	# Get $config array from database, only if we are not in install.php page
 	generate_config_data();
 	
 	# Decode some JSON config data
