@@ -45,8 +45,8 @@ $config = array(
 /**
 * Enable debug and displaying RAM used
 */
-@define('DEBUG', true);
-@define('DISPLAY_RAM', true);
+@define('DEBUG', false);
+@define('DISPLAY_RAM', false);
 
 /**
 * Enable own error handler
@@ -56,7 +56,7 @@ $config = array(
 /**
 * Enable explain mode
 */
-@define('EXPLAIN_MODE', true);
+@define('EXPLAIN_MODE', false);
 
 /**
 * Enable plugins
