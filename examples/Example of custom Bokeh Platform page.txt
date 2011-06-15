@@ -13,7 +13,7 @@ include($root_path . 'common.' . $phpEx);
 */
 
 ######################## GENERATE TEMPLATES ###########################
-$template->page_header('Page Title Here');
-$template->_template('template_name_here');
-$template->page_footer();
+page_header('Page Title Here');
+_template('template_name_here');
+page_footer();
 ?>
