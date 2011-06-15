@@ -48,20 +48,8 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
 	<!-- start sidebar -->
 	<div id="sidebar">
 		<ul>
-			<li id="search" style="background: none;">
-				<form id="searchform" method="get" action="">
-					<div>
-						<input type="text" name="s" id="s" size="15" />
-						<br />
-						<input type="submit" value="{$l_blog_search}" />
-					</div>
-				</form>
-			</li>
-			<li id="categories">
-				<h2>{$l_categories}</h2>
-				<ul>
-					<li><a>{$l_blog_no_cats}</a></li>
-				</ul>
+			<li style="background: none;">
+				<p><strong>Bokeh Platform</strong> is a simple and faster PHP platform for develop websites.</p>
 			</li>
 		</ul>
 	</div>

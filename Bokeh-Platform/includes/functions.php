@@ -249,6 +249,11 @@ function generate_debug_info()
 {
 	global $config, $db, $starttime;
 	
+	if (defined('EXPLAIN') && EXPLAIN)
+	{
+		return;
+	}
+	
 	$mtime = explode(' ', microtime());
 	$totaltime = $mtime[0] + $mtime[1] - $starttime;
 	
@@ -266,7 +271,7 @@ function generate_debug_info()
 		}
 	}
 	
-	return sprintf('Time: %.3fs | ' . $db->sql_queries . ' Queries' . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . $config['page_arg'] . '&amp;explain=1' . '">Explain</a>') : ''), $totaltime);
+	return sprintf('Time: %.3fs | ' . $db->sql_queries . ' Queries' . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . (($config['page_arg'] == '') ? '' : $config['page_arg'] . '&amp;') . 'explain=1' . '">Explain</a>') : ''), $totaltime);
 }
 
 /**
