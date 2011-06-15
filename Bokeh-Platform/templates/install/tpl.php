@@ -25,6 +25,6 @@ $style = array(
 	'name'		=> 'Bokeh Install',
 	'author'	=> 'Carlo',
 	'version'	=> '1.0.0-dev',
-	'website'	=> 'http://bokeh.phpbbitalia.net/'
+	'website'	=> 'http://www.bokehteknology.net/'
 );
 ?>
