@@ -249,6 +249,11 @@ function generate_debug_info()
 {
 	global $config, $db, $starttime;
 	
+	if (defined('EXPLAIN') && EXPLAIN)
+	{
+		return;
+	}
+	
 	$mtime = explode(' ', microtime());
 	$totaltime = $mtime[0] + $mtime[1] - $starttime;
 	
