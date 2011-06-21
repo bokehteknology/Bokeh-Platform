@@ -20,7 +20,7 @@ if (!defined('IN_BOKEH'))
 * MySQL class
 *
 */
-class mysql_db
+class database_mysql
 {
 	var $sql_queries = 0;
 	var $time_on_sql = 0;
@@ -30,7 +30,7 @@ class mysql_db
 	* Initialize MySQL class
 	*
 	*/
-	function mysql_db()
+	function database_mysql()
 	{
 		# Nothing for now
 	}
@@ -135,6 +135,5 @@ class mysql_db
 	}
 }
 
-$__database_class__ = 'mysql_db';
 $__database_name__ = 'MySQL';
 ?>
