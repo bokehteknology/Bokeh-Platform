@@ -69,7 +69,6 @@ ini_set('date.timezone', $config['timezone']);
 
 # Require system files
 require($root_path . 'includes/functions.' . $phpEx);
-require($root_path . 'includes/' . $dbtype . '_db.' . $phpEx);
 require($root_path . 'includes/tables_name.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 
@@ -87,9 +86,12 @@ else
 }
 
 # Initialize database class
-if ($config['database_enabled'])
+if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 {
-	$db = new $__database_class__();
+	require($root_path . 'includes/database/' . $dbtype . '.' . $phpEx);
+
+	$database_class_name = 'database_' . $dbtype;
+	$db = new $database_class_name();
 }
 
 # Initialize Smarty
@@ -151,7 +153,7 @@ set_headers();
 $request_vars = retrive_requests_vars($_REQUEST);
 
 # Connect to DB
-if ($config['database_enabled'])
+if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 {
 	$db->sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname);
 }

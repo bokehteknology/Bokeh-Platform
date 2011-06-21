@@ -271,7 +271,7 @@ function generate_debug_info()
 		}
 	}
 
-	return sprintf('Time: %.3fs' . ($config['database_enabled'] ? '| ' . $db->sql_queries . ' Queries' : '') . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . (($config['page_arg'] == '') ? '' : $config['page_arg'] . '&amp;') . 'explain=1' . '">Explain</a>') : ''), $totaltime);
+	return sprintf('Time: %.3fs' . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? '| ' . $db->sql_queries . ' Queries' : '') . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . (($config['page_arg'] == '') ? '' : $config['page_arg'] . '&amp;') . 'explain=1' . '">Explain</a>') : ''), $totaltime);
 }
 
 /**
@@ -413,9 +413,7 @@ function formattime($time)
 */
 function close($exit = false)
 {
-	global $config;
-
-	if ($config['database_enabled'])
+	if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 	{
 		global $db;
 	}
@@ -428,9 +426,9 @@ function close($exit = false)
 		$mtime = explode(' ', microtime());
 		$totaltime = $mtime[0] + $mtime[1] - $starttime;
 
-		$tpl = '<p><b>' . $lang['EXPLAIN_PAGE_GENERATE'] . ' ' . sprintf('%.3f', $totaltime) . ($config['database_enabled'] ? ' ' . $lang['EXPLAIN_SECONDS_WITH'] . ' ' . $db->sql_queries . ' ' . $lang['EXPLAIN_QUERIES'] : '') . '.</b><br />';
+		$tpl = '<p><b>' . $lang['EXPLAIN_PAGE_GENERATE'] . ' ' . sprintf('%.3f', $totaltime) . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? ' ' . $lang['EXPLAIN_SECONDS_WITH'] . ' ' . $db->sql_queries . ' ' . $lang['EXPLAIN_QUERIES'] : '') . '.</b><br />';
 
-		if ($config['database_enabled'])
+		if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 		{
 			$tpl .= $lang['EXPLAIN_SPENT_PHP'] . ': <b>' . sprintf('%.3fs', ($totaltime - $db->time_on_sql)) . '</b> | ' . $lang['EXPLAIN_SPENT_SQL'] . ': <b>' . sprintf('%.3fs', $db->time_on_sql) . '</b></p><br />';
 
@@ -454,7 +452,7 @@ function close($exit = false)
 		_template('simple', false);
 	}
 
-	if ($config['database_enabled'])
+	if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 	{
 		$db->sql_close();
 	}
