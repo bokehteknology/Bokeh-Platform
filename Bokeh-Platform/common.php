@@ -32,7 +32,7 @@ $starttime = $starttime[1] + $starttime[0];
 if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 {
 	$base_memory_usage = 0;
-	
+
 	if (function_exists('memory_get_usage'))
 	{
 		$base_memory_usage = memory_get_usage();
@@ -43,8 +43,8 @@ if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 
-# Start session
-session_start();
+# Session disabled for now (21.06.2011, 1.0.0-dev)
+#session_start();
 
 # Setting some arrays
 $config = $user = array();
@@ -52,24 +52,17 @@ $config = $user = array();
 # Check config file
 if (!file_exists($root_path . 'config.' . $phpEx))
 {
-	die("<p>The config.$phpEx file could not be found.</p>");
+	die("<p>The config.{$phpEx} file could not be found.</p>");
 }
 
 require($root_path . 'config.' . $phpEx);
 
 date_default_timezone_set($config['timezone']);
 
+$config['site_root'] = $config['server_protocol'] . '://' . $config['server_name'] . ($config['server_port'] != 80 ? ":{$config['server_port']}" : '') . $config['server_path'] . '/';
 $config['page_url'] = $config['server_protocol'] . '://' . $config['server_name'] . ($config['server_port'] != 80 ? ":{$config['server_port']}" : '') . $_SERVER['SCRIPT_NAME'];
 $config['page_arg'] = $_SERVER['QUERY_STRING'];
-
-# Set some default $config vars if they are not set in database
-$config['site_name'] = 'My Bokeh Platform site';
-$config['site_description'] = 'This is a Bokeh Platform powered site';
-$config['meta_keywords'] = 'bokeh, platform, php';
-$config['meta_description'] = 'This is a Bokeh Platform powered site';
-$config['template'] = 'default';
-$config['date_format'] = 'j | Y';
-$config['hour_format'] = 'H:i';
+$config['page_info'] = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '');
 
 # Setting default timezone
 ini_set('date.timezone', $config['timezone']);
@@ -93,10 +86,13 @@ else
 	require($root_path . 'languages/en.' . $phpEx);
 }
 
-$user = array('lang' => $lang);
+# Initialize database class
+if ($config['database_enabled'])
+{
+	$db = new $__database_class__();
+}
 
-# Initialize some basic classes
-$db = new $__database_class__();
+# Initialize Smarty
 $smarty = new Smarty();
 
 # Smarty settings
@@ -131,7 +127,7 @@ $bokeh_version = '1.0.0-dev';
 
 # Set template default vars
 $smarty->assign(array(
-	'root_path'			=> $root_path,
+	'root_path'			=> $config['site_root'],
 	'bokeh_site'		=> $bokeh_domain,
 	'bokeh_version'		=> $bokeh_version,
 	'page_url'			=> ($config['page_url'] . (($config['page_arg'] == '') ? '' : ('?' . $config['page_arg']))),
@@ -155,65 +151,33 @@ set_headers();
 $request_vars = retrive_requests_vars($_REQUEST);
 
 # Connect to DB
-$db->sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname);
+if ($config['database_enabled'])
+{
+	$db->sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname);
+}
 
 # We do not need this any longer, unset for safety purposes
 unset($dbpass);
 
-# Check if install.php exist, else if is not in install.php page, redirect to error_box()
-if (file_exists($root_path . 'install.php'))
-{
-	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
-	{
-		error_box("The file install.php exist. If you have installed Bokeh, please delete it, else go to install.php page.");
-	}
-}
+# Check if template dir exist and set it
+check_template($config['template']);
 
-# Check if update.php exist, else if is not in update.php page, redirect to error_box()
-if (file_exists($root_path . 'update.php'))
+# Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).(phpEx)
+# After including, add a new object $plugin_(plugin_name) for the class plugin_(plugin_name)
+if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS)
 {
-	if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
+	if (count($config['plugins_active']))
 	{
-		error_box("The file update.php exist. If you have updated Bokeh, please delete it, else go to update.php page.");
-	}
-}
-
-# Execute some code only if Bokeh Platform is installed, and we are not in install.php page
-if (!defined('BOKEH_INSTALL') && !defined('BOKEH_UPDATE'))
-{
-	# Get $config array from database, only if we are not in install.php page
-	generate_config_data();
-	
-	# Decode some JSON config data
-	$tmp_config_json_decode = array('plugins_active');
-	
-	foreach($tmp_config_json_decode as $config_key)
-	{
-		$config[$config_key] = json_decode($config[$config_key]);
-	}
-	
-	unset($tmp_config_json_decode);
-	
-	# Check if template dir exist and set it
-	check_template($config['template']);
-	
-	# Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).php
-	# After including, add a new object $plugin_(plugin_name) for the class plugin_(plugin_name)
-	if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS)
-	{
-		if (isset($config['plugins_active']) && count($config['plugins_active']))
+		foreach($config['plugins_active'] as $plugin_name)
 		{
-			foreach($config['plugins_active'] as $plugin_name)
+			if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
 			{
-				if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
+				include($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx);
+				$plugin_class_name = 'plugin_' . $plugin_name;
+
+				if (class_exists($plugin_class_name))
 				{
-					include($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx);
-					$plugin_class_name = 'plugin_' . $plugin_name;
-					
-					if (class_exists($plugin_class_name))
-					{
-						$plugin_class_name = new $plugin_class_name();
-					}
+					$plugin_class_name = new $plugin_class_name();
 				}
 			}
 		}

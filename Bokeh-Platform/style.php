@@ -16,11 +16,6 @@ include($root_path . 'common.' . $phpEx);
 
 if (isset($request_vars['_tpl']) && !empty($request_vars['_tpl']))
 {
-	if ($request_vars['_tpl'] == 'install')
-	{
-		define('BOKEH_INSTALL', true);
-	}
-	
 	set_template($request_vars['_tpl']);
 	_template($request_vars['_tpl'] . '/stylesheet', false);
 }
