@@ -23,7 +23,7 @@ if (!defined('IN_BOKEH'))
 // TPL Info
 $style = array(
 	'name'		=> 'Bokeh Default',
-	'author'	=> 'Carlo',
+	'author'	=> 'Bokeh Platform',
 	'version'	=> '1.0.0-dev',
 	'website'	=> 'http://www.bokehteknology.net/'
 );
