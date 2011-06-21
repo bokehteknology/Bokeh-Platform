@@ -21,8 +21,7 @@ if (!defined('IN_BOKEH'))
 *
 */
 $tables_name = array(
-	'CONFIG'	=> 'config',
-	'SEO_URLS'	=> 'seo_urls'
+	'EXAMPLE'	=> 'example' # T_EXAMPLE constant point to prefix_example
 );
 
 /**

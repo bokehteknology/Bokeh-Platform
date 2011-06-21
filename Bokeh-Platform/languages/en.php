@@ -28,8 +28,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'LANG_PREFIX'			=> 'en',
-	'TRANSLATION_INFO'		=> 'English Translation by carlino1994',
-	
+	'TRANSLATION_INFO'		=> 'English Translation by Bokeh Teknology',
+
 	// error_box() messages
 	'ERROR'						=> 'Error',
 	'ERR_SQL_CONNECT'			=> 'Could not connect to database server.',
@@ -43,7 +43,11 @@ $lang = array_merge($lang, array(
 	'ERR_NO_STYLESHEET_FILE'	=> 'The stylesheet does not exist.',
 	'ERR_NO_TEMPLATE_INFO'		=> 'The file containing information on the template does not exist.',
 	'ERR_TEMPLATE_IF_PARSING'	=> 'There was an error during parsing the template.',
-	
+
+	// http errors
+	'ERROR_404_TITLE'	=> 'Error 404',
+	'ERROR_404_EXPLAIN'	=> 'There isn’t any page with this name.',
+
 	// explain mode messages
 	'EXPLAIN_PAGE_GENERATE'		=> 'Page generated in',
 	'EXPLAIN_SECONDS_WITH'		=> 'seconds with',
@@ -53,31 +57,14 @@ $lang = array_merge($lang, array(
 	'EXPLAIN_BEFORE'			=> 'Before',
 	'EXPLAIN_AFTER'				=> 'After',
 	'EXPLAIN_ELAPSED'			=> 'Elapsed',
-	
-	// install messages
-	'INSTALL_BOKEH'				=> 'Installation Panel of Bokeh Platform',
-	'INSTALL_PAGE'				=> '<p><strong>Bokeh Platform</strong> is the “simple and faster platform”, is ideal for devlop your site/blog.</p><p>You can also count to a community that provides its users several plugins, which will have the ability to increase its functionality.</p><p>Bokeh Platform was created as an Open Source project in December 2009, developed from <a href="http://BOKEH_SITE/"><em>Bokeh Teknology</em></a> website.</p><p>If you want to help in this project, visit us on our site <a href="http://BOKEH_SITE/">BOKEH_SITE</a>.</p>',
-	'INSTALL_INSTALL_ERRORS'	=> 'During installation, the following errors have occurred in the database:',
-	'INSTALL_OK'				=> 'The installation was completed. You can now delete the file <em>install.php</em>.',
-	'INSTALL_MAIN'				=> 'Main',
-	'INSTALL_INSTALL'			=> 'Installation',
-	'INSTALL_INFORMATIONS'		=> 'Information',
-	'INSTALL_TYPE'				=> 'Type',
-	'INSTALL_HOST'				=> 'Host',
-	'INSTALL_PORT'				=> 'Port',
-	'INSTALL_DBNAME'			=> 'Database name',
-	'INSTALL_TABLE_PREFIX'		=> 'Table prefix',
-	'INSTALL_CONTINUE'			=> '&raquo; Continue',
-	'INSTALL_INSTALL'			=> '&raquo; Install',
-	'INSTALL_DETAILS'			=> 'Details',
-	
+
 	// some default messages
 	'USERNAME'	=> 'Username',
 	'PASSWORD'	=> 'Password',
-	
+
 	// pages title
 	'HOME'		=> 'Home',
-	
+
 	// server messages
 	'SITE_INFO'			=> 'Site information',
 	'DATABASE_INFO'		=> 'Database information',
@@ -87,15 +74,7 @@ $lang = array_merge($lang, array(
 	'META_KEYWORDS'		=> 'Keywords [META]',
 	'TEMPLATE'			=> 'Template',
 	'SETTINGS'			=> 'Settings',
-	
-	// default blog strings
-	'BLOG_SEARCH'		=> 'Search',
-	'BLOG_PUBLISHED_ON'	=> 'Published on',
-	'BLOG_BY'			=> 'by',
-	'BLOG_CONTINUE'		=> 'Continue',
-	'BLOG_COMMENTS'		=> 'Comments',
-	'BLOG_NO_CATS'		=> 'No categories.',
-	
+
 	// months
 	'MONTH_1'	=> 'January',
 	'MONTH_2'	=> 'February',
@@ -108,13 +87,6 @@ $lang = array_merge($lang, array(
 	'MONTH_9'	=> 'September',
 	'MONTH_10'	=> 'October',
 	'MONTH_11'	=> 'November',
-	'MONTH_12'	=> 'December',
-	
-	// siderbar strings
-	'CATEGORIES'		=> 'Categories',
-	
-	// first article strings
-	'ARTICLE_TITLE'		=> 'Welcome on',
-	'ARTICLE_CONTENT'	=> '<p>la la la la la</p>',
+	'MONTH_12'	=> 'December'
 ));
 ?>

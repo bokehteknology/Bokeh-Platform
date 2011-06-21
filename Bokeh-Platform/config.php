@@ -31,11 +31,22 @@ $prefix = 'bokeh_';
 * Advanced system configuration is to be set via Admin panel
 */
 $config = array(
-	'server_protocol'	=> 'http',
-	'server_name'		=> 'www.mysite.com',
-	'server_port'		=> 80,
-	'server_path'		=> '/bokeh',
-	'timezone'		=> 'Europe/Rome'
+	'database_enabled'		=> false,
+	'server_protocol'		=> 'http',
+	'server_name'			=> 'www.mysite.com',
+	'server_port'			=> 80,
+	'server_path'			=> '/bokeh',
+	'default_controller'	=> 'default',
+	'site_name'				=> 'My Bokeh Platform site',
+	'site_description'		=> 'This is a Bokeh Platform powered site',
+	'meta_keywords'			=> 'bokeh, platform, php',
+	'meta_description'		=> 'This is a Bokeh Platform powered site',
+	'site_email'			=> 'info@mysite.com',
+	'template'				=> 'default',
+	'date_format'			=> 'j | Y',
+	'hour_format'			=> 'H:i',
+	'timezone'				=> 'Europe/Rome',
+	'plugins_active'		=> array(),
 );
 
 /**
