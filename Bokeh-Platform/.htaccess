@@ -2,6 +2,6 @@ RewriteEngine On
 #Options +FollowSymlinks
 RewriteBase /
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([A-Za-z0-9-+]+)$ ./seo.php?p=$1 [L]
+# This rewrite is not secure, is only for testing
+#RewriteRule ^(.*)/(.*).html$ /index.php/$1/$2 [QSA,L,NC]
+#RewriteRule ^(.*)/$ /index.php/$1 [QSA,L,NC]
