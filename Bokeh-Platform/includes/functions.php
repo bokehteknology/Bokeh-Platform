@@ -194,7 +194,7 @@ function error_handler($errno, $errstr, $errfile, $errline)
 * @param $code int
 * @param $message string
 */
-function set_header_status($code, $message)
+function set_header_status($code, $message = '')
 {
 	if (isset($_SERVER['HTTP_VERSION']))
 	{
@@ -203,6 +203,16 @@ function set_header_status($code, $message)
 	else
 	{
 		$version = 'HTTP/1.0';
+	}
+
+	if (empty($message))
+	{
+		switch($code)
+		{
+			case 404:
+				$message = 'Not Found';
+				break;
+		}
 	}
 
 	header("$version $code $message", true, $code);
