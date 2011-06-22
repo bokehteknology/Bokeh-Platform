@@ -166,10 +166,13 @@ check_template($config['template']);
 
 # Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).(phpEx)
 # After including, add a new object $plugin_(plugin_name) for the class plugin_(plugin_name)
+/*
 if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS)
 {
 	if (count($config['plugins_active']))
 	{
+		$plugin_controllers_list = array();
+
 		foreach($config['plugins_active'] as $plugin_name)
 		{
 			if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
@@ -179,12 +182,18 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS)
 
 				if (class_exists($plugin_class_name))
 				{
-					$plugin_class_name = new $plugin_class_name();
+					$$plugin_class_name = new $plugin_class_name();
+
+					if ($$plugin_class_name->is_controller)
+					{
+						$plugin_controllers_list[$plugin_class_name] = $plugin_class_name;
+					}
 				}
 			}
 		}
 	}
 }
+*/
 
 # Now unset some vars, for security purposes
 unset($_SERVER, $_REQUEST, $_GET, $_POST);
