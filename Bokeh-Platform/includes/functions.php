@@ -189,6 +189,26 @@ function error_handler($errno, $errstr, $errfile, $errline)
 }
 
 /**
+* Set correct status header
+*
+* @param $code int
+* @param $message string
+*/
+function set_header_status($code, $message)
+{
+	if (isset($_SERVER['HTTP_VERSION']))
+	{
+		$version = $_SERVER['HTTP_VERSION'];
+	}
+	else
+	{
+		$version = 'HTTP/1.0';
+	}
+
+	header("$version $code $message", true, $code);
+}
+
+/**
 * Output an error message
 *
 * @param $msg string
