@@ -20,7 +20,7 @@ class controller_default
 {
 	function controller_default()
 	{
-		# here you can put some code for init our controller
+		# here you can put some code for init your controller
 	}
 
 	function index()
