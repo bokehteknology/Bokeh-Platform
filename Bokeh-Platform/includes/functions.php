@@ -194,17 +194,8 @@ function error_handler($errno, $errstr, $errfile, $errline)
 * @param $code int
 * @param $message string
 */
-function set_header_status($code, $message = '')
+function set_header_status($code, $message)
 {
-	if (isset($_SERVER['HTTP_VERSION']))
-	{
-		$version = $_SERVER['HTTP_VERSION'];
-	}
-	else
-	{
-		$version = 'HTTP/1.0';
-	}
-
 	if (empty($message))
 	{
 		switch($code)
@@ -215,7 +206,7 @@ function set_header_status($code, $message = '')
 		}
 	}
 
-	header("$version $code $message", true, $code);
+	header('HTTP/1.0 ' . $code . ' ' . $message, true, $code);
 }
 
 /**
