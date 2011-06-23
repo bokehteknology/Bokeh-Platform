@@ -3,8 +3,8 @@
 ########################
 
 # ErrorDocument
-ErrorDocument 403 index.php/http_status_forbidden
-ErrorDocument 404 index.php/http_status_not_found
+ErrorDocument 403 /index.php/http_status_forbidden
+ErrorDocument 404 /index.php/http_status_not_found
 
 # Rewrite engine
 RewriteEngine On
