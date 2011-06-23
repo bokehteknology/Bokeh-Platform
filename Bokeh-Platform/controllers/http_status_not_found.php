@@ -25,9 +25,9 @@ class controller_http_status_not_found
 
 	function index()
 	{
-		global $lang;
+		error_box('ERROR_404_EXPLAIN', array(), 'ERROR_404_TITLE');
 
-		error_box($lang['ERROR_404_EXPLAIN'], array(), $lang['ERROR_404_TITLE']);
+		close(true);
 	}
 }
 ?>

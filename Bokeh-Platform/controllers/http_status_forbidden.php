@@ -25,9 +25,9 @@ class controller_http_status_forbidden
 
 	function index()
 	{
-		global $lang;
+		error_box('ERROR_403_EXPLAIN', array(), 'ERROR_403_TITLE');
 
-		error_box($lang['ERROR_403_EXPLAIN'], array(), $lang['ERROR_403_TITLE']);
+		close(true);
 	}
 }
 ?>
