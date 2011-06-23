@@ -45,6 +45,8 @@ $lang = array_merge($lang, array(
 	'ERR_TEMPLATE_IF_PARSING'	=> 'Si è verificato un errore durante il parsing del template.',
 
 	// http errors
+	'ERROR_403_TITLE'	=> 'Errore 403',
+	'ERROR_403_EXPLAIN'	=> 'Non hai i permessi per accedere a questa pagina.',
 	'ERROR_404_TITLE'	=> 'Errore 404',
 	'ERROR_404_EXPLAIN'	=> 'Non c’è nessuna pagina con questo nome.',
 
