@@ -74,16 +74,22 @@ if (file_exists($root_path . 'controllers/' . $config['url_controller'] . '.' . 
 		}
 		else
 		{
-			//set_header_status(404);
+			set_header_status(404);
 		}
 	}
 	else
 	{
-		//set_header_status(404);
+		if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+		{
+			set_header_status(404);
+		}
 	}
 }
 else
 {
-	//set_header_status(404);
+	if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+	{
+		set_header_status(404);
+	}
 }
 ?>
