@@ -23,9 +23,16 @@ if (!defined('IN_BOKEH'))
 */
 function page_header($title = false)
 {
-	global $config, $smarty;
+	global $config, $lang, $smarty;
 
-	if ($title !== false) $smarty->assign('title', $title);
+	if ($title !== false && $title == strtoupper($title) && isset($lang[$title]))
+	{
+			$smarty->assign('title', $lang[$title]);
+	}
+	else if ($title !== false)
+	{
+			$smarty->assign('title', $title);
+	}
 
 	_template('header');
 
@@ -194,19 +201,65 @@ function error_handler($errno, $errstr, $errfile, $errline)
 * @param $code int
 * @param $message string
 */
-function set_header_status($code, $message)
+function set_header_status($code, $message = '')
 {
+	global $root_path, $phpEx, $controller;
+
+	/*
+	*
+	* For now, we only send user error, don't send header status
+
+	global $_SERVER;
+
+	if (isset($_SERVER['HTTP_VERSION']))
+	{
+		$http = $_SERVER['HTTP_VERSION'];
+	}
+	else
+	{
+		$http = 'HTTP/1.0';
+	}
+
+	if (substr(strtolower(@php_sapi_name()), 0, 3) === 'cgi')
+	{
+		$http = 'Status:';
+	}
+	*/
+
 	if (empty($message))
 	{
 		switch($code)
 		{
+			case 403:
+				$message = 'Forbidden';
+				$file_name = 'forbidden';
+				break;
 			case 404:
 				$message = 'Not Found';
+				$file_name = 'not_found';
 				break;
+		}
+
+		if (isset($controller))
+		{
+			unset($controller);
+		}
+
+		if (file_exists($root_path . 'controllers/http_status_' . $file_name . '.' . $phpEx))
+		{
+			include($root_path . 'controllers/http_status_' . $file_name . '.' . $phpEx);
+
+			$controller_class_name = 'controller_http_status_' . $file_name;
+
+			$controller = new $controller_class_name();
+			$controller->index();
 		}
 	}
 
-	header('HTTP/1.0 ' . $code . ' ' . $message, true, $code);
+	# See some line up this
+	# header($http . ' ' . $code . ' ' . $message, true, $code);
+
+	return false;
 }
 
 /**
@@ -250,7 +303,7 @@ function error_box($msg = '', $params = array(), $title = false)
 				break;
 		}
 
-		$user['page_title'] = (($title === false) ? $lang['ERROR'] : $title);
+		$user['page_title'] = (($title === false) ? $lang['ERROR'] : (($title == strtoupper($title) && isset($lang[$title])) ? $lang[$title] : $title));
 
 		$smarty->assign('title', $user['page_title']);
 		$smarty->assign('template_html', '<em>' . $_msg . '</em>');
@@ -360,6 +413,34 @@ function set_template($template)
 	$config['template'] = $template;
 	check_template($template);
 	return true;
+}
+
+/**
+* Check if is active specified plugin with controller
+* and if yes, execute it, with page specified
+*
+* @param $plugin string
+* @param $page string
+* @param $active_list array
+*/
+function run_plugin($plugin, $page, $active_list)
+{
+	if (isset($active_list[$plugin]))
+	{
+		$plugin_class_name = 'plugin_' . $plugin;
+
+		global $$plugin_class_name;
+
+		if (method_exists($$plugin_class_name, $page))
+		{
+			$$plugin_class_name->$page();
+
+			return true;
+		}
+	}
+
+
+	return false;
 }
 
 /**
