@@ -573,11 +573,11 @@ function retrive_latest_version($stable = true)
 {
 	if ($stable)
 	{
-		$file = "https://github.com/carlino1994/Bokeh-Platform/raw/master/bokeh_api/v_stable.txt";
+		$file = "http://gh.bokehteknology.net/bokeh_platform/stable.txt";
 	}
 	else
 	{
-		$file = "https://github.com/carlino1994/Bokeh-Platform/raw/master/bokeh_api/v_dev.txt";
+		$file = "http://gh.bokehteknology.net/bokeh_platform/dev.txt";
 	}
 
 	$get = @file_get_contents($file);
