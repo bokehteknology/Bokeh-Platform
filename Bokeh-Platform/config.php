@@ -31,7 +31,6 @@ $prefix = 'bokeh_';
 * Advanced system configuration is to be set via Admin panel
 */
 $config = array(
-	'database_enabled'		=> false,
 	'server_protocol'		=> 'http',
 	'server_name'			=> 'www.mysite.com',
 	'server_port'			=> 80,
@@ -69,6 +68,11 @@ $config = array(
 * Enable explain mode
 */
 @define('EXPLAIN_MODE', false);
+
+/**
+* Enable database connection
+*/
+@define('ENABLE_DATABASE', false);
 
 /**
 * Enable plugins

@@ -44,7 +44,7 @@ define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 
 # Session disabled for now (21.06.2011, 1.0.0-dev)
-#session_start();
+# session_start();
 
 # Setting some arrays
 $config = $user = array();
@@ -69,7 +69,6 @@ ini_set('date.timezone', $config['timezone']);
 
 # Require system files
 require($root_path . 'includes/functions.' . $phpEx);
-require($root_path . 'includes/' . $dbtype . '_db.' . $phpEx);
 require($root_path . 'includes/tables_name.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 
@@ -87,9 +86,12 @@ else
 }
 
 # Initialize database class
-if ($config['database_enabled'])
+if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 {
-	$db = new $__database_class__();
+	require($root_path . 'includes/database/' . $dbtype . '.' . $phpEx);
+
+	$database_class_name = 'database_' . $dbtype;
+	$db = new $database_class_name();
 }
 
 # Initialize Smarty
@@ -100,9 +102,6 @@ $smarty->template_dir = $root_path . 'templates/';
 $smarty->compile_dir = $root_path . 'cache/';
 $smarty->force_compile = false;
 $smarty->compile_check = true;
-
-# General Smarty vars
-smarty_assign();
 
 # Check if DEBUG is active
 if (defined('DEBUG') && DEBUG)
@@ -151,7 +150,7 @@ set_headers();
 $request_vars = retrive_requests_vars($_REQUEST);
 
 # Connect to DB
-if ($config['database_enabled'])
+if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 {
 	$db->sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname);
 }
@@ -162,27 +161,49 @@ unset($dbpass);
 # Check if template dir exist and set it
 check_template($config['template']);
 
+# Add out of check below else
+# we have an error on index.php
+$plugin_controllers_list = array();
+
 # Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).(phpEx)
 # After including, add a new object $plugin_(plugin_name) for the class plugin_(plugin_name)
-if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS)
+if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config['plugins_active']))
 {
-	if (count($config['plugins_active']))
+	foreach($config['plugins_active'] as $plugin_name)
 	{
-		foreach($config['plugins_active'] as $plugin_name)
+		if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
 		{
-			if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
-			{
-				include($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx);
-				$plugin_class_name = 'plugin_' . $plugin_name;
+			include($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx);
+			$plugin_class_name = 'plugin_' . $plugin_name;
 
-				if (class_exists($plugin_class_name))
+			if (class_exists($plugin_class_name))
+			{
+				$$plugin_class_name = new $plugin_class_name();
+
+				if ($$plugin_class_name->is_controller)
 				{
-					$plugin_class_name = new $plugin_class_name();
+					$plugin_controllers_list[$plugin_name] = $plugin_name;
+				}
+
+				# Include lang file, if required
+				if ($$plugin_class_name->load_lang)
+				{
+					if (file_exists($root_path . 'plugins/' . $plugin_name . '/languages/' . $client_lang . '.' . $phpEx))
+					{
+						include($root_path . 'plugins/' . $plugin_name . '/languages/' . $client_lang . '.' . $phpEx);
+					}
+					else
+					{
+						include($root_path . 'plugins/' . $plugin_name . '/languages/en.' . $phpEx);
+					}
 				}
 			}
 		}
 	}
 }
+
+# General Smarty vars (copyrights, language)
+smarty_assign();
 
 # Now unset some vars, for security purposes
 unset($_SERVER, $_REQUEST, $_GET, $_POST);

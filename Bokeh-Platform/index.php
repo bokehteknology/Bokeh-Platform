@@ -1,8 +1,12 @@
 <?php
-#######################################################################
-######################## START MAIN SCRIPT ############################
-#######################################################################
-
+/**
+*
+* @package Bokeh Platform
+* @version $Id$
+* @copyright (c) 2011 Bokeh Platform
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+*
+*/
 define('IN_BOKEH', true);
 $root_path = './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -70,18 +74,22 @@ if (file_exists($root_path . 'controllers/' . $config['url_controller'] . '.' . 
 		}
 		else
 		{
-			error_box($lang['ERROR_404_EXPLAIN'], array(), $lang['ERROR_404_TITLE']);
+			set_header_status(404);
 		}
 	}
 	else
 	{
-		error_box($lang['ERROR_404_EXPLAIN'], array(), $lang['ERROR_404_TITLE']);
+		if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+		{
+			set_header_status(404);
+		}
 	}
 }
 else
 {
-	error_box($lang['ERROR_404_EXPLAIN'], array(), $lang['ERROR_404_TITLE']);
+	if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+	{
+		set_header_status(404);
+	}
 }
-
-exit;
 ?>
