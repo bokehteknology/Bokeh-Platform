@@ -22,15 +22,15 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-// UTF-8 (no BOM)
-// Some characters
-// ’ » “ ” …
+# UTF-8 (no BOM)
+# Some characters
+# ’ » “ ” …
 
 $lang = array_merge($lang, array(
 	'LANG_PREFIX'			=> 'en',
 	'TRANSLATION_INFO'		=> 'English Translation by Bokeh Teknology',
 
-	// error_box() messages
+	# error_box() messages
 	'ERROR'						=> 'Error',
 	'ERR_SQL_CONNECT'			=> 'Could not connect to database server.',
 	'ERR_SQL_SELECT_DB'			=> 'Can’t select the database.',
@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'ERR_NO_TEMPLATE_INFO'		=> 'The file containing information on the template does not exist.',
 	'ERR_TEMPLATE_IF_PARSING'	=> 'There was an error during parsing the template.',
 
-	// http errors
+	# http errors
 	'ERROR_403_TITLE'	=> 'Error 403',
 	'ERROR_403_EXPLAIN'	=> 'You don’t have permission to access this page.',
 	'ERROR_404_TITLE'	=> 'Error 404',
@@ -60,14 +60,14 @@ $lang = array_merge($lang, array(
 	'EXPLAIN_AFTER'				=> 'After',
 	'EXPLAIN_ELAPSED'			=> 'Elapsed',
 
-	// some default messages
+	# some default messages
 	'USERNAME'	=> 'Username',
 	'PASSWORD'	=> 'Password',
 
-	// pages title
+	# pages title
 	'HOME'		=> 'Home',
 
-	// server messages
+	# server messages
 	'SITE_INFO'			=> 'Site information',
 	'DATABASE_INFO'		=> 'Database information',
 	'SITENAME'			=> 'Site name',
@@ -77,7 +77,11 @@ $lang = array_merge($lang, array(
 	'TEMPLATE'			=> 'Template',
 	'SETTINGS'			=> 'Settings',
 
-	// months
+	# version check
+	'BOKEH_NOT_UPDATED'	=> 'Bokeh Platform isn’ updated! The latest version available is: ',
+	'BOKEH_NOT_STABLE'	=> 'Please note that you are not using the <b>stable</b> version of Platform Bokeh!',
+
+	# months
 	'MONTH_1'	=> 'January',
 	'MONTH_2'	=> 'February',
 	'MONTH_3'	=> 'March',

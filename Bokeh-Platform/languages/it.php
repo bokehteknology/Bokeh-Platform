@@ -22,15 +22,15 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-// UTF-8 (no BOM)
-// Some characters
-// ’ » “ ” …
+# UTF-8 (no BOM)
+# Some characters
+# ’ » “ ” …
 
 $lang = array_merge($lang, array(
 	'LANG_PREFIX'			=> 'it',
 	'TRANSLATION_INFO'		=> 'Traduzione Italiana by Bokeh Teknology',
 
-	// error_box() messages
+	# error_box() messages
 	'ERROR'						=> 'Errore',
 	'ERR_SQL_CONNECT'			=> 'Impossibile collegarsi al server del database.',
 	'ERR_SQL_SELECT_DB'			=> 'Impossibile selezionare il database.',
@@ -44,13 +44,13 @@ $lang = array_merge($lang, array(
 	'ERR_NO_TEMPLATE_INFO'		=> 'Il file contenente le informazioni sul template non esiste.',
 	'ERR_TEMPLATE_IF_PARSING'	=> 'Si è verificato un errore durante il parsing del template.',
 
-	// http errors
+	# http errors
 	'ERROR_403_TITLE'	=> 'Errore 403',
 	'ERROR_403_EXPLAIN'	=> 'Non hai i permessi per accedere a questa pagina.',
 	'ERROR_404_TITLE'	=> 'Errore 404',
 	'ERROR_404_EXPLAIN'	=> 'Non c’è nessuna pagina con questo nome.',
 
-	// explain mode messages
+	# explain mode messages
 	'EXPLAIN_PAGE_GENERATE'		=> 'Pagina generata in',
 	'EXPLAIN_SECONDS_WITH'		=> 'secondi con',
 	'EXPLAIN_QUERIES'			=> 'query',
@@ -60,14 +60,14 @@ $lang = array_merge($lang, array(
 	'EXPLAIN_AFTER'				=> 'Dopo',
 	'EXPLAIN_ELAPSED'			=> 'Tempo',
 
-	// some default messages
+	# some default messages
 	'USERNAME'	=> 'Utente',
 	'PASSWORD'	=> 'Password',
 
-	// pages title
+	# pages title
 	'HOME'		=> 'Home',
 
-	// server messages
+	# server messages
 	'SITE_INFO'			=> 'Informazioni sul sito',
 	'DATABASE_INFO'		=> 'Informazioni sul database',
 	'SITENAME'			=> 'Nome del sito',
@@ -77,7 +77,11 @@ $lang = array_merge($lang, array(
 	'TEMPLATE'			=> 'Template',
 	'SETTINGS'			=> 'Configurazioni',
 
-	// months
+	# version check
+	'BOKEH_NOT_UPDATED'	=> 'Bokeh Platform non è aggiornato! L’ultima versione disponibile è: ',
+	'BOKEH_NOT_STABLE'	=> 'Ti ricordiamo che non stai usando la versione <b>stabile</b> di Bokeh Platform!',
+
+	# months
 	'MONTH_1'	=> 'Gennaio',
 	'MONTH_2'	=> 'Febbraio',
 	'MONTH_3'	=> 'Marzo',
