@@ -365,7 +365,7 @@ function retrive_requests_vars($requests)
 */
 function check_template($__template)
 {
-	global $root_path, $user, $phpEx, $smarty;
+	global $root_path, $config, $user, $phpEx, $smarty;
 
 	$_tpl = $root_path . 'templates/' . $__template . '/';
 	$_tpl_info = $_tpl . 'tpl.' . $phpEx;
@@ -392,7 +392,7 @@ function check_template($__template)
 	}
 
 	$smarty->assign(array(
-			'tpl_path'		=> $_tpl,
+			'tpl_path'		=> $config['site_root'] . 'templates/' . $__template . '/',
 			'tpl_name'		=> $user['template']['name'],
 			'tpl_author'	=> $user['template']['author'],
 			'tpl_version'	=> $user['template']['version'],
@@ -523,12 +523,26 @@ function close($exit = false)
 	if (defined('EXPLAIN') && EXPLAIN)
 	{
 		@ob_clean();
-		global $lang, $smarty, $starttime;
+		global $lang, $smarty, $starttime, $bokeh_version, $is_bokeh_stable;
 
 		$mtime = explode(' ', microtime());
 		$totaltime = $mtime[0] + $mtime[1] - $starttime;
 
-		$tpl = '<p><b>' . $lang['EXPLAIN_PAGE_GENERATE'] . ' ' . sprintf('%.3f', $totaltime) . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? ' ' . $lang['EXPLAIN_SECONDS_WITH'] . ' ' . $db->sql_queries . ' ' . $lang['EXPLAIN_QUERIES'] : '') . '.</b><br />';
+		$tpl = '';
+
+		$latest_version = retrive_latest_version($is_bokeh_stable);
+
+		if ($latest_version !== false && version_compare($latest_version, $bokeh_version, '>'))
+		{
+			$tpl .= '<p>' . $lang['BOKEH_NOT_UPDATED'] . '<b>' . $latest_version . '</b></p>';
+		}
+
+		if (!$is_bokeh_stable)
+		{
+			$tpl .= '<p>' . $lang['BOKEH_NOT_STABLE'] . '</p>';
+		}
+
+		$tpl .= '<p><b>' . $lang['EXPLAIN_PAGE_GENERATE'] . ' ' . sprintf('%.3f', $totaltime) . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? ' ' . $lang['EXPLAIN_SECONDS_WITH'] . ' ' . $db->sql_queries . ' ' . $lang['EXPLAIN_QUERIES'] : '') . '.</b><br />';
 
 		if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 		{

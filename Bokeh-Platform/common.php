@@ -69,7 +69,7 @@ ini_set('date.timezone', $config['timezone']);
 
 # Require system files
 require($root_path . 'includes/functions.' . $phpEx);
-require($root_path . 'includes/tables_name.' . $phpEx);
+require($root_path . 'includes/db_tables.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 
 # Require user language
@@ -122,7 +122,8 @@ $bokeh_api_domain = 'apps.bokehteknology.net';
 $bokeh_api_path = '/Bokeh-Platform/';
 
 # Setting Bokeh version
-$bokeh_version = '1.0.0-dev';
+$bokeh_version = '1.0.0-b1';
+$is_bokeh_stable = false;
 
 # Set template default vars
 $smarty->assign(array(

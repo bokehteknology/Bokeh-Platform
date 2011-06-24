@@ -12,7 +12,7 @@ TPL Website: {$tpl_website}
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFFF url({$tpl_path}images/img01.jpg) repeat-x;
+	background: #FFFFFF url('{$tpl_path}images/img01.jpg') repeat-x;
 	text-align: justify;
 	font: 15px Arial, Helvetica, sans-serif;
 	color: #626262;
@@ -25,7 +25,7 @@ form {
 
 input {
 	padding: 5px;
-	background: #FEFEFE url({$tpl_path}images/img13.gif) repeat-x;
+	background: #FEFEFE url('{$tpl_path}images/img13.gif') repeat-x;
 	border: 1px solid #626262;
 	font: normal 1em Arial, Helvetica, sans-serif;
 }
@@ -207,13 +207,13 @@ a:hover {
 .post .links .more {
 	width: 128px;
 	height: 30px;
-	background: url({$tpl_path}images/img03.jpg) no-repeat left center;
+	background: url('{$tpl_path}images/img03.jpg') no-repeat left center;
 }
 
 .post .links .comments {
 	width: 152px;
 	height: 30px;
-	background: url({$tpl_path}images/img04.jpg) no-repeat left center;
+	background: url('{$tpl_path}images/img04.jpg') no-repeat left center;
 }
 
 /* Sidebar */
@@ -232,7 +232,7 @@ a:hover {
 
 #sidebar li {
 	margin-bottom: 10px;
-	background: url({$tpl_path}images/img10.gif) no-repeat left bottom;
+	background: url('{$tpl_path}images/img10.gif') no-repeat left bottom;
 }
 
 #sidebar li ul {
@@ -242,12 +242,12 @@ a:hover {
 #sidebar li li {
 	margin: 0;
 	padding-left: 20px;
-	background: url({$tpl_path}images/img11.gif) no-repeat 5px 50%;
+	background: url('{$tpl_path}images/img11.gif') no-repeat 5px 50%;
 }
 
 #sidebar h2 {
 	padding: 30px 30px 20px 30px;
-	background: url({$tpl_path}images/img09.gif) no-repeat;
+	background: url('{$tpl_path}images/img09.gif') no-repeat;
 	text-transform: lowercase;
 	font-weight: normal;
 	font-size: 1.6em;
@@ -265,7 +265,7 @@ a:hover {
 	padding: 0;
 	width: 70px;
 	height: 29px;
-	background: #DFDFDF url({$tpl_path}images/img14.gif) repeat-x;
+	background: #DFDFDF url('{$tpl_path}images/img14.gif') repeat-x;
 	font-weight: bold;
 }
 
@@ -273,7 +273,7 @@ a:hover {
 	padding: 5px;
 	width: 150px;
 	height: auto;
-	background: #FEFEFE url({$tpl_path}images/img13.gif) repeat-x;
+	background: #FEFEFE url('{$tpl_path}images/img13.gif') repeat-x;
 	border: 1px solid #626262;
 	font: normal 1em Arial, Helvetica, sans-serif;
 }
@@ -285,7 +285,7 @@ a:hover {
 /* Categories */
 
 #sidebar #categories li {
-	background: url({$tpl_path}images/img12.gif) no-repeat left center;
+	background: url('{$tpl_path}images/img12.gif') no-repeat left center;
 }
 
 /* Calendar */
@@ -331,7 +331,7 @@ a:hover {
 
 #footer {
 	padding: 70px 0 50px 0;
-	background: #757575 url({$tpl_path}images/img08.gif) repeat-x;
+	background: #757575 url('{$tpl_path}images/img08.gif') repeat-x;
 }
 
 #footer p {
@@ -353,15 +353,15 @@ a:hover {
 }
 
 #footer .rss {
-	background: url({$tpl_path}images/img18.gif) no-repeat left center;
+	background: url('{$tpl_path}images/img18.gif') no-repeat left center;
 }
 
 #footer .xhtml {
-	background: url({$tpl_path}images/img19.gif) no-repeat left center;
+	background: url('{$tpl_path}images/img19.gif') no-repeat left center;
 }
 
 #footer .css {
-	background: url({$tpl_path}images/img20.gif) no-repeat left center;
+	background: url('{$tpl_path}images/img20.gif') no-repeat left center;
 }
 
 #footer .legal a {

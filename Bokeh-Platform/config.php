@@ -78,9 +78,4 @@ $config = array(
 * Enable plugins
 */
 @define('ENABLE_PLUGINS', true);
-
-/**
-* Enable SEO URLs
-*/
-@define('ENABLE_SEO', false);
 ?>
