@@ -123,6 +123,7 @@ $bokeh_api_path = '/Bokeh-Platform/';
 
 # Setting Bokeh version
 $bokeh_version = '1.0.0-dev';
+$is_bokeh_stable = false;
 
 # Set template default vars
 $smarty->assign(array(
