@@ -122,7 +122,7 @@ $bokeh_api_domain = 'apps.bokehteknology.net';
 $bokeh_api_path = '/Bokeh-Platform/';
 
 # Setting Bokeh version
-$bokeh_version = '1.0.0-dev';
+$bokeh_version = '1.0.0-b1';
 $is_bokeh_stable = false;
 
 # Set template default vars
