@@ -205,7 +205,4 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config['plugins_active
 
 # General Smarty vars (copyrights, language)
 smarty_assign();
-
-# Now unset some vars, for security purposes
-unset($_SERVER, $_REQUEST, $_GET, $_POST);
 ?>
