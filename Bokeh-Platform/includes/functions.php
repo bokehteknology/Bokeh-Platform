@@ -585,16 +585,7 @@ function close($exit = false)
 */
 function retrive_latest_version($stable = true)
 {
-	if ($stable)
-	{
-		$file = "http://gh.bokehteknology.net/bokeh_platform/stable.txt";
-	}
-	else
-	{
-		$file = "http://gh.bokehteknology.net/bokeh_platform/dev.txt";
-	}
-
-	$get = @file_get_contents($file);
+	$get = @file_get_contents('http://apps.bokehteknology.net/data.xml?service=update&mode=bokeh_platform_' . ($stable ? 'stable' : 'dev'));
 
 	if (!$get)
 	{
