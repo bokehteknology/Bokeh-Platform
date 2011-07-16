@@ -585,12 +585,16 @@ function close($exit = false)
 */
 function retrive_latest_version($stable = true)
 {
-	$get = @file_get_contents('http://apps.bokehteknology.net/data.xml?service=update&mode=bokeh_platform_' . ($stable ? 'stable' : 'dev'));
+	global $bokeh_apps_domain, $bokeh_apps_unique_id;
+
+	$get = @file_get_contents('http://' . $bokeh_apps_domain . '/data.xml?service=update&mode=' . $bokeh_apps_unique_id . '_' . ($stable ? 'stable' : 'dev'));
 
 	if (!$get)
 	{
 		return false;
 	}
 
-	return $get;
+	$get = json_decode($get, true);
+
+	return $get['version'];
 }

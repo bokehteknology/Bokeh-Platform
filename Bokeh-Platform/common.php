@@ -118,8 +118,8 @@ else
 
 # Setting Bokeh domain
 $bokeh_domain = 'www.bokehteknology.net';
-$bokeh_api_domain = 'apps.bokehteknology.net';
-$bokeh_api_path = '/Bokeh-Platform/';
+$bokeh_apps_domain = 'apps.bokehteknology.net';
+$bokeh_apps_unique_id = 'bokeh_platform';
 
 # Setting Bokeh version
 $bokeh_version = '1.0.0-b1';
