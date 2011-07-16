@@ -31,4 +31,3 @@ $lang = array_merge($lang, array(
 	'PLUGIN_TEST_TITLE'	=> 'Test Plugin',
 	'PLUGIN_TEST_BODY'	=> 'Questo è un plugin di prova!'
 ));
-?>

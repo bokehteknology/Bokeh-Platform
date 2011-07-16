@@ -30,4 +30,3 @@ class controller_http_status_not_found
 		close(true);
 	}
 }
-?>

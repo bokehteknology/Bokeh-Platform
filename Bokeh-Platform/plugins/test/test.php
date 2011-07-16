@@ -39,5 +39,3 @@ class plugin_test
 		page_footer();
 	}
 }
-
-?>

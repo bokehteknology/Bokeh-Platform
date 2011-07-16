@@ -30,4 +30,3 @@ class controller_http_status_forbidden
 		close(true);
 	}
 }
-?>

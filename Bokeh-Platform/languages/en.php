@@ -95,4 +95,3 @@ $lang = array_merge($lang, array(
 	'MONTH_11'	=> 'November',
 	'MONTH_12'	=> 'December'
 ));
-?>

@@ -92,4 +92,3 @@ else
 		set_header_status(404);
 	}
 }
-?>

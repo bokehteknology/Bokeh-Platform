@@ -205,4 +205,3 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config['plugins_active
 
 # General Smarty vars (copyrights, language)
 smarty_assign();
-?>

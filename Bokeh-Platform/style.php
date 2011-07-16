@@ -25,4 +25,3 @@ else
 }
 
 close(false);
-?>

@@ -603,4 +603,3 @@ function retrive_latest_version($stable = true)
 
 	return $get;
 }
-?>

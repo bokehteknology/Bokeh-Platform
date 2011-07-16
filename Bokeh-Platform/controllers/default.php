@@ -35,4 +35,3 @@ class controller_default
 		page_footer();
 	}
 }
-?>

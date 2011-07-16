@@ -136,4 +136,3 @@ class database_mysql
 }
 
 $__database_name__ = 'MySQL';
-?>

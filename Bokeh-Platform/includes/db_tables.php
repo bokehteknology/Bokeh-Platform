@@ -34,4 +34,3 @@ if (!defined('ENABLE_DATABASE') || !ENABLE_DATABASE)
 
 # Unset array
 unset($tables_name);
-?>

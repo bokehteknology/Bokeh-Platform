@@ -78,4 +78,3 @@ $config = array(
 * Enable plugins
 */
 @define('ENABLE_PLUGINS', true);
-?>
