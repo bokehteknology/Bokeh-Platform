@@ -1,3 +1,5 @@
+[![Bokeh Teknology](http://www.bokehteknology.net/images/bokeh_platform.png)](http://www.bokehteknology.net)
+
 ## Bokeh Platform
 
 Bokeh Platform is a simple and faster PHP platform for develop websites, powered by [Bokeh Teknology](http://www.bokehteknology.net/).
