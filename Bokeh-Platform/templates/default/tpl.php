@@ -19,8 +19,8 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-// Bokeh Platform Template
-// TPL Info
+# Bokeh Platform Template
+# TPL Info
 $style = array(
 	'name'		=> 'Bokeh Default',
 	'author'	=> 'Bokeh Teknology',

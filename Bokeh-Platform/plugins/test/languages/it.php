@@ -23,9 +23,9 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-// UTF-8 (no BOM)
-// Some characters
-// ’ » “ ” …
+# UTF-8 (no BOM)
+# Some characters
+# ’ » “ ” …
 
 $lang = array_merge($lang, array(
 	'PLUGIN_TEST_TITLE'	=> 'Test Plugin',
