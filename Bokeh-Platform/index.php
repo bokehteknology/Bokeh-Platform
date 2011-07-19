@@ -4,7 +4,7 @@
 * @package Bokeh Platform
 * @version $Id$
 * @copyright (c) 2011 Bokeh Platform
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 *
 */
 define('IN_BOKEH', true);

@@ -8,7 +8,7 @@
 * @copyright (c) 2011 Bokeh Platform
 * @author Carlo [uid: 2]
 * @version 1.0.0
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 */
 
 /**
