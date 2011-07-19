@@ -122,7 +122,7 @@ $bokeh_apps_domain = 'apps.bokehteknology.net';
 $bokeh_apps_unique_id = 'bokeh_platform';
 
 # Setting Bokeh version
-$bokeh_version = '1.0.0-b1';
+$bokeh_version = '1.0.0-b3';
 $is_bokeh_stable = false;
 
 # Set template default vars

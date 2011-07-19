@@ -6,7 +6,7 @@
 * @plugin test
 * @package language
 * @copyright (c) 2011 Bokeh Platform
-* @author Carlo [uid: 2]
+* @author Bokeh Teknology
 * @version 1.0.0
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 */

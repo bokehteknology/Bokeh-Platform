@@ -5,8 +5,8 @@
 *
 * @package template
 * @copyright (c) 2011 Bokeh Platform
-* @author Carlo [uid: 2]
-* @version 1.0.0-dev
+* @author Bokeh Teknology
+* @version 1.0.0-b3
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 *
 */
@@ -23,7 +23,7 @@ if (!defined('IN_BOKEH'))
 // TPL Info
 $style = array(
 	'name'		=> 'Bokeh Default',
-	'author'	=> 'Bokeh Platform',
-	'version'	=> '1.0.0-dev',
+	'author'	=> 'Bokeh Teknology',
+	'version'	=> '1.0.0-b3',
 	'website'	=> 'http://www.bokehteknology.net/'
 );
