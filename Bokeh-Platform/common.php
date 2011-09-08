@@ -29,6 +29,9 @@ if (!function_exists('json_decode') || !function_exists('json_encode')) die("<p>
 $starttime = explode(' ', microtime());
 $starttime = $starttime[1] + $starttime[0];
 
+# Setting default error reporting
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+
 if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 {
 	$base_memory_usage = 0;
