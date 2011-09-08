@@ -345,7 +345,7 @@ function generate_debug_info()
 		}
 	}
 
-	return sprintf('Time: %.3fs' . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? '| ' . $db->sql_queries . ' Queries' : '') . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . (($config['page_arg'] == '') ? '' : $config['page_arg'] . '&amp;') . 'explain=1' . '">Explain</a>') : ''), $totaltime);
+	return sprintf('Time: %.3fs' . (defined('ENABLE_DATABASE') && ENABLE_DATABASE ? ' | ' . $db->sql_queries . ' Queries' : '') . (isset($display_ram) ? $display_ram : '') . ((defined('EXPLAIN_MODE') && EXPLAIN_MODE)  ? (' | <a href="' . $config['page_url'] . '?' . (($config['page_arg'] == '') ? '' : $config['page_arg'] . '&amp;') . 'explain=1' . '">Explain</a>') : ''), $totaltime);
 }
 
 /**
