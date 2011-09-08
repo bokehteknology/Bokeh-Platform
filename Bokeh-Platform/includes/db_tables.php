@@ -23,7 +23,7 @@ $tables_name = array(
 
 # Do not add table constants
 # if database is not enabled
-if (!defined('ENABLE_DATABASE') || !ENABLE_DATABASE)
+if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 {
 	# Defines each table name
 	foreach($tables_name as $key => $val)
