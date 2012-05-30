@@ -1,4 +1,4 @@
-[![Bokeh Teknology](http://www.bokehteknology.net/images/bokeh_platform.png)](http://www.bokehteknology.net)
+[![Bokeh Teknology](http://www.bokehteknology.net/community/images/bokeh_platform.png)](http://www.bokehteknology.net)
 
 ## Bokeh Platform
 
