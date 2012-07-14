@@ -46,9 +46,6 @@ if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 
-# Session disabled for now (21.06.2011, 1.0.0-dev)
-# session_start();
-
 # Setting some arrays
 $config = $user = array();
 
