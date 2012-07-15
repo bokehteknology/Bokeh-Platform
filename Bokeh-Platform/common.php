@@ -146,7 +146,14 @@ if (defined('ERROR_HANDLER') && ERROR_HANDLER)
 }
 
 # Define true if we are in explain mode else false
-if (defined('EXPLAIN_MODE') && EXPLAIN_MODE) define('EXPLAIN', request_var('explain')); else define('EXPLAIN', false);
+if (defined('EXPLAIN_MODE') && EXPLAIN_MODE && defined('EXPLAIN_MODE_PASSKEY') && EXPLAIN_MODE_PASSKEY != '')
+{
+	define('EXPLAIN', request_var('explain'));
+}
+else
+{
+	define('EXPLAIN', false);
+}
 
 # Set page headers
 set_headers();
