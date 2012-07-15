@@ -66,8 +66,11 @@ $config = array(
 
 /**
 * Enable explain mode
+* 
+* To access explain mode, append to a page URL: ?explain=1&passkey=PASSKEY
 */
 @define('EXPLAIN_MODE', false);
+@define('EXPLAIN_MODE_PASSKEY', '');
 
 /**
 * Enable database connection

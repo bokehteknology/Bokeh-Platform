@@ -321,9 +321,9 @@ function error_box($msg = '', $params = array(), $title = false)
 */
 function generate_debug_info()
 {
-	global $config, $db, $starttime;
+	global $config, $db, $starttime, $_REQUEST;
 
-	if (defined('EXPLAIN') && EXPLAIN)
+	if (defined('EXPLAIN') && EXPLAIN && (isset($_REQUEST['passkey']) && $_REQUEST['passkey'] == EXPLAIN_MODE_PASSKEY))
 	{
 		return;
 	}
@@ -515,12 +515,14 @@ function formattime($time)
 */
 function close($exit = false)
 {
+	global $_REQUEST;
+
 	if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 	{
 		global $db;
 	}
 
-	if (defined('EXPLAIN') && EXPLAIN)
+	if (defined('EXPLAIN') && EXPLAIN && (isset($_REQUEST['passkey']) && $_REQUEST['passkey'] == EXPLAIN_MODE_PASSKEY))
 	{
 		@ob_clean();
 		global $lang, $smarty, $starttime, $bokeh_version, $is_bokeh_stable;
