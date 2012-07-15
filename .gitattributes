@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for PHP/HTML files
+*.php     text eol=crlf
+*.html    text eol=crlf
