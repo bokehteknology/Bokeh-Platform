@@ -98,8 +98,9 @@ if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 $smarty = new Smarty();
 
 # Smarty settings
-$smarty->template_dir = $root_path . 'templates/';
-$smarty->compile_dir = $root_path . 'cache/';
+$smarty->setTemplateDir($root_path . 'templates/');
+$smarty->setCompileDir($root_path . 'cache/');
+$smarty->setCacheDir($root_path . 'cache/');
 $smarty->force_compile = false;
 $smarty->compile_check = true;
 
@@ -139,7 +140,12 @@ $smarty->assign(array(
 ));
 
 # Setting error handler
-if (defined('ERROR_HANDLER') && ERROR_HANDLER) set_error_handler('error_handler');
+if (defined('ERROR_HANDLER') && ERROR_HANDLER)
+{
+	set_error_handler('error_handler');
+
+	$smarty->muteExpectedErrors();
+}
 
 # Define true if we are in explain mode else false
 if (defined('EXPLAIN_MODE') && EXPLAIN_MODE) define('EXPLAIN', request_var('explain')); else define('EXPLAIN', false);
