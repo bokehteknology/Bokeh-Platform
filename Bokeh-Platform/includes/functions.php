@@ -581,22 +581,64 @@ function close($exit = false)
 }
 
 /**
+* Do a request to Bokeh API server
+*
+* @param $service string
+* @param $mode string
+* @param $params array
+*/
+function api_request($service, $mode, $params = array())
+{
+	global $bokeh_api_server;
+
+	if (empty($service) || empty($mode))
+	{
+		return false;
+	}
+
+	if (count($params) > 0)
+	{
+		$params_string = array();
+
+		foreach($params as $key => $value)
+		{
+			$params_string[] = $key . '=' . $value;
+		}
+
+		$params_string = '&' . implode('&', $params_string);
+	}
+	else
+	{
+		$params_string = '';
+	}
+
+	$fetch = @file_get_contents("http://{$bokeh_api_server}/?apikey=" . APIKEY . "&service={$service}&mode={$mode}{$params_string}");
+
+	if (!$fetch)
+	{
+		return false;
+	}
+
+	$response = json_decode($fetch, true);
+
+	if (isset($response['error']) || (isset($response['news_type']) && $response['news_type'] == 0) || (isset($response['s_news_type']) && $response['s_news_type'] == 0))
+	{
+		return false;
+	}
+
+	return $response;
+}
+
+/**
 * Retrive latest Bokeh Platform version
 *
 * @param $stable bool
 */
 function retrive_latest_version($stable = true)
 {
-	global $bokeh_apps_domain, $bokeh_apps_unique_id;
+	global $bokeh_apps_unique_id;
 
-	$get = @file_get_contents('http://' . $bokeh_apps_domain . '/data.xml?service=update&mode=' . $bokeh_apps_unique_id . '_' . ($stable ? 'stable' : 'dev'));
+	$request = api_request($bokeh_apps_unique_id, ($stable ? 'stable' : 'dev'));
 
-	if (!$get)
-	{
-		return false;
-	}
-
-	$get = json_decode($get, true);
-
-	return $get['version'];
+	return $request['version'];
 }

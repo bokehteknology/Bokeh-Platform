@@ -115,9 +115,9 @@ else
 	$smarty->deprecation_notices = E_ALL ^ E_NOTICE;
 }
 
-# Setting Bokeh domain
+# Setting Bokeh API server info
 $bokeh_domain = 'www.bokehteknology.net';
-$bokeh_apps_domain = 'apps.bokehteknology.net';
+$bokeh_api_server = 'api.bokehteknology.net';
 $bokeh_apps_unique_id = 'bokeh_platform';
 
 # Setting Bokeh version
