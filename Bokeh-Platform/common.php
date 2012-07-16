@@ -30,7 +30,7 @@ $starttime = explode(' ', microtime());
 $starttime = $starttime[1] + $starttime[0];
 
 # Setting default error reporting
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+error_reporting(E_ALL ^ E_NOTICE);
 
 if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 {
@@ -106,13 +106,6 @@ $smarty->compile_check = true;
 if (defined('DEBUG') && DEBUG)
 {
 	error_reporting(E_ALL);
-	$smarty->deprecation_notices = E_ALL;
-}
-else
-{
-	# Report all errors, except notice
-	error_reporting(E_ALL ^ E_NOTICE);
-	$smarty->deprecation_notices = E_ALL ^ E_NOTICE;
 }
 
 # Setting Bokeh API server info
