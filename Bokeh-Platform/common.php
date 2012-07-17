@@ -60,7 +60,7 @@ require($root_path . 'config.' . $phpEx);
 # Set default timezone
 date_default_timezone_set($config['timezone']);
 
-$config['site_root'] = $config['server_protocol'] . '://' . $config['server_name'] . ($config['server_port'] != 80 ? ":{$config['server_port']}" : '') . $config['server_path'] . '/';
+$config['site_root'] = $config['server_protocol'] . '://' . $config['server_name'] . ($config['server_port'] != 80 ? ":{$config['server_port']}" : '') . $config['server_path'];
 $config['page_url'] = $config['server_protocol'] . '://' . $config['server_name'] . ($config['server_port'] != 80 ? ":{$config['server_port']}" : '') . $_SERVER['SCRIPT_NAME'];
 $config['page_arg'] = $_SERVER['QUERY_STRING'];
 $config['page_info'] = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '');
