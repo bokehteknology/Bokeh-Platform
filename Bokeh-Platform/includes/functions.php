@@ -424,6 +424,8 @@ function set_template($template)
 */
 function run_plugin($plugin, $page, $active_list)
 {
+	global $plugin_name;
+
 	if (isset($active_list[$plugin]))
 	{
 		$plugin_class_name = 'plugin_' . $plugin;
@@ -432,6 +434,8 @@ function run_plugin($plugin, $page, $active_list)
 
 		if (method_exists($$plugin_class_name, $page))
 		{
+			$plugin_name = $plugin;
+
 			$$plugin_class_name->$page();
 
 			return true;
