@@ -1,9 +1,8 @@
 <?php
 /**
 *
-* @package Bokeh Platform
-* @version $Id$
-* @copyright (c) 2011 Bokeh Platform
+* @package plugin_test
+* @copyright (c) 2012 Bokeh Teknology
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 *
 */
@@ -18,14 +17,15 @@ if (!defined('IN_BOKEH'))
 
 class plugin_test
 {
+	var $plugin_id = 'test';
 	var $is_controller = true;
 	var $load_lang = true;
 
 	function plugin_test()
 	{
-		global $root_path, $plugin_name;
+		global $root_path;
 
-		$this->template_dir = $root_path . 'plugins/' . $plugin_name . '/templates/';
+		$this->template_dir = $root_path . 'plugins/' . $this->plugin_id . '/templates/';
 
 		# here you can put some code for init your plugin
 	}
@@ -35,7 +35,7 @@ class plugin_test
 		global $smarty;
 	
 		page_header('PLUGIN_TEST_TITLE');
-		$smarty->display($this->template_dir . 'home_body.html');
+		$smarty->display($this->template_dir . 'home_body.tpl');
 		page_footer();
 	}
 }

@@ -3,8 +3,8 @@
 *
 * Bokeh Default
 *
-* @package template
-* @copyright (c) 2011 Bokeh Platform
+* @package template_default
+* @copyright (c) 2012 Bokeh Teknology
 * @author Bokeh Teknology
 * @version 1.0.0-b3
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3

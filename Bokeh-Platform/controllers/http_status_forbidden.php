@@ -1,9 +1,8 @@
 <?php
 /**
 *
-* @package Bokeh Platform
-* @version $Id$
-* @copyright (c) 2011 Bokeh Platform
+* @package controller_http_status_forbidden
+* @copyright (c) 2012 Bokeh Teknology
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 *
 */

@@ -4,10 +4,10 @@
 * en [English]
 *
 * @plugin test
-* @package language
-* @copyright (c) 2011 Bokeh Platform
+* @package plugin_test
+* @copyright (c) 2012 Bokeh Teknology
 * @author Bokeh Teknology
-* @version 1.0.0
+* @version 1.0.4
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 */
 
