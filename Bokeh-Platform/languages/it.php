@@ -43,6 +43,9 @@ $lang = array_merge($lang, array(
 	'ERR_NO_STYLESHEET_FILE'	=> 'Lo stylesheet richiesto non esiste.',
 	'ERR_NO_TEMPLATE_INFO'		=> 'Il file contenente le informazioni sul template non esiste.',
 	'ERR_TEMPLATE_IF_PARSING'	=> 'Si è verificato un errore durante il parsing del template.',
+	'ERR_API_SERVER_OFFLINE'	=> 'Il server API per i servizi Bokeh Teknology è irragiungibile, pertanto non è possibile effettuare la richiesta desiderata.',
+	'ERR_API_REQUEST'			=> 'Si è verificato un errore durante l’esecuzione della richiesta API per i servizi Bokeh Teknology.',
+	'ERR_APIKEY_NOT_SET'		=> 'L’apikey per i servizi Bokeh Teknology non è stata configurata, pertanto non è possibile eseguire la richiesta API.',
 
 	# http errors
 	'ERROR_403_TITLE'	=> 'Errore 403',

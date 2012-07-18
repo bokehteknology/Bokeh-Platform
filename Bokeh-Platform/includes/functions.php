@@ -535,7 +535,7 @@ function close($exit = false)
 
 		$tpl = '';
 
-		$latest_version = retrive_latest_version($is_bokeh_stable);
+		$latest_version = retrive_latest_version($is_bokeh_stable, false);
 
 		if ($latest_version !== false && version_compare($latest_version, $bokeh_version, '>'))
 		{
@@ -590,7 +590,7 @@ function close($exit = false)
 * @param $mode string
 * @param $params array
 */
-function api_request($service, $mode, $params = array())
+function api_request($service, $mode, $params = array(), $return_errors = true)
 {
 	global $bokeh_api_server;
 
@@ -615,18 +615,37 @@ function api_request($service, $mode, $params = array())
 		$params_string = '';
 	}
 
+	if (!defined('APIKEY') || APIKEY == '')
+	{
+		error_box('ERR_APIKEY_NOT_SET');
+	}
+
 	$fetch = @file_get_contents("http://{$bokeh_api_server}/?apikey=" . APIKEY . "&service={$service}&mode={$mode}{$params_string}");
 
 	if (!$fetch)
 	{
-		return false;
+		if (!$return_errors)
+		{
+			return false;
+		}
+		else
+		{
+			error_box('ERR_API_SERVER_OFFLINE');
+		}
 	}
 
 	$response = json_decode($fetch, true);
 
 	if (isset($response['error']) || (isset($response['news_type']) && $response['news_type'] == 0) || (isset($response['s_news_type']) && $response['s_news_type'] == 0))
 	{
-		return false;
+		if (!$return_errors)
+		{
+			return false;
+		}
+		else
+		{
+			error_box('ERR_API_REQUEST');
+		}
 	}
 
 	return $response;
@@ -637,11 +656,11 @@ function api_request($service, $mode, $params = array())
 *
 * @param $stable bool
 */
-function retrive_latest_version($stable = true)
+function retrive_latest_version($stable = true, $return_errors = true)
 {
 	global $bokeh_apps_unique_id;
 
-	$request = api_request($bokeh_apps_unique_id, ($stable ? 'stable' : 'dev'));
+	$request = api_request($bokeh_apps_unique_id, ($stable ? 'stable' : 'dev'), array(), $return_errors);
 
 	return $request['version'];
 }
