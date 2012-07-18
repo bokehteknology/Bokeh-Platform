@@ -26,14 +26,13 @@ $dbpass = 'user_password';
 $prefix = 'bokeh_';
 
 /**
-* System Configuration BASE
-* Advanced system configuration is to be set via Admin panel
+* System Configuration
 */
 $config = array(
 	'server_protocol'		=> 'http',
 	'server_name'			=> 'www.mysite.com',
 	'server_port'			=> 80,
-	'server_path'			=> '/bokeh',
+	'server_path'			=> '/bokeh/',
 	'default_controller'	=> 'default',
 	'site_name'				=> 'My Bokeh Platform site',
 	'site_description'		=> 'This is a Bokeh Platform powered site',
@@ -44,7 +43,7 @@ $config = array(
 	'date_format'			=> 'j | Y',
 	'hour_format'			=> 'H:i',
 	'timezone'				=> 'Europe/Rome',
-	'plugins_active'		=> array(),
+	'plugins_active'		=> array('test'),
 );
 
 /**
