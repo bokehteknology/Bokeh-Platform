@@ -10,7 +10,7 @@
 	</p>
 	<p class="legal">
 		<!-- Don't remove Bokeh Platform copyright! -->
-		Powered by <a href="http://{$bokeh_site}/">Bokeh Platform</a>, &copy; 2009, 2011<br />
+		Powered by <a href="http://{$bokeh_site}/">Bokeh Platform</a>, &copy; 2009, 2012<br />
 		Style &raquo;{$tpl_name} by <a href="{$tpl_website}">{$tpl_author}</a>, based on "Concrete" template.<br />
 		{$debug_info}
 	</p>

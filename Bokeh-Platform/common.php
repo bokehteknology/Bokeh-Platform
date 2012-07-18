@@ -113,7 +113,7 @@ $bokeh_api_server = 'api.bokehteknology.net';
 $bokeh_apps_unique_id = 'bokeh_platform';
 
 # Setting Bokeh version
-$bokeh_version = '1.0.0-b3';
+$bokeh_version = '1.0.0-b5';
 $is_bokeh_stable = false;
 
 # Set template default vars
