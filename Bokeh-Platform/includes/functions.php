@@ -617,7 +617,14 @@ function api_request($service, $mode, $params = array(), $return_errors = true)
 
 	if (!defined('APIKEY') || APIKEY == '')
 	{
-		error_box('ERR_APIKEY_NOT_SET');
+		if (!$return_errors)
+		{
+			return false;
+		}
+		else
+		{
+			error_box('ERR_APIKEY_NOT_SET');
+		}
 	}
 
 	$fetch = @file_get_contents("http://{$bokeh_api_server}/?apikey=" . APIKEY . "&service={$service}&mode={$mode}{$params_string}");
