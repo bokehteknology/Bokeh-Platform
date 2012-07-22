@@ -1,13 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="{$l_lang_prefix}" xml:lang="{$l_lang_prefix}">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="content-style-type" content="text/css" />
-		<meta http-equiv="content-language" content="{$l_lang_prefix}" />
+		<meta http-equiv="content-language" content="en" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="resource-type" content="document" />
 		<meta name="distribution" content="global" />
-		<meta name="copyright" content="{$current_year}, Bokeh Teknology. Tutti i diritti riservati." />
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 		
 		<title>Bokeh Platform - {$title}</title>
@@ -45,8 +44,7 @@
 		<p>{$template_html}</p>
 		
 		<p style="text-align: right"><em>
-		Powered by <a href="http://{$bokeh_site}/">Bokeh Teknology</a>, 2009, {$current_year}<br />
-		{$l_translation_info}<br />
+		Powered by <a href="http://{$bokeh_site}/">Bokeh Teknology</a>, 2009, 2012<br />
 		{$debug_info}
 		</em></p>
 	</body>

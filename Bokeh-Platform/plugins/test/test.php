@@ -33,7 +33,9 @@ class plugin_test
 	function index()
 	{
 		global $smarty;
-	
+
+		$smarty->assign('cfg_text', $this->config->text);
+
 		page_header('PLUGIN_TEST_TITLE');
 		$smarty->display($this->template_dir . 'home_body.tpl');
 		page_footer();

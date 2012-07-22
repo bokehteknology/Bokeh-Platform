@@ -22,7 +22,7 @@ if (!defined('IN_BOKEH'))
 */
 function page_header($title = false)
 {
-	global $config, $lang, $smarty;
+	global $lang, $smarty;
 
 	if ($title !== false && $title == strtoupper($title) && isset($lang[$title]))
 	{
@@ -64,7 +64,7 @@ function _template($tpl_file, $_template = true)
 
 	if ($_template)
 	{
-		$_template = $config['template'];
+		$_template = $config->sys->template;
 		$smarty->display($_template . '/' . $tpl_file . '.tpl');
 	}
 	else
@@ -270,7 +270,7 @@ function set_header_status($code, $message = '')
 */
 function error_box($msg = '', $params = array(), $title = false)
 {
-	global $config, $lang, $user, $smarty;
+	global $lang, $user, $smarty;
 
 	if ($msg != '')
 	{
@@ -320,7 +320,7 @@ function error_box($msg = '', $params = array(), $title = false)
 */
 function generate_debug_info()
 {
-	global $config, $db, $starttime, $_REQUEST;
+	global $db, $starttime, $_REQUEST;
 
 	if (defined('EXPLAIN') && EXPLAIN && (isset($_REQUEST['passkey']) && $_REQUEST['passkey'] == EXPLAIN_MODE_PASSKEY))
 	{
@@ -391,7 +391,7 @@ function check_template($__template)
 	}
 
 	$smarty->assign(array(
-			'tpl_path'		=> $config['site_root'] . 'templates/' . $__template . '/',
+			'tpl_path'		=> $config->sys->site_root . 'templates/' . $__template . '/',
 			'tpl_name'		=> $user['template']['name'],
 			'tpl_author'	=> $user['template']['author'],
 			'tpl_version'	=> $user['template']['version'],
@@ -409,8 +409,11 @@ function check_template($__template)
 function set_template($template)
 {
 	global $config;
-	$config['template'] = $template;
+
+	$config->sys->template = $template;
+
 	check_template($template);
+
 	return true;
 }
 
@@ -489,7 +492,7 @@ function formatdate($time)
 	global $config, $lang;
 
 	$month = date('n', $time);
-	$date = date($config['date_format'], $time);
+	$date = date($config->sys->date_format, $time);
 	$date = str_replace('|', $lang['MONTH_' . $month], $date);
 
 	return $date;
@@ -506,7 +509,7 @@ function formattime($time)
 
 	global $config;
 
-	$date = date($config['time_format'], $time);
+	$date = date($config->sys->time_format, $time);
 
 	return $date;
 }

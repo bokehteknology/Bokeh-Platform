@@ -1,1 +1,1 @@
-{$l_plugin_test_body}
+{$l_plugin_test_body}<br />{$cfg_text}

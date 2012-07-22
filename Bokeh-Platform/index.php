@@ -12,7 +12,7 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($root_path . 'common.' . $phpEx);
 
 # Set URL data
-$url_data = $config['page_info'];
+$url_data = $config->sys->page_info;
 
 # Clean URL data
 $chars_count_old = count_chars($url_data, 1);
@@ -25,8 +25,8 @@ foreach($chars_count_old as $chr => $count)
 
 $slash = (isset($chars_count['/'])) ? $chars_count['/'] : 0;
 
-$config['url_controller'] = $config['default_controller'];
-$config['url_page'] = 'index';
+$config->sys->url_controller = $config->sys->default_controller;
+$config->sys->url_page = 'index';
 
 if ($slash == 0 || $slash == 1)
 {
@@ -37,7 +37,7 @@ if ($slash == 0 || $slash == 1)
 
 	if (strlen($url_data) >= 1)
 	{
-		$config['url_controller'] = $url_data;
+		$config->sys->url_controller = $url_data;
 	}
 }
 else if ($slash >= 2)
@@ -47,27 +47,27 @@ else if ($slash >= 2)
 
 	if (strlen($url_data[0]) >= 1)
 	{
-		$config['url_controller'] = $url_data[0];
+		$config->sys->url_controller = $url_data[0];
 	}
 
 	if (strlen($url_data[1]) >= 1)
 	{
-		$config['url_page'] = $url_data[1];
+		$config->sys->url_page = $url_data[1];
 	}
 }
 
-if (file_exists($root_path . 'controllers/' . $config['url_controller'] . '.' . $phpEx))
+if (file_exists($root_path . 'controllers/' . $config->sys->url_controller . '.' . $phpEx))
 {
-	include($root_path . 'controllers/' . $config['url_controller'] . '.' . $phpEx);
-	$controller_class_name = 'controller_' . $config['url_controller'];
+	include($root_path . 'controllers/' . $config->sys->url_controller . '.' . $phpEx);
+	$controller_class_name = 'controller_' . $config->sys->url_controller;
 
 	if (class_exists($controller_class_name))
 	{
 		$controller = new $controller_class_name();
 
-		if (method_exists($controller, $config['url_page']))
+		if (method_exists($controller, $config->sys->url_page))
 		{
-			$controller_method_name = $config['url_page'];
+			$controller_method_name = $config->sys->url_page;
 
 			$controller->$controller_method_name();
 		}
@@ -78,7 +78,7 @@ if (file_exists($root_path . 'controllers/' . $config['url_controller'] . '.' . 
 	}
 	else
 	{
-		if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+		if (!run_plugin($config->sys->url_controller, $config->sys->url_page, $plugin_controllers_list))
 		{
 			set_header_status(404);
 		}
@@ -86,7 +86,7 @@ if (file_exists($root_path . 'controllers/' . $config['url_controller'] . '.' . 
 }
 else
 {
-	if (!run_plugin($config['url_controller'], $config['url_page'], $plugin_controllers_list))
+	if (!run_plugin($config->sys->url_controller, $config->sys->url_page, $plugin_controllers_list))
 	{
 		set_header_status(404);
 	}
