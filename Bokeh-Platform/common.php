@@ -64,7 +64,6 @@ $config->sys->page_info = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PAT
 
 # Require system files
 require($root_path . 'includes/functions.' . $phpEx);
-require($root_path . 'includes/db_tables.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 
 # Load default language
