@@ -67,17 +67,16 @@ require($root_path . 'includes/functions.' . $phpEx);
 require($root_path . 'includes/db_tables.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 
+# Load default language
+require($root_path . 'languages/' . $config->sys->default_language . '.' . $phpEx);
+
 # Require user language
-$client_lang = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : 'en';
-$client_lang = isset($_GET['lang']) ? $_GET['lang'] : $client_lang;
+$client_lang = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : $config->sys->default_language;
+$client_lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : $client_lang;
 
 if (file_exists($root_path . 'languages/' . $client_lang . '.' . $phpEx))
 {
-	require($root_path . 'languages/' . $client_lang . '.' . $phpEx);
-}
-else
-{
-	require($root_path . 'languages/en.' . $phpEx);
+	require_once($root_path . 'languages/' . $client_lang . '.' . $phpEx);
 }
 
 # Initialize database class
