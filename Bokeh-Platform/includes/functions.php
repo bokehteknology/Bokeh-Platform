@@ -67,8 +67,7 @@ function _template($tpl_file, $_template = true)
 
 	if ($_template)
 	{
-		$_template = $config->sys->template;
-		$smarty->display($_template . '/' . $tpl_file . '.tpl');
+		$smarty->display($config->sys->template . '/' . $tpl_file . '.tpl');
 	}
 	else
 	{
