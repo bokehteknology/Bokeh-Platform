@@ -90,10 +90,14 @@ function smarty_assign()
 		'current_year'	=> date('Y', time())
 	));
 
+	$_lang = array();
+
 	foreach($lang as $key => $val)
 	{
-		$smarty->assign('l_' . strtolower($key), $val);
+		$_lang[strtolower($key)] = $val;
 	}
+
+	$smarty->assign('lang', $_lang);
 
 	return true;
 }
