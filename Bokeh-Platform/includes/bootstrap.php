@@ -165,8 +165,11 @@ unset($config->db->pass);
 # we have an error on index.php
 $plugin_controllers_list = array();
 
+# Plugins object
+$plugins = new stdClass();
+
 # Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).(phpEx)
-# After including, add a new object $plugin_(plugin_name) for the class plugin_(plugin_name)
+# After including, add a new object $plugins->(plugin_name) for the class plugin_(plugin_name)
 if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
 {
 	foreach($config->sys->plugins as $plugin_name)
@@ -178,15 +181,15 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
 
 			if (class_exists($plugin_class_name))
 			{
-				$$plugin_class_name = new $plugin_class_name();
+				$plugins->$plugin_name = new $plugin_class_name();
 
-				if ($$plugin_class_name->is_controller)
+				if ($plugins->$plugin_name->is_controller)
 				{
 					$plugin_controllers_list[$plugin_name] = $plugin_name;
 				}
 
 				# Include lang file, if required
-				if ($$plugin_class_name->load_lang)
+				if ($plugins->$plugin_name->load_lang)
 				{
 					if (file_exists($root_path . 'plugins/' . $plugin_name . '/languages/' . $client_lang . '.' . $phpEx))
 					{
@@ -201,7 +204,7 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
 				# Load CFG if exist
 				if (file_exists($root_path . 'configs/plugins/' . $plugin_name . '.cfg'))
 				{
-					$$plugin_class_name->config = $config->load_plugin_cfg($plugin_name);
+					$plugins->$plugin_name->config = $config->load_plugin_cfg($plugin_name);
 				}
 			}
 		}

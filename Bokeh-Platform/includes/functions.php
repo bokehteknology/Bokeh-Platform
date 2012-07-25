@@ -427,19 +427,13 @@ function set_template($template)
 */
 function run_plugin($plugin, $page, $active_list)
 {
-	global $plugin_name;
+	global $plugin_name, $plugins;
 
 	if (isset($active_list[$plugin]))
 	{
-		$plugin_class_name = 'plugin_' . $plugin;
-
-		global $$plugin_class_name;
-
-		if (method_exists($$plugin_class_name, $page))
+		if (method_exists($plugins->$plugin, $page))
 		{
-			$plugin_name = $plugin;
-
-			$$plugin_class_name->$page();
+			$plugins->$plugin->$page();
 
 			return true;
 		}
