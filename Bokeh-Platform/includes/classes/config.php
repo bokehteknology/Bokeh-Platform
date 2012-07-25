@@ -15,13 +15,24 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
+/**
+* Config class
+*
+* @package BokehPlatform
+*/
 class config
 {
+	/**
+	* Configuration types
+	*/
 	public $sys;
 	public $db;
 	public $usr;
 	public $tables;
 
+	/**
+	* Constructor (read all configs)
+	*/
 	public function config()
 	{
 		global $root_path, $phpEx;
@@ -78,7 +89,8 @@ class config
 	/**
 	* Load plugin configuration
 	*
-	* @param $plugin_id string
+	* @param string $plugin_id identificator of plugin
+	* @return object object of loaded configuration
 	*/
 	public function load_plugin_cfg($plugin_id)
 	{
@@ -88,8 +100,9 @@ class config
 	/**
 	* Read a file configuration
 	*
-	* @param $file string
-	* @param $sections bool
+	* @param string $file
+	* @param bool $sections
+	* @return object readed configuration
 	*/
 	private function read($file, $sections = false)
 	{
@@ -103,6 +116,7 @@ class config
 	/**
 	* Write custom user file configuration (configs/user.cfg)
 	*
+	* @return bool
 	*/
 	public function write()
 	{
@@ -138,7 +152,8 @@ class config
 	/**
 	* Transform array to object
 	*
-	* @param $array array
+	* @param array $array
+	* @return object object converted from array
 	*/
 	private function toObject($array)
 	{
@@ -169,7 +184,8 @@ class config
 	/**
 	* Transform object to array
 	*
-	* @param $object object
+	* @param object $object
+	* @return array array converted from object
 	*/
 	private function toArray($object)
 	{
@@ -203,8 +219,9 @@ class config
 	*
 	* If there are none of the that types it returns as a string
 	*
-	* @param $value string
-	* @param $to_cfg bool
+	* @param string $value
+	* @param bool $to_cfg
+	* @return mixed parsed value
 	*/
 	private function parseValue($value, $to_cfg = false)
 	{

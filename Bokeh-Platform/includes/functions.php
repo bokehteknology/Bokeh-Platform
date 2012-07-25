@@ -18,7 +18,8 @@ if (!defined('IN_BOKEH'))
 /**
 * Print page header
 *
-* @param $title string
+* @param string $title title of the page
+* @return bool
 */
 function page_header($title = false)
 {
@@ -41,6 +42,7 @@ function page_header($title = false)
 /**
 * Print page footer
 *
+* @return bool
 */
 function page_footer()
 {
@@ -53,8 +55,9 @@ function page_footer()
 /**
 * Print a template
 *
-* @param $tpl_file string
-* @param $template bool
+* @param string $tpl_file template filename
+* @param bool $template if true it specific that the template is in a template subdirectory
+* @return bool
 */
 function _template($tpl_file, $_template = true)
 {
@@ -78,6 +81,7 @@ function _template($tpl_file, $_template = true)
 /**
 * Assign to Smarty general vars
 *
+* @return bool
 */
 function smarty_assign()
 {
@@ -98,6 +102,7 @@ function smarty_assign()
 /**
 * Generate debug info
 *
+* @return bool
 */
 function output_debug()
 {
@@ -111,9 +116,10 @@ function output_debug()
 /**
 * Check if a $_REQUEST var is set, and output true/false vars passed to it
 *
-* @param $var string
-* @param $is_true bool
-* @param $is_false bool
+* @param string $var request var to check
+* @param mixed $is_true value to return if is set
+* @param mixed $is_false value to return if is not set
+* @return mixed
 */
 function request_var($var, $is_true = true, $is_false = false)
 {
@@ -124,8 +130,10 @@ function request_var($var, $is_true = true, $is_false = false)
 /**
 * Set page headers
 *
+* @return bool
 */
-function set_headers() {
+function set_headers()
+{
 	if (defined('IS_STYLESHEET') && IS_STYLESHEET)
 	{
 		header("Content-Type: text/css");
@@ -138,16 +146,17 @@ function set_headers() {
 	header('Expires: 0');
 	header('Pragma: no-cache');
 
-	return;
+	return true;
 }
 
 /**
 * Handle all error messages
 *
-* @param $errno int
-* @param $errstr string
-* @param $errfile string
-* @param $errline int
+* @param int $errno
+* @param string $errstr
+* @param string $errfile
+* @param int $errline
+* @return bool
 */
 function error_handler($errno, $errstr, $errfile, $errline)
 {
@@ -183,7 +192,7 @@ function error_handler($errno, $errstr, $errfile, $errline)
 			}
 			else
 			{
-				return;
+				return true;
 			}
 			break;
 		default:
@@ -197,17 +206,16 @@ function error_handler($errno, $errstr, $errfile, $errline)
 /**
 * Set correct status header
 *
-* @param $code int
-* @param $message string
+* @param int $code header status code
+* @param string $message header status message
+* @return bool
 */
 function set_header_status($code, $message = '')
 {
 	global $root_path, $phpEx, $controller;
 
+	# For now, we only send user error, don't send header status
 	/*
-	*
-	* For now, we only send user error, don't send header status
-
 	global $_SERVER;
 
 	if (isset($_SERVER['HTTP_VERSION']))
@@ -264,9 +272,10 @@ function set_header_status($code, $message = '')
 /**
 * Output an error message
 *
-* @param $msg string
-* @param $params array
-* @param $title string
+* @param string $msg message of error box
+* @param array $params params for error box message
+* @param mixed $title optional title for error box
+* @return bool
 */
 function error_box($msg = '', $params = array(), $title = false)
 {
@@ -317,6 +326,7 @@ function error_box($msg = '', $params = array(), $title = false)
 /**
 * Generate debug info, used for templates
 *
+* @return string generated debug info
 */
 function generate_debug_info()
 {
@@ -350,7 +360,8 @@ function generate_debug_info()
 /**
 * Retrive request vars and add to array
 *
-* @param $requests array
+* @param array $requests
+* @return array
 */
 function retrive_requests_vars($requests)
 {
@@ -360,7 +371,8 @@ function retrive_requests_vars($requests)
 /**
 * Check if a template path and template info exists
 *
-* @param $__template string
+* @param string $__template name of template to check
+* @return bool
 */
 function check_template($__template)
 {
@@ -404,7 +416,8 @@ function check_template($__template)
 /**
 * Set the folder name of the template which you would to use
 *
-* @param $template string
+* @param string $template name of template to set
+* @return bool
 */
 function set_template($template)
 {
@@ -421,9 +434,10 @@ function set_template($template)
 * Check if is active specified plugin with controller
 * and if yes, execute it, with page specified
 *
-* @param $plugin string
-* @param $page string
-* @param $active_list array
+* @param string $plugin identificator of plugin
+* @param string $page page name to execute
+* @param array $active_list list of active plugin
+* @return bool
 */
 function run_plugin($plugin, $page, $active_list)
 {
@@ -439,14 +453,14 @@ function run_plugin($plugin, $page, $active_list)
 		}
 	}
 
-
 	return false;
 }
 
 /**
 * Format a byte size in corrent file size, adding KB, MB or GB to output string
 *
-* @param $bytes int
+* @param int $bytes bytes to convert
+* @return string converted file size
 */
 function formatsize($bytes)
 {
@@ -477,7 +491,8 @@ function formatsize($bytes)
 /**
 * Format a timestamp in a string format (only date)
 *
-* @param $time int
+* @param int $time timestamp to format
+* @return string date converted
 */
 function formatdate($time)
 {
@@ -495,7 +510,8 @@ function formatdate($time)
 /**
 * Formato a timestamp in a string format (only time)
 *
-* @param $time int
+* @param int $time timestamp to format
+* @return string time converted
 */
 function formattime($time)
 {
@@ -511,7 +527,7 @@ function formattime($time)
 /**
 * Required for closing the system at the end of the page
 *
-* @param $close bool
+* @param bool $close if true exit at the end of function
 */
 function close($exit = false)
 {
@@ -583,9 +599,10 @@ function close($exit = false)
 /**
 * Do a request to Bokeh API server
 *
-* @param $service string
-* @param $mode string
-* @param $params array
+* @param string $service
+* @param string $mode
+* @param array $params
+* @return mixed array response of api request (if executed)
 */
 function api_request($service, $mode, $params = array(), $return_errors = true)
 {
@@ -658,7 +675,9 @@ function api_request($service, $mode, $params = array(), $return_errors = true)
 /**
 * Retrive latest Bokeh Platform version
 *
-* @param $stable bool
+* @param bool $stable specific if we are using stable version or not
+* @param bool $return_errors if true, if there are errors echo errors, else return false
+* @return string latest version
 */
 function retrive_latest_version($stable = true, $return_errors = true)
 {

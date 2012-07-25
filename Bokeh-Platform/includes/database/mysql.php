@@ -18,6 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * MySQL class
 *
+* @package database
 */
 class database_mysql
 {
@@ -37,11 +38,12 @@ class database_mysql
 	/**
 	* Connect to MySQL
 	*
-	* @param $dbhost string
-	* @param $dbport int
-	* @param $dbuser string
-	* @param $dbpass string
-	* @param $dbname string
+	* @param string $dbhost database host
+	* @param int $dbport database port
+	* @param string $dbuser database user
+	* @param string $dbpass database user password
+	* @param string $dbname database name
+	* @return mixed connection link
 	*/
 	function sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname)
 	{
@@ -69,6 +71,7 @@ class database_mysql
 	/**
 	* Close an open MySQL connection
 	*
+	* @return bool
 	*/
 	function sql_close()
 	{
@@ -78,7 +81,8 @@ class database_mysql
 	/**
 	* Run a SQL query
 	*
-	* @param $query string
+	* @param string $query
+	* @return mixed query executed
 	*/
 	function sql_query($query = '')
 	{
@@ -114,6 +118,7 @@ class database_mysql
 	/**
 	* Fetch the last executed query
 	*
+	* @return mixed fetched query
 	*/
 	function sql_fetch()
 	{
@@ -125,6 +130,7 @@ class database_mysql
 	/**
 	* Return number of affected rows
 	*
+	* @return mixed int number of affected rows
 	*/
 	function sql_affectedrows()
 	{
@@ -136,6 +142,7 @@ class database_mysql
 	/**
 	* Free all memory associated of last query
 	*
+	* @returb bool
 	*/
 	function sql_free_result()
 	{
@@ -145,5 +152,3 @@ class database_mysql
 	}
 
 }
-
-$__database_name__ = 'MySQL';
