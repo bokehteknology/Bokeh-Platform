@@ -9,7 +9,7 @@
 define('IN_BOKEH', true);
 $root_path = './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
-include($root_path . 'common.' . $phpEx);
+include($root_path . 'includes/bootstrap.' . $phpEx);
 
 # Set URL data
 $url_data = $config->sys->page_info;
