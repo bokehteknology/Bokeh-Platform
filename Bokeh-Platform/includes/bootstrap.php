@@ -103,9 +103,8 @@ if (defined('DEBUG') && DEBUG)
 	error_reporting(E_ALL);
 }
 
-# Setting Bokeh API server info
+# Setting Bokeh Teknology site info
 $bokeh_domain = 'www.bokehteknology.net';
-$bokeh_api_server = 'api.bokehteknology.net';
 $bokeh_apps_unique_id = 'bokeh_platform';
 
 # Setting Bokeh version
