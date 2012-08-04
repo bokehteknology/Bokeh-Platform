@@ -609,27 +609,11 @@ function close($exit = false)
 */
 function api_request($service, $mode, $params = array(), $return_errors = true)
 {
-	global $bokeh_api_server;
+	global $bokeh_version;
 
 	if (empty($service) || empty($mode))
 	{
 		return false;
-	}
-
-	if (count($params) > 0)
-	{
-		$params_string = array();
-
-		foreach($params as $key => $value)
-		{
-			$params_string[] = $key . '=' . $value;
-		}
-
-		$params_string = '&' . implode('&', $params_string);
-	}
-	else
-	{
-		$params_string = '';
 	}
 
 	if (!defined('APIKEY') || APIKEY == '')
@@ -644,7 +628,27 @@ function api_request($service, $mode, $params = array(), $return_errors = true)
 		}
 	}
 
-	$fetch = @file_get_contents("http://{$bokeh_api_server}/?apikey=" . APIKEY . "&service={$service}&mode={$mode}{$params_string}");
+	$post_data = array(
+		'apikey' => APIKEY,
+		'service' => $service,
+		'mode' => $mode
+	);
+
+	$post_data += $params;
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, 'http://api.bokehteknology.net/');
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_USERAGENT, "Bokeh Platform | Host: {$_SERVER['SERVER_NAME']} | Version: {$bokeh_version}");
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+	$fetch = curl_exec($ch);
+
+	curl_close($ch);
 
 	if (!$fetch)
 	{
