@@ -17,17 +17,27 @@ if (!defined('IN_BOKEH'))
 
 /**
 * Config class
-*
-* @package BokehPlatform
 */
 class config
 {
 	/**
-	* Configuration types
+	* System configuration
 	*/
 	public $sys;
+
+	/**
+	* Database configuration
+	*/
 	public $db;
+
+	/**
+	* Custom user configuration
+	*/
 	public $usr;
+
+	/**
+	* Database tables configuration
+	*/
 	public $tables;
 
 	/**
@@ -63,7 +73,6 @@ class config
 
 	/**
 	* Define application constants
-	*
 	*/
 	private function constants()
 	{

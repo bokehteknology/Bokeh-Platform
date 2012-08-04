@@ -17,18 +17,26 @@ if (!defined('IN_BOKEH'))
 
 /**
 * MySQL class
-*
-* @package database
 */
 class database_mysql
 {
+	/**
+	* Number of executed SQL queries
+	*/
 	var $sql_queries = 0;
+
+	/**
+	* Time spent on execution of SQL queries
+	*/
 	var $time_on_sql = 0;
+
+	/**
+	* Array with a list of SQL queries executed for explain mode
+	*/
 	var $sql_reports = array();
 
 	/**
 	* Initialize MySQL class
-	*
 	*/
 	function database_mysql()
 	{
@@ -118,7 +126,7 @@ class database_mysql
 	/**
 	* Fetch the last executed query
 	*
-	* @return mixed fetched query
+	* @return array fetched query
 	*/
 	function sql_fetch()
 	{
@@ -130,7 +138,7 @@ class database_mysql
 	/**
 	* Return number of affected rows
 	*
-	* @return mixed int number of affected rows
+	* @return int number of affected rows
 	*/
 	function sql_affectedrows()
 	{
@@ -142,7 +150,7 @@ class database_mysql
 	/**
 	* Free all memory associated of last query
 	*
-	* @returb bool
+	* @return bool
 	*/
 	function sql_free_result()
 	{
