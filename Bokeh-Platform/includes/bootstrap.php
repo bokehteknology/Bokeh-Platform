@@ -57,8 +57,8 @@ $config = new config();
 # Set default timezone
 date_default_timezone_set($config->sys->timezone);
 
-$config->sys->site_root = $config->sys->server_protocol . '://' . $config->sys->server_name . ($config->sys->server_port != 80 ? ":{$config->sys->server_port}" : '') . $config->sys->server_path;
-$config->sys->page_url = $config->sys->server_protocol . '://' . $config->sys->server_name . ($config->sys->server_port != 80 ? ":{$config->sys->server_port}" : '') . $_SERVER['SCRIPT_NAME'];
+$config->sys->site_root = $config->sys->server_protocol . '://' . $config->sys->server_name . (($config->sys->server_port != 80 && $config->sys->server_port != 443) ? ":{$config->sys->server_port}" : '') . $config->sys->server_path;
+$config->sys->page_url = $config->sys->server_protocol . '://' . $config->sys->server_name . (($config->sys->server_port != 80 && $config->sys->server_port != 443) ? ":{$config->sys->server_port}" : '') . $_SERVER['SCRIPT_NAME'];
 $config->sys->page_arg = $_SERVER['QUERY_STRING'];
 $config->sys->page_info = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '');
 
