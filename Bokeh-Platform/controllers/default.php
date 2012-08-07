@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package BokehPlatform
+* @package controller_default
 * @copyright (c) 2012 Bokeh Teknology
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 *
