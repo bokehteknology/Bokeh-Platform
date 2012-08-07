@@ -55,13 +55,13 @@ function smarty_assign()
 * </pre>
 * Examples:
 * <pre>
-* {bp_path base_url="public/myfile.zip"}
-* {bp_path c="default"}
-* {bp_path c="default" p="index"}
-* {bp_path c="default" params="id=4"}
-* {bp_path c="default" p="index" params="id=4"}
-* {bp_path c="default" p="index" params="id=4&page=1"}
-* {bp_path c="default" p="index" params="id="|cat:$product_id|cat:"&page="|cat:$page}
+* {bp_path base_url="public/myfile.zip"} => http://www.mysite.com/bokeh/public/myfile.zip
+* {bp_path c="default"} => http://www.mysite.com/bokeh/default
+* {bp_path c="default" p="index"} => http://www.mysite.com/bokeh/default/index
+* {bp_path c="default" params="id=4"} => http://www.mysite.com/bokeh/default?id=4
+* {bp_path c="default" p="index" params="id=4"} => http://www.mysite.com/bokeh/default/index?id=4
+* {bp_path c="default" p="index" params="id=4&page=1"} => http://www.mysite.com/bokeh/default/index?id=4&page=1
+* {bp_path c="default" p="index" params="id="|cat:$product_id|cat:"&page="|cat:$page} => http://www.mysite.com/bokeh/default/index?id={$product_id}&page={$page}
 * </pre>
 */
 function smarty_function_bp_path($params, $template)
