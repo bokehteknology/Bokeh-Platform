@@ -11,52 +11,34 @@ $root_path = './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($root_path . 'includes/bootstrap.' . $phpEx);
 
-# Set URL data
-$url_data = $config->sys->page_info;
-
-# Clean URL data
-$chars_count_old = count_chars($url_data, 1);
-$chars_count = array();
-
-foreach($chars_count_old as $chr => $count)
+if (!isset($_GET['url']))
 {
-	$chars_count[chr($chr)] = $count;
+	$_GET['url'] = '';
 }
 
-$slash = (isset($chars_count['/'])) ? $chars_count['/'] : 0;
+$uri = trim($_GET['url'], '/');
+$uri = explode('/', $uri);
 
-$config->sys->url_controller = $config->sys->default_controller;
-$config->sys->url_page = 'index';
+$config->sys->url_controller = (isset($uri[0]) && !empty($uri[0])) ? $uri[0] : $config->sys->default_controller;
+$config->sys->url_page = (isset($uri[1]) && !empty($uri[1])) ? $uri[1] : 'index';
+$conifg->sys->url_params = array_slice($uri, 2);
 
-if ($slash == 0 || $slash == 1)
+if ($config->sys->url_controller == 'css')
 {
-	if ($slash == 1)
+	if (file_exists($root_path . 'views/' . $config->sys->url_page . '.css'))
 	{
-		$url_data = str_replace('/', '', $url_data);
-	}
+		header("Content-Type: text/css");
 
-	if (strlen($url_data) >= 1)
+		$smarty->display($config->sys->url_page . '.css');
+
+		close(true);
+	}
+	else
 	{
-		$config->sys->url_controller = $url_data;
+		set_header_status(404);
 	}
 }
-else if ($slash >= 2)
-{
-	$url_data = substr($url_data, 1);
-	$url_data = explode('/', $url_data);
-
-	if (strlen($url_data[0]) >= 1)
-	{
-		$config->sys->url_controller = $url_data[0];
-	}
-
-	if (strlen($url_data[1]) >= 1)
-	{
-		$config->sys->url_page = $url_data[1];
-	}
-}
-
-if (file_exists($root_path . 'controllers/' . $config->sys->url_controller . '.' . $phpEx))
+else if (file_exists($root_path . 'controllers/' . $config->sys->url_controller . '.' . $phpEx))
 {
 	include($root_path . 'controllers/' . $config->sys->url_controller . '.' . $phpEx);
 	$controller_class_name = 'controller_' . $config->sys->url_controller;

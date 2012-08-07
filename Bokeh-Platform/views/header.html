@@ -5,7 +5,7 @@
 <title>{$sitename} - {$title}</title>
 <meta name="keywords" content="{$meta_keywords}" />
 <meta name="description" content="{$meta_description}" />
-<link href="{$root_path}style.php" rel="stylesheet" type="text/css" media="screen" />
+<link href="{bp_path c="css" p="stylesheet"}" rel="stylesheet" type="text/css" media="screen" />
 
 <!--
 
@@ -20,25 +20,18 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
 
 -->
 
-<!--
-* Bokeh Platform Template
-* Name: {$tpl_name}
-* Author: {$tpl_author}
-* Website: {$tpl_website}
--->
-
 </head>
 <body>
 <!-- start header -->
 <div id="header">
 	<div id="logo">
-		<h1><a href="{$root_path}index.php">{$sitename}</a></h1>
+		<h1><a href="{$root_path}">{$sitename}</a></h1>
 		<p><a>{$site_description}</a></p>
 	</div>
 	<div id="menu">
 		<ul>
-			<li><a href="{$root_path}index.php">Home</a></li>
-			<li class="last"><a href="{$root_path}style.php">CSS</a></li>
+			<li><a href="{$root_path}">Home</a></li>
+			<li class="last"><a href="{bp_path c="css" p="stylesheet"}">CSS</a></li>
 		</ul>
 	</div>
 </div>

@@ -3,14 +3,15 @@
 ########################
 
 # ErrorDocument
-ErrorDocument 403 /index.php/http_status_forbidden
-ErrorDocument 404 /index.php/http_status_not_found
+ErrorDocument 403 /index.php?url=http_403
+ErrorDocument 404 /index.php?url=http_404
 
-# Rewrite engine
-RewriteEngine On
-#Options +FollowSymlinks
-RewriteBase /
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	#Options +FollowSymlinks
+	RewriteBase /
 
-# This rewrite is not secure, is only for testing
-#RewriteRule ^(.*)/(.*).html$ /index.php/$1/$2 [QSA,L,NC]
-#RewriteRule ^(.*)/$ /index.php/$1 [QSA,L,NC]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ /index.php?url=$1 [NC,QSA,L]
+</IfModule>

@@ -15,29 +15,24 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-class plugin_test
+class plugin_test extends plugin
 {
-	var $plugin_id = 'test';
-	var $is_controller = true;
-	var $load_lang = true;
+	public $plugin_id = 'test';
 
-	function plugin_test()
+	function _configure()
 	{
-		global $root_path;
-
-		$this->template_dir = $root_path . 'plugins/' . $this->plugin_id . '/templates/';
+		$this->is_controller = true;
+		$this->load_lang = true;
 
 		# here you can put some code for init your plugin
 	}
 
 	function index()
 	{
-		global $smarty;
+		$this->plugin->assign('cfg_text', $this->config->text);
 
-		$smarty->assign('cfg_text', $this->config->text);
-
-		page_header('PLUGIN_TEST_TITLE');
-		$smarty->display($this->template_dir . 'home_body.tpl');
-		page_footer();
+		$this->plugin->view_header('PLUGIN_TEST_TITLE');
+		$this->plugin->view('home_body');
+		$this->plugin->view_footer();
 	}
 }

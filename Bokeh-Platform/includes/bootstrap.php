@@ -45,11 +45,11 @@ if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 
-# Define $user array
-$user = array();
-
 # Load classes
 require($root_path . 'includes/classes/config.' . $phpEx);
+require($root_path . 'includes/classes/controller.' . $phpEx);
+require($root_path . 'includes/classes/loader.' . $phpEx);
+require($root_path . 'includes/classes/plugin.' . $phpEx);
 
 # Load configs
 $config = new config();
@@ -63,8 +63,15 @@ $config->sys->page_arg = $_SERVER['QUERY_STRING'];
 $config->sys->page_info = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '');
 
 # Require system files
-require($root_path . 'includes/functions.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
+require($root_path . 'includes/functions/application_base.' . $phpEx);
+require($root_path . 'includes/functions/bt_api.' . $phpEx);
+require($root_path . 'includes/functions/error_box.' . $phpEx);
+require($root_path . 'includes/functions/error_handler.' . $phpEx);
+require($root_path . 'includes/functions/format.' . $phpEx);
+require($root_path . 'includes/functions/plugin.' . $phpEx);
+require($root_path . 'includes/functions/server.' . $phpEx);
+require($root_path . 'includes/functions/smarty.' . $phpEx);
 
 # Load default language
 require($root_path . 'languages/' . $config->sys->default_language . '.' . $phpEx);
@@ -91,7 +98,7 @@ if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 $smarty = new Smarty();
 
 # Smarty settings
-$smarty->setTemplateDir($root_path . 'templates/');
+$smarty->setTemplateDir($root_path . 'views/');
 $smarty->setCompileDir($root_path . 'cache/');
 $smarty->setCacheDir($root_path . 'cache/');
 $smarty->force_compile = false;
@@ -103,25 +110,18 @@ if (defined('DEBUG') && DEBUG)
 	error_reporting(E_ALL);
 }
 
-# Setting Bokeh Teknology site info
-$bokeh_domain = 'www.bokehteknology.net';
-$bokeh_apps_unique_id = 'bokeh_platform';
-
 # Setting Bokeh version
-$bokeh_version = '1.0.0-b5';
-$is_bokeh_stable = false;
+define('BOKEH_VERSION', '1.0.0-b5');
+define('BOKEH_STABLE', false);
 
 # Set template default vars
 $smarty->assign(array(
 	'root_path'			=> $config->sys->site_root,
-	'bokeh_site'		=> $bokeh_domain,
-	'bokeh_version'		=> $bokeh_version,
 	'page_url'			=> ($config->sys->page_url . (($config->sys->page_arg == '') ? '' : ('?' . $config->sys->page_arg))),
 	'sitename'			=> $config->sys->site_name,
 	'site_description'	=> $config->sys->site_description,
 	'meta_keywords'		=> $config->sys->meta_keywords,
 	'meta_description'	=> $config->sys->meta_description,
-	'_tpl'				=> $config->sys->template
 ));
 
 # Setting error handler
@@ -142,14 +142,8 @@ else
 	define('EXPLAIN', false);
 }
 
-# Set page headers
-set_headers();
-
 # Retrive request vars
 $request_vars = retrive_requests_vars($_REQUEST);
-
-# Check if template dir exist and set it
-check_template($config->sys->template);
 
 # Connect to DB
 if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
@@ -181,6 +175,8 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
 			if (class_exists($plugin_class_name))
 			{
 				$plugins->$plugin_name = new $plugin_class_name();
+
+				$plugins->$plugin_name->_configure();
 
 				if ($plugins->$plugin_name->is_controller)
 				{
