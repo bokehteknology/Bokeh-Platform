@@ -22,16 +22,22 @@ class plugin
 {
 	/**
 	* Plugins functions
+	*
+	* @var loader
 	*/
 	public $plugin;
 
 	/**
 	* Specific if the plugin is a controller or a standard plugin
+	*
+	* @var bool
 	*/
 	public $is_controller = true;
 
 	/**
 	* Specific if the plugin have a own language files
+	*
+	* @var bool
 	*/
 	public $load_lang = true;
 

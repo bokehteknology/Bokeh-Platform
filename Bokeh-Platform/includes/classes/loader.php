@@ -23,6 +23,8 @@ class loader
 	/**
 	* Path to 'views' directory
 	* Used only for plugins with controller
+	*
+	* @var string
 	*/
 	public $views_base = '';
 
@@ -43,7 +45,7 @@ class loader
 	* Set a variable for using in a view
 	*
 	* @param string $name name of var
-	* @param string|array $value value of var (every kind of variable)
+	* @param string|array $value value of var
 	*/
 	public function assign($name, $value)
 	{

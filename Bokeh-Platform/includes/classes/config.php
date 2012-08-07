@@ -22,21 +22,29 @@ class config
 {
 	/**
 	* System configuration
+	*
+	* @var object
 	*/
 	public $sys;
 
 	/**
 	* Database configuration
+	*
+	* @var object
 	*/
 	public $db;
 
 	/**
 	* Custom user configuration
+	*
+	* @var object
 	*/
 	public $usr;
 
 	/**
 	* Database tables configuration
+	*
+	* @var object
 	*/
 	public $tables;
 

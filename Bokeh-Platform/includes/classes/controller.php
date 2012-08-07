@@ -22,6 +22,8 @@ class controller
 {
 	/**
 	* Controllers functions
+	*
+	* @var loader
 	*/
 	public $controller;
 
