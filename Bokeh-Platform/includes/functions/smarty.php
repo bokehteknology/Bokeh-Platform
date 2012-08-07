@@ -43,8 +43,26 @@ function smarty_assign()
 /**
 * Custom smarty function for
 * generate URL based on BP path
-*
+* <p>
 * We do not use it directly
+* <p>
+* Params:
+* <pre>
+* - base_url   - (optional) - an URL from Bokeh Platform root
+* - c          - (optional) - controller name, default is the default controller
+* - p          - (optional) - page name, default is 'index'
+* - params     - (optional) - extra params for the page (in GET style)
+* </pre>
+* Examples:
+* <pre>
+* {bp_path base_url="public/myfile.zip"}
+* {bp_path c="default"}
+* {bp_path c="default" p="index"}
+* {bp_path c="default" params="id=4"}
+* {bp_path c="default" p="index" params="id=4"}
+* {bp_path c="default" p="index" params="id=4&page=1"}
+* {bp_path c="default" p="index" params="id="|cat:$product_id|cat:"&page="|cat:$page}
+* </pre>
 */
 function smarty_function_bp_path($params, $template)
 {
@@ -56,8 +74,9 @@ function smarty_function_bp_path($params, $template)
 	}
 	else
 	{
+		$params['c'] = isset($params['c']) ? $params['c'] : $config->sys->default_controller;
 		$params['p'] = isset($params['p']) ? "/{$params['p']}" : '';
-		$params['params'] = isset($params['params']) ? "{$params['params']}" : '';
+		$params['params'] = isset($params['params']) ? $params['params'] : '';
 
 		return "{$config->sys->site_root}{$params['c']}{$params['p']}{$params['params']}";
 	}
