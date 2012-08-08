@@ -1,0 +1,51 @@
+
+			</div>
+			<!-- End Content -->
+
+			{if (isset($update_plugin) && $update_plugin) || (isset($install_plugin) && $install_plugin)}
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>{$lang.plugin_plugin_manager_options}</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content"><div style="text-align: center;">
+					{if isset($install_plugin) && $install_plugin}
+						<a href="{bp_path c="plugin_manager" p="start_install" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_id}" class="add-button"><span>{$lang.plugin_plugin_manager_install}</span></a>
+					{else if isset($update_plugin) && $update_plugin}
+						<a href="{bp_path c="plugin_manager" p="start_update" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_id}" class="add-button"><span>{$lang.plugin_plugin_manager_update_to} {$new_version}</span></a>
+					{/if}
+						<div class="cl">&nbsp;</div>
+					</div></div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			{/if}
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">Powered by <a href="http://www.bokehteknology.net/">Bokeh Teknology</a>, &copy; 2012 | {$debug_info}</span>
+		<span class="right">
+			Design by <a href="http://chocotemplates.com" target="_blank" title="The Sweetest CSS Templates WorldWide">Chocotemplates.com</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

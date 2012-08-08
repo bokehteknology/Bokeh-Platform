@@ -1,0 +1,42 @@
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">{$lang.plugin_plugin_manager_installed}</h2>
+					</div>
+					<!-- End Box Head -->	
+
+					<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<th>{$lang.plugin_plugin_manager_name}</th>
+								<th class="ac">{$lang.plugin_plugin_manager_version}</th>
+								<th>{$lang.plugin_plugin_manager_author}</th>
+								<th class="ac">{$lang.plugin_plugin_manager_is_active}</th>
+								<th width="110" class="ac">{$lang.plugin_plugin_manager_options}</th>
+							</tr>
+							{foreach from=$plugins_installed name=plugin_id item=plugin_data}
+							<tr>
+								<td><h3><a href="{bp_path c="plugin_manager" p="details_installed" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_data.plugin_name}">{$plugin_data.title}</a></h3></td>
+								<td class="ac"><span style="color: {$plugin_data.font_color}"><strong>{$plugin_data.version}</strong></span></td>
+								<td><a href="http://www.bokehteknology.net/community/memberlist.php?mode=viewprofile&u={$plugin_data.author_id}">{$plugin_data.author_username}</a></td>
+								<td class="ac">{if $plugin_data.active}{$lang.plugin_plugin_manager_yes}{else}{$lang.plugin_plugin_manager_no}{/if}</td>
+								<td class="ac">{if !$plugin_data.active}<a href="{bp_path c="plugin_manager" p="start_delete" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_data.plugin_name}" class="ico del">{$lang.plugin_plugin_manager_delete}</a>{/if}</td>
+							</tr>
+							{/foreach}
+						</table>
+						
+						
+						<!-- Pagging -->
+						<div class="pagging">
+							<div class="left">{$installed_string}{if $count_update > 0} {$update_string}{/if}</div>
+						</div>
+						<!-- End Pagging -->
+						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->

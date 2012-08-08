@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>{$title}</title>
+	<link rel="stylesheet" href="{bp_path base_url=$plugin_templateDir|cat:"css/style.css"}" type="text/css" media="all" />
+	{if isset($meta)}{$meta}{/if}
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="{bp_path c="plugin_manager" params=$url_passkey}">{$title}</a></h1>
+			<div id="top-navigation">
+				{$lang.plugin_plugin_manager_welcome} <a href="http://www.bokehteknology.net/community/memberlist.php?mode=viewprofile&u={$api_user_id}"><strong>{$api_username}</strong></a>
+				<span>|</span>
+				{$lang.plugin_plugin_manager_requests}: <strong>{$api_reqRemained}</strong>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{bp_path c="plugin_manager" params=$url_passkey}"{if $page == 'index'} class="active"{/if}><span>{$lang.plugin_plugin_manager_installed}</span></a></li>
+			    <li><a href="{bp_path c="plugin_manager" p="download" params=$url_passkey}"{if $page == 'download'} class="active"{/if}><span>{$lang.plugin_plugin_manager_download}</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		{if isset($msg_status)}
+		{if $msg_status == 'plugin_updated'}
+		<div class="msg msg-ok">
+			<p><strong>{$lang.plugin_plugin_manager_msg_updated}</strong></p>
+		</div>
+		{else if $msg_status == 'plugin_deleted'}
+		<div class="msg msg-ok">
+			<p><strong>{$lang.plugin_plugin_manager_msg_deleted}</strong></p>
+		</div>
+		{else if $msg_status == 'plugin_installed'}
+		<div class="msg msg-ok">
+			<p><strong>{$lang.plugin_plugin_manager_msg_installed}</strong></p>
+		</div>
+		{/if}
+		{/if}
+		
+		{if isset($msg_err)}
+		{if $msg_err == 'server_offline'}
+		<div class="msg msg-error">
+			<p><strong>{$lang.plugin_plugin_manager_msg_api_offline}</strong></p>
+		</div>
+		{else if $msg_err == 'download_offline'}
+		<div class="msg msg-error">
+			<p><strong>{$lang.plugin_plugin_manager_msg_dwl_offline}</strong></p>
+		</div>
+		{/if}
+		{/if}
+		
+		<br />
+		
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
