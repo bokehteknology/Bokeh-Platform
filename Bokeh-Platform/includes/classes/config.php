@@ -125,13 +125,13 @@ class config
 	{
 		global $root_path, $phpEx;
 
-		$cfg = parse_ini_file($root_path . 'configs/' . $file . '.cfg', $sections);
+		$cfg = parse_ini_file($root_path . 'configs/' . $file . '.ini', $sections);
 
 		return $this->toObject($cfg);
 	}
 
 	/**
-	* Write custom user file configuration (configs/user.cfg)
+	* Write custom user file configuration (configs/user.ini)
 	*
 	* @return bool
 	*/
@@ -139,11 +139,11 @@ class config
 	{
 		global $root_path, $phpEx;
 
-		$handle = @fopen($root_path . 'configs/user.cfg', 'wb');
+		$handle = @fopen($root_path . 'configs/user.ini', 'wb');
 
 		if (!$handle)
 		{
-			die("Could not write on configs/user.cfg");
+			die("Could not write on configs/user.ini");
 		}
 
 		fwrite($handle, "; Bokeh Platform - User Configuration\n");

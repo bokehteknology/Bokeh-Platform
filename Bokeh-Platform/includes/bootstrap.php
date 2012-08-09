@@ -196,8 +196,8 @@ if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
 					}
 				}
 
-				# Load CFG if exist
-				if (file_exists($root_path . 'configs/plugins/' . $plugin_name . '.cfg'))
+				# Load plugin configuration if exist
+				if (file_exists($root_path . 'configs/plugins/' . $plugin_name . '.ini'))
 				{
 					$plugins->$plugin_name->config = $config->load_plugin_cfg($plugin_name);
 				}
