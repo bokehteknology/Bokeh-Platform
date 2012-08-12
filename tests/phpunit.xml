@@ -16,4 +16,8 @@
 			<directory suffix="_tests.php">./</directory>
 		</testsuite>
 	</testsuites>
+
+	<php>
+		<var name="root_path" value="Bokeh-Platform/"/>
+	</php>
 </phpunit>

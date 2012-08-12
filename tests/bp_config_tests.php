@@ -11,7 +11,7 @@ class bp_config_tests extends PHPUnit_Framework_TestCase
 {
 	public function test_sys_read()
 	{
-		global $config;
+		$config = new config();
 
 		$this->assertEquals('www.mysite.com', $config->sys->server_name);
 	}
