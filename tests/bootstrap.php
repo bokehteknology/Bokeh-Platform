@@ -7,6 +7,6 @@
 *
 */
 define('IN_BOKEH', true);
-$root_path = './Bokeh-Platform/';
+$root_path = 'Bokeh-Platform/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($root_path . 'includes/bootstrap.' . $phpEx);
