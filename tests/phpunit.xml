@@ -13,7 +13,7 @@
 
 	<testsuites>
 		<testsuite name="Bokeh Platform Test Suite">
-			<directory suffix="_test.php">./</directory>
+			<directory suffix="_tests.php">./</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
