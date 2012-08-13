@@ -18,6 +18,7 @@
 	</testsuites>
 
 	<php>
-		<var name="root_path" value="Bokeh-Platform/"/>
+		<var name="root_path" value="Bokeh-Platform/" />
+		<var name="phpEx" value="php" />
 	</php>
 </phpunit>
