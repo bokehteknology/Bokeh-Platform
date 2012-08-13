@@ -71,7 +71,7 @@ class database_mysql
 			}
 			else
 			{
-				return $this->db_connect_id;
+				return true;
 			}
 		}
 	}
