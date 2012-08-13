@@ -12,7 +12,7 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 	# formtasize()
 	public function test_formatsize()
 	{
-		$this->assertEquals('1 KB', formatsize(1024));
+		$this->assertEquals('1.00 KB', formatsize(1024));
 		$this->assertEquals('1 MB', formatsize(1048576));
 		$this->assertEquals('1 GB', formatsize(1073741824));
 	}
@@ -27,7 +27,7 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 
 		date_default_timezone_set($config->sys->timezone);
 
-		$this->assertEquals('January', formatdate(21600));
+		$this->assertEquals('1 January 1970', formatdate(21600));
 	}
 
 	# formattime()
