@@ -81,9 +81,7 @@ class bp_database_tests extends PHPUnit_Framework_TestCase
 		$result = $this->db->sql_query("SELECT * FROM {$this->config->db->prefix}test WHERE value = 'abc' LIMIT 0,1");
 		$data = $this->db->sql_fetch($result);
 
-		$this->assertTrue(isset($data));
-		$this->assertTrue(isset($data['id']));
-		$this->assertTrue(isset($data['value']));
+		$this->assertEquals($this->db->sql_affectedrows($result), 1);
 
 		$this->assertEquals('abc', $data['value']);
 
