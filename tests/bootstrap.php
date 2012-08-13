@@ -36,3 +36,6 @@ require($root_path . 'includes/functions/format.' . $phpEx);
 require($root_path . 'includes/functions/plugin.' . $phpEx);
 require($root_path . 'includes/functions/server.' . $phpEx);
 require($root_path . 'includes/functions/smarty.' . $phpEx);
+
+# Load databases classes
+require($root_path . 'includes/database/mysql.' . $phpEx);
