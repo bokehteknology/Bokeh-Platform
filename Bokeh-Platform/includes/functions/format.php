@@ -78,7 +78,7 @@ function formattime($time)
 
 	global $config;
 
-	$date = date($config->sys->time_format, $time);
+	$date = date($config->sys->hour_format, $time);
 
 	return $date;
 }
