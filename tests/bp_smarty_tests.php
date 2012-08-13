@@ -24,7 +24,7 @@ class bp_smarty_tests extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals($root_path . 'views/', $smarty->getTemplateDir('0'));
 		$this->assertEquals($root_path . 'cache/', $smarty->getCompileDir());
-		$this->assertEquals($root_path . 'views/', $smarty->getCacheDir());
+		$this->assertEquals($root_path . 'cache/', $smarty->getCacheDir());
 		$this->assertFalse($smarty->force_compile);
 		$this->assertTrue($smarty->compile_check);
 	}
