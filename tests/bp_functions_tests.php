@@ -13,8 +13,8 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 	public function test_formatsize()
 	{
 		$this->assertEquals('1.00 KB', formatsize(1024));
-		$this->assertEquals('1 MB', formatsize(1048576));
-		$this->assertEquals('1 GB', formatsize(1073741824));
+		$this->assertEquals('1.00 MB', formatsize(1048576));
+		$this->assertEquals('1.00 GB', formatsize(1073741824));
 	}
 
 	# formatdate()
