@@ -9,28 +9,28 @@
 
 class bp_database_tests extends PHPUnit_Framework_TestCase
 {
-	private $db;
+	private $db, $config;
 
 	private function _start()
 	{
 		global $_SERVER, $root_path, $phpEx;
 
-		$config = new config();
+		$this->config = new config();
 
-		$config->db->type = $_SERVER['BP_DB_TYPE'];		
-		$config->db->host = $_SERVER['BP_DB_HOST'];
-		$config->db->port = $_SERVER['BP_DB_PORT'];
-		$config->db->name = $_SERVER['BP_DB_NAME'];
-		$config->db->user = $_SERVER['BP_DB_USER'];
-		$config->db->pass = $_SERVER['BP_DB_PASS'];
-		$config->db->prefix = '_bokeh';
+		$this->config->db->type = $_SERVER['BP_DB_TYPE'];		
+		$this->config->db->host = $_SERVER['BP_DB_HOST'];
+		$this->config->db->port = $_SERVER['BP_DB_PORT'];
+		$this->config->db->name = $_SERVER['BP_DB_NAME'];
+		$this->config->db->user = $_SERVER['BP_DB_USER'];
+		$this->config->db->pass = $_SERVER['BP_DB_PASS'];
+		$this->config->db->prefix = '_bokeh';
 
-		require($root_path . 'includes/database/' . $config->db->type . '.' . $phpEx);
+		require($root_path . 'includes/database/' . $this->config->db->type . '.' . $phpEx);
 
-		$database_class_name = 'database_' . $config->db->type;
+		$database_class_name = 'database_' . $this->config->db->type;
 		$this->db = new $database_class_name();
 
-		return $this->db->sql_connect($config->db->host, $config->db->port, $config->db->user, $config->db->pass, $config->db->name);
+		return $this->db->sql_connect($this->config->db->host, $this->config->db->port, $this->config->db->user, $this->config->db->pass, $this->config->db->name);
 	}
 
 	private function _stop()
@@ -38,10 +38,90 @@ class bp_database_tests extends PHPUnit_Framework_TestCase
 		return $this->db->sql_close();
 	}
 
+	private function _load_schema()
+	{
+		$sql = array();
+
+		$sql[] = "CREATE TABLE IF NOT EXISTS %prefix%test (id int(11) NOT NULL AUTO_INCREMENT, value text NOT NULL, PRIMARY KEY (id)) TYPE=InnoDB AUTO_INCREMENT=1;";
+		$sql[] = "INSERT INTO %prefix%test (id, value) VALUES (NULL, 'abc');";
+
+		foreach($sql as $query)
+		{
+			$this->db->sql_query(str_replace('%prefix%', $this->config->db->prefix, $query));
+		}
+	}
+
+	private function _drop_tables()
+	{
+		$tables = array();
+
+		$tables[] = 'test';
+
+		foreach($tables as $table)
+		{
+			$this->db->sql_query("DROP TABLE {$this->config->db->prefix}{$table}");
+		}
+	}
+
 	# Test database connection
 	public function test_load()
 	{
 		$this->assertTrue($this->_start());
+
+		$this->_load_schema();
+		$this->_drop_tables();
+
 		$this->assertTrue($this->_stop());
+	}
+
+	# SELECT
+	public function test_select()
+	{
+		$this->_start();
+		$this->_load_schema();
+
+		$result = $this->db->sql_query("SELECT * FROM {$this->config->db->prefix}test WHERE value = 'abc' LIMIT 0,1");
+		$data = $this->db->sql_fetch($result);
+
+		$this->assertTrue(isset($data));
+		$this->assertTrue(isset($data['id']));
+		$this->assertTrue(isset($data['value']));
+
+		$this->assertEquals('abc', $data['value']);
+
+		$this->_drop_tables();
+		$this->_stop();
+	}
+
+	# UPDATE
+	public function test_update()
+	{
+		$this->_start();
+		$this->_load_schema();
+
+		$this->db->sql_query("UPDATE {$this->config->db->prefix}test SET value = 'test' WHERE value = 'abc'");
+
+		$result = $this->db->sql_query("SELECT * FROM {$this->config->db->prefix}test WHERE value = 'test' LIMIT 0,1");
+
+		$this->assertEquals($this->db->sql_affectedrows($result), 1);
+
+		$this->_drop_tables();
+		$this->_stop();
+	}
+
+	# INSERT
+	public function test_insert()
+	{
+		$this->_start();
+		$this->_load_schema();
+
+		$this->db->sql_query("INSERT INTO {$this->config->db->prefix}test (id, value) VALUES (NULL, 'def')");
+
+		$result = $this->db->sql_query("SELECT * FROM {$this->config->db->prefix}test WHERE value = 'def' LIMIT 0,1");
+
+		$this->assertEquals($this->db->sql_affectedrows($result), 1);
+
+		$this->_drop_tables();
+		$this->_stop();
 	}
 }
