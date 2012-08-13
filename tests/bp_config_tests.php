@@ -9,15 +9,15 @@
 
 class bp_config_tests extends PHPUnit_Framework_TestCase
 {
-	public function test_convert_to_object()
+	# Write custom user configuration
+	public function test_write()
 	{
 		$config = new config();
 
-		$config->read('database', false);
-
-		$this->assertTrue(isset($config->db->type));
+		$this->assertTrue($config->write());
 	}
 
+	# Read a value from system configuration
 	public function test_sys_get()
 	{
 		$config = new config();
@@ -25,6 +25,7 @@ class bp_config_tests extends PHPUnit_Framework_TestCase
 		$this->assertEquals('www.mysite.com', $config->sys->server_name);
 	}
 
+	# Change a system configuration value
 	public function test_sys_update()
 	{
 		$config = new config();
