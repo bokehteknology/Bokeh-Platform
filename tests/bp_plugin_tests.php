@@ -17,7 +17,7 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 	{
 		global $root_path, $phpEx;
 
-		include($root_path . 'includes/plugins/plugin.' . $phpEx);
+		include('../' . $root_path . 'includes/plugins/plugin.' . $phpEx);
 
 		$plugin = new $this->u_class();
 		$plugin->_configure(); 
