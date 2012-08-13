@@ -30,8 +30,8 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 		$this->assertEquals('1 January 1970', formatdate(21600));
 	}
 
-	# formattime()
-	public function test_formattime()
+	# formathour()
+	public function test_formathour()
 	{
 		global $config;
 
@@ -40,6 +40,6 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 
 		date_default_timezone_set($config->sys->timezone);
 
-		$this->assertEquals(date('H:i', $time), formatdate($time));
+		$this->assertEquals(date('H:i', $time), formathour($time));
 	}
 }

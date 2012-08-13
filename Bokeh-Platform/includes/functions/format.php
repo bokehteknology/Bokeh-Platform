@@ -72,7 +72,7 @@ function formatdate($time)
 * @param int $time timestamp to format
 * @return string time converted
 */
-function formattime($time)
+function formathour($time)
 {
 	if (!is_int($time)) return false;
 
