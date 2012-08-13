@@ -5,6 +5,7 @@ php:
   - 5.4
 
 before_script:
+  - mysql -e 'create database bokeh_platform;'
   - pyrus install --force phpunit/DbUnit
   - phpenv rehash
 
