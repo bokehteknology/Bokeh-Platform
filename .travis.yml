@@ -13,7 +13,7 @@ before_script:
   - phpenv rehash
 
 script:
-  - phpunit --configuration tests/phpunit.xml
+  - phpunit --configuration tests/phpunit_$DB.xml
 
 notifications:
   email:
