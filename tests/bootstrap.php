@@ -39,3 +39,4 @@ require($root_path . 'includes/functions/smarty.' . $phpEx);
 
 # Load databases classes
 require($root_path . 'includes/database/mysql.' . $phpEx);
+require($root_path . 'includes/database/mysqli.' . $phpEx);
