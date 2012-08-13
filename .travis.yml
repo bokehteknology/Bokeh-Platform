@@ -4,8 +4,11 @@ php:
   - 5.3
   - 5.4
 
+env:
+  - DB=mysql
+
 before_script:
-  - mysql -e 'create database bokeh_platform;'
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'create database IF NOT EXISTS bokeh_platform;'
   - pyrus install --force phpunit/DbUnit
   - phpenv rehash
 
