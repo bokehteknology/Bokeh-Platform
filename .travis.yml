@@ -8,7 +8,7 @@ env:
   - DB=mysql
 
 before_script:
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'create database IF NOT EXISTS bokeh_platform;'
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'create database IF NOT EXISTS bokeh_platform;'; fi"
   - pyrus install --force phpunit/DbUnit
   - phpenv rehash
 
