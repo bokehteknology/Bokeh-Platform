@@ -56,10 +56,9 @@ class database_mysqli
 	function sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname)
 	{
 		if ($dbhost == '') $dbhost = 'localhost';
-		if ($dbport != '') $dbhost .= ':' . $dbport;
 		if ($dbuser == '') $dbuser = 'root';
 
-		if (($this->db_connect_id = @mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) === false)
+		if (($this->db_connect_id = @mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport)) === false)
 		{
 			error_box('ERR_SQL_CONNECT', array($dbhost));
 		}
