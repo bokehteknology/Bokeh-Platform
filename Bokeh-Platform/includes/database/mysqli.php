@@ -64,7 +64,7 @@ class database_mysqli
 		}
 		else
 		{
-			return $this->db_connect_id;
+			return true;
 		}
 	}
 
