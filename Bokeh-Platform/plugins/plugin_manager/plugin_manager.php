@@ -91,10 +91,6 @@ class plugin_plugin_manager extends plugin
 					$count_active++;
 				}
 			}
-			else
-			{
-				// Nothing for now
-			}
 		}
 
 		$user_info = api_request('user', 'info');
@@ -361,6 +357,12 @@ class plugin_plugin_manager extends plugin
 			_delete_directory($tmp_pluginDir);
 		}
 
+		# If exists, delete config.ini
+		if (file_exists($tmp_fileExtracted . 'config.ini'))
+		{
+			@unlink($tmp_fileExtracted . 'config.ini');
+		}
+
 		# Move new plugin to plugins directory
 		$moveDir = rename(substr($tmp_fileExtracted, 0, -1), substr($tmp_pluginDir, 0, -1));
 
@@ -465,6 +467,12 @@ class plugin_plugin_manager extends plugin
 		$this->plugin->assign('plugin_templateDir', 'plugins/' . $this->plugin_id . '/views/');
 
 		$tmp_pluginDir = $root_path . 'plugins/' . $plugin_id . '/';
+
+		# If exists, delete configs/plugins/$plugin_id.ini
+		if (file_exists($root_path . 'configs/plugins/' . $plugin_id . '.ini'))
+		{
+			@unlink($root_path . 'configs/plugins/' . $plugin_id . '.ini');
+		}
 
 		# Remove plugin
 		if (file_exists($tmp_pluginDir))
@@ -689,8 +697,14 @@ class plugin_plugin_manager extends plugin
 			_delete_directory($tmp_pluginDir);
 		}
 
+		# If exists, move config.ini to configs/plugins/$plugin_id.ini
+		if (file_exists($tmp_fileExtracted . 'config.ini'))
+		{
+			@rename($tmp_fileExtracted . 'config.ini', $root_path . 'configs/plugins/' . $plugin_id . '.ini');
+		}
+
 		# Move new plugin to plugins directory
-		$moveDir = rename(substr($tmp_fileExtracted, 0, -1), substr($tmp_pluginDir, 0, -1));
+		$moveDir = @rename(substr($tmp_fileExtracted, 0, -1), substr($tmp_pluginDir, 0, -1));
 
 		if (!$moveDir)
 		{

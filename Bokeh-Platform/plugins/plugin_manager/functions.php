@@ -60,7 +60,7 @@ function _plugin_root($dir, $plugin_id)
 
 			if (is_dir($file))
 			{
-				if (substr(str_replace($dir, '', $file), 0, -1) == $plugin_id && file_exists($file . $plugin_id . '.cfg') && file_exists($file . $plugin_id . '.php'))
+				if (substr(str_replace($dir, '', $file), 0, -1) == $plugin_id && file_exists($file . $plugin_id . '.ini') && file_exists($file . $plugin_id . '.php'))
 				{
 					return $file;
 				}
