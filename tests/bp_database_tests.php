@@ -23,7 +23,7 @@ class bp_database_tests extends PHPUnit_Framework_TestCase
 		$this->config->db->name = $_SERVER['BP_DB_NAME'];
 		$this->config->db->user = $_SERVER['BP_DB_USER'];
 		$this->config->db->pass = $_SERVER['BP_DB_PASS'];
-		$this->config->db->prefix = '_bokeh';
+		$this->config->db->prefix = 'bokeh_';
 
 		$database_class_name = 'database_' . $this->config->db->type;
 		$this->db = new $database_class_name();
