@@ -55,10 +55,10 @@ class database_mysqli
 	*/
 	function sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname)
 	{
-		if ($dbhost == '') $dbhost = 'localhost';
-		if ($dbuser == '') $dbuser = 'root';
+		$dbhost = empty($dbhost) ? 'localhost' : $dbhost;
+		$dbuser = empty($dbuser) ? 'root' : $dbuser;
 
-		if (($this->db_connect_id = @mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport)) === false)
+		if (($this->db_connect_id = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport)) === false)
 		{
 			error_box('ERR_SQL_CONNECT', array($dbhost));
 		}
@@ -95,7 +95,7 @@ class database_mysqli
 
 			if (($this->query_result = @mysqli_query($this->db_connect_id, $query)) === false)
 			{
-				error_box('ERR_SQL_QUERY', array($query, mysql_error()));
+				error_box('ERR_SQL_QUERY', array($query, mysqli_error()));
 			}
 
 			$finish_sql = explode(' ', microtime());
