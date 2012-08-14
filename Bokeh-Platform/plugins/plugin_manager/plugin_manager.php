@@ -56,7 +56,7 @@ class plugin_plugin_manager extends plugin
 		foreach(glob($root_path . 'plugins/*', GLOB_ONLYDIR) as $_directory_path)
 		{
 			$_plugin_name = str_replace($root_path . 'plugins/', '', $_directory_path);
-			$_plugin_cfg = $_directory_path . '/' . $_plugin_name . '.cfg';
+			$_plugin_cfg = $_directory_path . '/' . $_plugin_name . '.ini';
 
 			if (file_exists($_plugin_cfg))
 			{
@@ -147,7 +147,7 @@ class plugin_plugin_manager extends plugin
 		$this->plugin->assign('title', $this->plugin->language('PLUGIN_PLUGIN_MANAGER_TITLE'));
 		$this->plugin->assign('plugin_templateDir', 'plugins/' . $this->plugin_id . '/views/');
 		
-		$_plugin_cfg = $root_path . 'plugins/' . $plugin_id . '/' . $plugin_id . '.cfg';
+		$_plugin_cfg = $root_path . 'plugins/' . $plugin_id . '/' . $plugin_id . '.ini';
 		$_plugin_info = parse_ini_file($_plugin_cfg);
 
 		$_plugin_info['plugin_name'] = $plugin_id;
@@ -342,7 +342,7 @@ class plugin_plugin_manager extends plugin
 		$zip->extract(PCLZIP_OPT_PATH, $tmp_dir);
 
 		# Search plugin root (determined by a directory called $plugin_id
-		# that containts files $plugin_id.cfg and $plugin_id.php
+		# that containts files $plugin_id.ini and $plugin_id.php
 		$tmp_fileExtracted = _plugin_root($tmp_dir, $plugin_id);
 
 		# Check if directory structure is correct
@@ -670,7 +670,7 @@ class plugin_plugin_manager extends plugin
 		$zip->extract(PCLZIP_OPT_PATH, $tmp_dir);
 
 		# Search plugin root (determined by a directory called $plugin_id
-		# that containts files $plugin_id.cfg and $plugin_id.php
+		# that containts files $plugin_id.ini and $plugin_id.php
 		$tmp_fileExtracted = _plugin_root($tmp_dir, $plugin_id);
 
 		# Check if directory structure is correct
