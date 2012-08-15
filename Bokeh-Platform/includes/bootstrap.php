@@ -66,12 +66,16 @@ $config->sys->page_info = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PAT
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 require($root_path . 'includes/functions/application_base.' . $phpEx);
 require($root_path . 'includes/functions/bt_api.' . $phpEx);
-require($root_path . 'includes/functions/error_box.' . $phpEx);
 require($root_path . 'includes/functions/error_handler.' . $phpEx);
 require($root_path . 'includes/functions/format.' . $phpEx);
 require($root_path . 'includes/functions/plugin.' . $phpEx);
 require($root_path . 'includes/functions/server.' . $phpEx);
 require($root_path . 'includes/functions/smarty.' . $phpEx);
+
+if (!function_exists('error_box'))
+{
+	require($root_path . 'includes/functions/error_box.' . $phpEx);
+}
 
 # Load default language
 require($root_path . 'languages/' . $config->sys->default_language . '.' . $phpEx);
