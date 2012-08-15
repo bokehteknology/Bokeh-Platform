@@ -16,7 +16,7 @@ if (!defined('IN_BOKEH'))
 }
 
 # PHP Version check
-if (PHP_VERSION < '5.2.0') die("<p>PHP 5.2.x is required.</p>");
+if (PHP_VERSION < '5.3.0') die("<p>PHP 5.3 is required.</p>");
 
 # Output Buffering
 if (!@ob_start()) die("<p>Output Buffering is required.</p>");
