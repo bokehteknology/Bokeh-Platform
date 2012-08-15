@@ -154,57 +154,14 @@ if (defined('ENABLE_DATABASE') && ENABLE_DATABASE)
 # We do not need this any longer, unset for safety purposes
 unset($config->db->pass);
 
-# Add out of check below else
-# we have an error on index.php
+# Plugins that work as controllers
 $plugin_controllers_list = array();
 
 # Plugins object
 $plugins = new stdClass();
 
-# Now activate plugins with a include() of $root_path/plugins/(plugin_name)/(plugin_name).(phpEx)
-# After including, add a new object $plugins->(plugin_name) for the class plugin_(plugin_name)
-if (defined('ENABLE_PLUGINS') && ENABLE_PLUGINS && count($config->sys->plugins))
-{
-	foreach($config->sys->plugins as $plugin_name)
-	{
-		if (file_exists($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx))
-		{
-			include($root_path . 'plugins/' . $plugin_name . '/' . $plugin_name . '.' . $phpEx);
-			$plugin_class_name = 'plugin_' . $plugin_name;
-
-			if (class_exists($plugin_class_name))
-			{
-				$plugins->$plugin_name = new $plugin_class_name();
-
-				$plugins->$plugin_name->_configure();
-
-				if ($plugins->$plugin_name->is_controller)
-				{
-					$plugin_controllers_list[$plugin_name] = $plugin_name;
-				}
-
-				# Include lang file, if required
-				if ($plugins->$plugin_name->load_lang)
-				{
-					if (file_exists($root_path . 'plugins/' . $plugin_name . '/languages/' . $client_lang . '.' . $phpEx))
-					{
-						include($root_path . 'plugins/' . $plugin_name . '/languages/' . $client_lang . '.' . $phpEx);
-					}
-					else
-					{
-						include($root_path . 'plugins/' . $plugin_name . '/languages/en.' . $phpEx);
-					}
-				}
-
-				# Load plugin configuration if exist
-				if (file_exists($root_path . 'configs/plugins/' . $plugin_name . '.ini'))
-				{
-					$plugins->$plugin_name->config = $config->load_plugin_cfg($plugin_name);
-				}
-			}
-		}
-	}
-}
+# Load plugins
+load_plugins();
 
 # General Smarty vars (copyrights, language)
 smarty_assign();
