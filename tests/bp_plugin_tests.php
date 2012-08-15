@@ -12,8 +12,28 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 	private $u_plugin = 'test';
 	private $u_class = 'plugin_test';
 
-	# Load plugin
-	public function test_load()
+	# Load all plugins
+	public function test_load_all()
+	{
+		global $config, $plugin_controllers_list, $plugins, $client_lang;
+
+		$config = new config();
+
+		$plugin_controllers_list = array();
+		$plugins = new stdClass();
+
+		$client_lang = 'en';
+
+		$this->assertTrue(load_plugins());
+
+		$u_plugin = $this->u_plugin;
+		$plugins->$u_plugin->_configure();
+
+		$this->assertTrue($plugins->$u_plugin->is_controller);
+	}
+
+	# Load test plugin
+	public function test_load_test()
 	{
 		global $root_path, $phpEx;
 
