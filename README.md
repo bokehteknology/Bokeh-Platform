@@ -1,8 +1,7 @@
-[![Bokeh Teknology](http://www.bokehteknology.net/community/images/bokeh_platform.png)](http://www.bokehteknology.net)
+Bokeh Platform
+==============
 
-BOKEH PLATFORM
-
-Bokeh Platform is a simple and faster PHP platform for develop websites, powered by [Bokeh Teknology](http://www.bokehteknology.net/).
+[Bokeh Platform](http://www.bokehteknology.net/index.php/projects/bokeh_platform) is a simple and faster PHP platform for develop websites, powered by [Bokeh Teknology](http://www.bokehteknology.net/).
 
 
 CONTRIBUTE
@@ -14,7 +13,7 @@ CONTRIBUTE
 3. Create a branch `ticket/bp-12345` (`git checkout -b ticket/bp-12345`)
 4. Commit your changes (first line ticket ID, more details can be added on other lines) (`git commit -am "Ticket BP-12345"`)
 5. Push to your fork. (`git push origin ticket/bp-12345`)
-6. Send us a [pull request][1]
+6. Send us a [Pull Request][1]
 
 You need to replace `12345` with your ticket ID.
 
@@ -33,3 +32,9 @@ TRACKER
 -------
 
 The tracker is now available at: [http://tracker.bokehteknology.net/](http://tracker.bokehteknology.net/).
+
+
+LICENSE
+-------
+
+[GNU General Public License, version 3 (GPL-3.0)](http://opensource.org/licenses/GPL-3.0)
