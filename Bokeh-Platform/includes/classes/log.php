@@ -22,16 +22,22 @@ class log
 {
 	/**
 	* Logging files
+	*
+	* @var array
 	*/
 	private $files = array();
 
 	/**
 	* Files Handlers
+	*
+	* @var array
 	*/
 	private $handlers = array();
 
 	/**
 	* Date/time format for logs
+	*
+	* @var string
 	*/
 	private $date_format = 'd/m/Y H:i:s';
 
@@ -55,6 +61,9 @@ class log
 
 	/**
 	* Open log file for writing
+	*
+	* @param string $type Log type
+	* @param string $file File of log
 	*/
 	public function open($type, $file)
 	{
@@ -65,6 +74,8 @@ class log
 
 	/**
 	* Close log file for writing
+	*
+	* @param string $type Log type
 	*/
 	public function close($type)
 	{
@@ -74,6 +85,8 @@ class log
 	/**
 	* Write log
 	*
+	* @param string $type Log type
+	* @param string $message Log message
 	* @return bool
 	*/
 	public function write($type, $message)
