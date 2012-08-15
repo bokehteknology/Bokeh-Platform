@@ -37,7 +37,10 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 	{
 		global $root_path, $phpEx;
 
-		include($root_path . 'plugins/' . $this->u_plugin . '/' . $this->u_plugin . '.' . $phpEx);
+		if (!class_exists($this->u_class))
+		{
+			include($root_path . 'plugins/' . $this->u_plugin . '/' . $this->u_plugin . '.' . $phpEx);
+		}
 
 		$plugin = new $this->u_class();
 		$plugin->_configure(); 
