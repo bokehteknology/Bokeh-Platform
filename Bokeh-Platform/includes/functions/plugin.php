@@ -66,6 +66,8 @@ function load_plugins()
 			}
 		}
 	}
+
+	return true;
 }
 
 /**
