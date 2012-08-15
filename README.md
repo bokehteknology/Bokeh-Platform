@@ -1,20 +1,35 @@
 [![Bokeh Teknology](http://www.bokehteknology.net/community/images/bokeh_platform.png)](http://www.bokehteknology.net)
 
-## BOKEH PLATFORM
+BOKEH PLATFORM
 
 Bokeh Platform is a simple and faster PHP platform for develop websites, powered by [Bokeh Teknology](http://www.bokehteknology.net/).
 
-## PATCHES
 
-If you would do some code changes, fix a bug, you can fork our repository, do your changes and send a pull request.
-But, before you send a pull request, if you fix a bug, you need to open a ticket in our bug tracker with a description of your changes, and after send a pull request.
-Both the title of the commit that the pull request should be "Ticket BP-12345", where 12345 is the ticket ID.
+CONTRIBUTE
+----------
 
-## CONTINUOS INTEGRATION
+1. Fork it
+2. [Create an account on Tracker](http://tracker.bokehteknology.net/)
+2. [Create a ticket](http://tracker.bokehteknology.net/bokehplatform/issues/new)
+3. Create a branch `ticket/bp-12345` (`git checkout -b ticket/bp-12345`)
+4. Commit your changes (first line ticket ID, more details can be added on other lines) (`git commit -am "Ticket BP-12345"`)
+5. Push to your fork. (`git push origin ticket/bp-12345`)
+6. Send us a [pull request][1]
 
-We have setup some tests with PHPUnit. These tests are automatically run when a commit is sent by [Travis CI](http://travis-ci.org/).
-Build Status: [![Build Status](https://secure.travis-ci.org/bokehteknology/Bokeh-Platform.png?branch=master)]
+You need to replace `12345` with your ticket ID.
 
-## TRACKER
+
+CONTINUOS INTEGRATION
+---------------------
+
+We have setup some tests with PHPUnit.
+
+These tests are automatically run when a commit is sent by [Travis CI](http://travis-ci.org/).
+
+Build Status: [![Build Status](https://secure.travis-ci.org/bokehteknology/Bokeh-Platform.png?branch=master)](http://travis-ci.org/bokehteknology/Bokeh-Platform)
+
+
+TRACKER
+-------
 
 The tracker is now available at: [http://tracker.bokehteknology.net/](http://tracker.bokehteknology.net/).
