@@ -30,7 +30,6 @@ require($root_path . 'includes/classes/plugin.' . $phpEx);
 require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 require($root_path . 'includes/functions/application_base.' . $phpEx);
 require($root_path . 'includes/functions/bt_api.' . $phpEx);
-require($root_path . 'includes/functions/error_box.' . $phpEx);
 require($root_path . 'includes/functions/error_handler.' . $phpEx);
 require($root_path . 'includes/functions/format.' . $phpEx);
 require($root_path . 'includes/functions/plugin.' . $phpEx);
@@ -40,3 +39,9 @@ require($root_path . 'includes/functions/smarty.' . $phpEx);
 # Load databases classes
 require($root_path . 'includes/database/mysql.' . $phpEx);
 require($root_path . 'includes/database/mysqli.' . $phpEx);
+
+# Custom error_box() for PHPUnit tests
+function error_box($msg = '', $params = array(), $title = false)
+{
+	return false;
+}
