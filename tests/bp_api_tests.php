@@ -9,16 +9,26 @@
 
 class bp_api_tests extends PHPUnit_Framework_TestCase
 {
-	# Do a API request
-	public function test_do_request()
+	private _set_api_info()
 	{
 		global $_SERVER, $bokeh_version;
 
 		$_SERVER['SERVER_NAME'] = 'pppX.worker.travis-ci.org';
 		$bokeh_version = '0.0.0';
 
+		if (!defined('APIKEY'))
+		{
+			@define('APIKEY', 'f320c6951a30639ffaa584db47339008');
+		}
+	}
+
+	# Do a API request
+	public function test_do_request()
+	{
+		$this->_set_api_info();
+
 		$request = api_request('bokeh_platform', 'dev');
-		$request_status = (bool) $request
+		$request_status = (bool) $request;
 
 		$this->assertTrue($request_status);
 
