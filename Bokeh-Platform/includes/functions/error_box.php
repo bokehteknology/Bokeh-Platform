@@ -25,7 +25,7 @@ if (!defined('IN_BOKEH'))
 */
 function error_box($msg = '', $params = array(), $title = false)
 {
-	global $lang, $user, $smarty;
+	global $lang, $smarty, $log;
 
 	if ($msg != '')
 	{
@@ -58,6 +58,8 @@ function error_box($msg = '', $params = array(), $title = false)
 		}
 
 		$user['page_title'] = (($title === false) ? $lang['ERROR'] : (($title == strtoupper($title) && isset($lang[$title])) ? $lang[$title] : $title));
+
+		$log->write('errors', strip_tags($_msg));
 
 		$smarty->assign('title', $user['page_title']);
 		$smarty->assign('template_html', '<em>' . $_msg . '</em>');
