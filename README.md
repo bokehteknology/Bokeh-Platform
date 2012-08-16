@@ -17,7 +17,7 @@ CONTRIBUTE
 
 You need to replace `12345` with your ticket ID.
 
-You can also use [Travis CI](http://travis-ci.org/) for test a build with your commits before opening a pull request.
+You can also use [Travis CI](http://travis-ci.org/) or your own [PHPUnit](http://www.phpunit.de/manual/current/en/index.html) installation for test a build with your commits before opening a pull request.
 
 
 CONTINUOS INTEGRATION
@@ -33,7 +33,7 @@ Build Status: [![Build Status](https://secure.travis-ci.org/bokehteknology/Bokeh
 TRACKER
 -------
 
-The tracker is now available at: [http://tracker.bokehteknology.net/](http://tracker.bokehteknology.net/).
+The tracker is now available at: [http://tracker.bokehteknology.net/](http://tracker.bokehteknology.net/)
 
 
 LICENSE
