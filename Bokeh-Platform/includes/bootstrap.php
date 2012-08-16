@@ -49,10 +49,14 @@ define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 require($root_path . 'includes/classes/config.' . $phpEx);
 require($root_path . 'includes/classes/controller.' . $phpEx);
 require($root_path . 'includes/classes/loader.' . $phpEx);
+require($root_path . 'includes/classes/log.' . $phpEx);
 require($root_path . 'includes/classes/plugin.' . $phpEx);
 
 # Load configs
 $config = new config();
+
+# Load Log System
+$log = new log();
 
 # Set default timezone
 date_default_timezone_set($config->sys->timezone);
