@@ -12,6 +12,8 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 	# Log loading test
 	public function test_load()
 	{
+		global $root_path;
+
 		$log = new log();
 
 		$log->close('errors');
