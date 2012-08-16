@@ -15,7 +15,7 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 	# Load all plugins
 	public function test_load_all()
 	{
-		global $config, $plugin_controllers_list, $plugins, $client_lang;
+		global $config, $plugin_controllers_list, $plugins, $client_lang, $plugin_name;
 
 		$config = new bp_config();
 
@@ -23,13 +23,15 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 		$plugins = new stdClass();
 
 		$client_lang = 'en';
+		$plugin_name = $this->u_plugin;
 
 		$this->assertTrue(load_plugins());
 
-		$u_plugin = $this->u_plugin;
-		$plugins->$u_plugin->_configure();
+		$plugins->$plugin_name->_configure();
 
-		$this->assertTrue($plugins->$u_plugin->is_controller);
+		$this->assertTrue($plugins->$plugin_name->is_controller);
+
+		$this->assertTrue(run_plugin($plugin_name, 'index', $plugin_controllers_list));
 	}
 
 	# Load test plugin
