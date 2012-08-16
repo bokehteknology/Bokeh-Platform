@@ -9,7 +9,7 @@
 
 class bp_api_tests extends PHPUnit_Framework_TestCase
 {
-	private _set_api_info()
+	private function _set_api_info()
 	{
 		global $_SERVER, $bokeh_version;
 

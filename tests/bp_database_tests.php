@@ -9,7 +9,8 @@
 
 class bp_database_tests extends PHPUnit_Framework_TestCase
 {
-	private $db, $config;
+	private $db;
+	private $config;
 
 	private function _start()
 	{
