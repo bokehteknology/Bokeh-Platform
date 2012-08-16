@@ -28,7 +28,7 @@ class bp_api_tests extends PHPUnit_Framework_TestCase
 	{
 		$this->_set_api_info();
 
-		$request = api_request('bokeh_platform', 'dev');
+		$request = api_request('bokeh_platform', 'dev', array(), false);
 		$request_status = (bool) $request;
 
 		$this->assertTrue($request_status);
