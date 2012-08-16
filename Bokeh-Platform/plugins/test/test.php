@@ -15,7 +15,7 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-class plugin_test extends plugin
+class plugin_test extends bp_plugin
 {
 	public $plugin_id = 'test';
 
