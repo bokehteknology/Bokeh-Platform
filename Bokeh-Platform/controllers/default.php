@@ -15,14 +15,14 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-class controller_default extends controller
+class controller_default extends bp_controller
 {
 	function index()
 	{
 		# this is index page
 		# this page have two links:
-		# > http://www.mysite.com/bokeh/index.php/default/
-		# > http://www.mysite.com/bokeh/index.php/default/index
+		# > http://www.mysite.com/bokeh/default/
+		# > http://www.mysite.com/bokeh/default/index
 
 		$this->controller->view_header('HOME');
 		$this->controller->view('home_body');

@@ -15,13 +15,8 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-class controller_http_403 extends controller
+class controller_http_403 extends bp_controller
 {
-	function controller_http_403()
-	{
-		# HTTP Status Page: 403 (Forbidden)
-	}
-
 	function index()
 	{
 		error_box('ERROR_403_EXPLAIN', array(), 'ERROR_403_TITLE');

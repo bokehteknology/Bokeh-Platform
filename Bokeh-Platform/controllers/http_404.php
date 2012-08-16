@@ -15,13 +15,8 @@ if (!defined('IN_BOKEH'))
 	exit;
 }
 
-class controller_http_404 extends controller
+class controller_http_404 extends bp_controller
 {
-	function controller_http_404()
-	{
-		# HTTP Status Page: 404 (Not Found)
-	}
-
 	function index()
 	{
 		error_box('ERROR_404_EXPLAIN', array(), 'ERROR_404_TITLE');
