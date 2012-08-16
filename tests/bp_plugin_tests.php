@@ -17,7 +17,7 @@ class bp_plugin_tests extends PHPUnit_Framework_TestCase
 	{
 		global $config, $plugin_controllers_list, $plugins, $client_lang;
 
-		$config = new config();
+		$config = new bp_config();
 
 		$plugin_controllers_list = array();
 		$plugins = new stdClass();

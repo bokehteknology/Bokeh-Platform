@@ -14,7 +14,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 	{
 		global $root_path;
 
-		$log = new log();
+		$log = new bp_log();
 
 		$log->close('errors');
 		$log->close('standard');
@@ -26,7 +26,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 	# Write to log
 	public function test_write_log()
 	{
-		$log = new log();
+		$log = new bp_log();
 
 		$this->assertTrue($log->write('errors', 'Testing error'));
 		$this->assertTrue($log->write('standard', 'Testing standard log message'));

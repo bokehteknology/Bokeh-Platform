@@ -15,7 +15,7 @@ class bp_database_tests extends PHPUnit_Framework_TestCase
 	{
 		global $_SERVER, $root_path, $phpEx;
 
-		$this->config = new config();
+		$this->config = new bp_config();
 
 		$this->config->db->type = $_SERVER['BP_DB_TYPE'];		
 		$this->config->db->host = $_SERVER['BP_DB_HOST'];

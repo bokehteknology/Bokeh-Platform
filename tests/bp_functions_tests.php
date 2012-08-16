@@ -22,7 +22,7 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 	{
 		global $config, $lang;
 
-		$config = new config();
+		$config = new bp_config();
 		$lang = array('MONTH_1' => 'January');
 
 		date_default_timezone_set($config->sys->timezone);
@@ -35,7 +35,7 @@ class bp_functions_tests extends PHPUnit_Framework_TestCase
 	{
 		global $config;
 
-		$config = new config();
+		$config = new bp_config();
 		$time = time();
 
 		date_default_timezone_set($config->sys->timezone);
