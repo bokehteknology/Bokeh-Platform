@@ -17,6 +17,8 @@ CONTRIBUTE
 
 You need to replace `12345` with your ticket ID.
 
+You can also use [Travis CI](http://travis-ci.org/) for test a build with your commits before opening a pull request.
+
 
 CONTINUOS INTEGRATION
 ---------------------
