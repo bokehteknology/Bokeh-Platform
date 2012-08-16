@@ -18,7 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * Loader class
 */
-class loader
+class bp_loader
 {
 	/**
 	* Path to 'views' directory

@@ -18,7 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * Controller base class
 */
-class controller
+class bp_controller
 {
 	/**
 	* Controllers functions
@@ -32,6 +32,6 @@ class controller
 	*/
 	public function __construct()
 	{
-		$this->controller = new loader();
+		$this->controller = new bp_loader();
 	}
 }

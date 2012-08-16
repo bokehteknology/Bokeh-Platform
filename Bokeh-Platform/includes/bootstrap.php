@@ -53,10 +53,11 @@ require($root_path . 'includes/classes/log.' . $phpEx);
 require($root_path . 'includes/classes/plugin.' . $phpEx);
 
 # Load configs
-$config = new config();
+$config = new bp_config();
 
-# Load Log System
-$log = new log();
+# BP Object
+$bp = new stdClass();
+$bp->log = new bp_log();
 
 # Set default timezone
 date_default_timezone_set($config->sys->timezone);

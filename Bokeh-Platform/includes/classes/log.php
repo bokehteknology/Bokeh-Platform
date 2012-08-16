@@ -18,7 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * Log system class
 */
-class log
+class bp_log
 {
 	/**
 	* Logging files

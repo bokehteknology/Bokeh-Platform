@@ -18,7 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * Plugin base class
 */
-class plugin
+class bp_plugin
 {
 	/**
 	* Plugins functions
@@ -46,6 +46,6 @@ class plugin
 	*/
 	public function __construct()
 	{
-		$this->plugin = new loader();
+		$this->plugin = new bp_loader();
 	}
 }

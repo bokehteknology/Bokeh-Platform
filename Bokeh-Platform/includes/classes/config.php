@@ -18,7 +18,7 @@ if (!defined('IN_BOKEH'))
 /**
 * Config class
 */
-class config
+class bp_config
 {
 	/**
 	* System configuration
@@ -51,7 +51,7 @@ class config
 	/**
 	* Constructor (read all configs)
 	*/
-	public function config()
+	public function __construct()
 	{
 		global $root_path, $phpEx;
 
