@@ -11,17 +11,7 @@ $root_path = './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($root_path . 'includes/bootstrap.' . $phpEx);
 
-if (!isset($_GET['url']))
-{
-	$_GET['url'] = '';
-}
-
-$uri = trim($_GET['url'], '/');
-$uri = explode('/', $uri);
-
-$config->sys->url_controller = (isset($uri[0]) && !empty($uri[0])) ? $uri[0] : $config->sys->default_controller;
-$config->sys->url_page = (isset($uri[1]) && !empty($uri[1])) ? $uri[1] : 'index';
-$conifg->sys->url_params = array_slice($uri, 2);
+dispatch_url();
 
 if ($config->sys->url_controller == 'css')
 {
