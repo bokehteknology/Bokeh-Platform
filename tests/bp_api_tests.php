@@ -18,6 +18,7 @@ class bp_api_tests extends PHPUnit_Framework_TestCase
 
 		if (!defined('APIKEY'))
 		{
+			# Apikey enabled only for 'bokeh_platform' service
 			@define('APIKEY', 'f320c6951a30639ffaa584db47339008');
 		}
 	}
