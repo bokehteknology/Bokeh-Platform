@@ -26,6 +26,7 @@ if (!defined('IN_BOKEH'))
 function request_var($var, $is_true = true, $is_false = false)
 {
 	global $_REQUEST;
+
 	return (isset($_REQUEST[$var])) ? $is_true : $is_false;
 }
 
@@ -89,6 +90,8 @@ function set_header_status($code, $message = '')
 
 	header($http . ' ' . $code . ' ' . $message, true, $code);
 
+	# If we are at this point is because
+	# header() have not send header to user
 	return false;
 }
 
