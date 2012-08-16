@@ -24,6 +24,7 @@ define('STRIP', (get_magic_quotes_gpc()) ? true : false);
 require($root_path . 'includes/classes/config.' . $phpEx);
 require($root_path . 'includes/classes/controller.' . $phpEx);
 require($root_path . 'includes/classes/loader.' . $phpEx);
+require($root_path . 'includes/classes/log.' . $phpEx);
 require($root_path . 'includes/classes/plugin.' . $phpEx);
 
 # Require system files
