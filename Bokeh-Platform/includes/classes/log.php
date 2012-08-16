@@ -91,6 +91,6 @@ class log
 	*/
 	public function write($type, $message)
 	{
-		return (bool) @fwrite($this->handlers, ('[' . date($this->date_format) . '] ' . $message));
+		return (bool) @fwrite($this->handlers[$type], ('[' . date($this->date_format) . '] ' . $message));
 	}
 }
