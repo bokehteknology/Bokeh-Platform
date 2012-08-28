@@ -11,6 +11,7 @@ env:
 
 before_script:
   - sh -c "if [ '$DB' = 'mysql' ] || [ '$DB' = 'mysqli' ]; then mysql -e 'DROP DATABASE IF EXISTS bokeh_platform; CREATE DATABASE IF NOT EXISTS bokeh_platform;'; fi"
+  - pyrus channel-discover pear.symfony.com
   - pyrus install --force phpunit/DbUnit
   - phpenv rehash
 
