@@ -11,10 +11,10 @@ $root_path = 'Bokeh-Platform/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 
 # Output Buffering
-if (!@ob_start()) die("<p>Output Buffering is required.</p>");
+if (!@ob_start()) die("Output Buffering is required.");
 
 # JSON
-if (!function_exists('json_decode') || !function_exists('json_encode')) die("<p>JSON is required.</p>");
+if (!function_exists('json_decode') || !function_exists('json_encode')) die("JSON is required.");
 
 # Setting some constants
 define('SMARTY_DIR', $root_path . 'includes/smarty/');
