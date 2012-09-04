@@ -44,7 +44,7 @@ class bp_database_tests extends PHPUnit_Framework_TestCase
 	{
 		$sql = array();
 
-		$sql[] = "CREATE TABLE IF NOT EXISTS %prefix%test (id int(11) NOT NULL AUTO_INCREMENT, value text NOT NULL, PRIMARY KEY (id)) TYPE=InnoDB AUTO_INCREMENT=1;";
+		$sql[] = "CREATE TABLE IF NOT EXISTS %prefix%test (id int(11) NOT NULL AUTO_INCREMENT, value text NOT NULL, PRIMARY KEY (id)) AUTO_INCREMENT=1;";
 		$sql[] = "INSERT INTO %prefix%test (id, value) VALUES (NULL, 'abc');";
 
 		foreach($sql as $query)
