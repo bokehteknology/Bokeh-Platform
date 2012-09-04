@@ -15,8 +15,11 @@
 	<property name="file_prefix" value="Bokeh_Platform_" />
 	<property name="filename" value="${file_prefix}${new_version}.zip" />
 
-	<!-- Main Targets -->
-	<target name="package" depends="clean,prepare,clone,create-diff,checkout-tag,install-dependencies,phpunit,create-package,purge-tmp" />
+	<!-- MAIN TARGET -->
+	<target name="package" depends="clean,prepare,clone,create-diff,install-dependencies,docs,phpunit,create-package,purge-tmp">
+		<echo msg="Bokeh Platform packages created!" />
+	</target>
+
 
 	<target name="clean">
 		<delete dir="build/files" />
@@ -50,6 +53,14 @@
 	<target name="install-dependencies">
 		<exec dir="build/files/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
 		<exec dir="build/files/tmp/Bokeh-Platform" command="php ../composer.phar install" passthru="true" />
+	</target>
+
+	<target name="docs">
+		<!-- REQUIRE: phpdocumentor -->
+		<mkdir dir="build/files/tmp/Bokeh-Platform/docs" />
+		<exec dir="build/files/tmp/Bokeh-Platform" command="phpdoc project:run -q -d ./ -t ./docs_tmp/ -i 'cache/*,configs/*,controllers/*,docs/*,languages/*,plugins/*,public/*,views/*,vendor/*,includes/bootstrap.php,index.php' --title='Bokeh Platform ${new_version}' --force --defaultpackagename='BokehPlatform'" passthru="true" />
+		<exec dir="build/files/tmp/Bokeh-Platform" command="phpdoc project:transform -q -s docs_tmp -t docs" passthru="true" />
+		<delete dir="build/files/tmp/Bokeh-Platform/docs_tmp" />
 	</target>
 
 	<target name="phpunit">
