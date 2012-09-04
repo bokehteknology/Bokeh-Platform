@@ -30,6 +30,16 @@ To be able to run Bokeh Platform from the repository (and not from a pre-built p
 	php ../composer.phar install
 
 
+BUILDING PACKAGES
+-----------------
+
+For building Bokeh Platform's packages [Phing](http://www.phing.info/trac/), available via PEAR.
+
+From the build directory, run:
+
+	phing
+
+
 CONTINUOS INTEGRATION
 ---------------------
 
