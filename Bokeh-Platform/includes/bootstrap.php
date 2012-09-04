@@ -24,6 +24,9 @@ if (!@ob_start()) die("<p>Output Buffering is required.</p>");
 # JSON
 if (!function_exists('json_decode') || !function_exists('json_encode')) die("<p>JSON is required.</p>");
 
+# Composer
+if (!file_exists($root_path . 'vendor/autoload.' . $phpEx)) die("<p>You have not set up composer dependencies. See http://getcomposer.org/.</p>");
+
 # Setting system start time
 $starttime = explode(' ', microtime());
 $starttime = $starttime[1] + $starttime[0];
@@ -42,8 +45,10 @@ if (defined('DISPLAY_RAM') && DISPLAY_RAM)
 }
 
 # Setting some constants
-define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
+
+# Load dependencies
+require($root_path . 'vendor/autoload.' . $phpEx);
 
 # Load classes
 require($root_path . 'includes/classes/config.' . $phpEx);
@@ -68,7 +73,6 @@ $config->sys->page_arg = $_SERVER['QUERY_STRING'];
 $config->sys->page_info = ((isset($_SERVER['PATH_INFO']) && !empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '');
 
 # Require system files
-require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 require($root_path . 'includes/functions/application_base.' . $phpEx);
 require($root_path . 'includes/functions/bt_api.' . $phpEx);
 require($root_path . 'includes/functions/error_handler.' . $phpEx);
