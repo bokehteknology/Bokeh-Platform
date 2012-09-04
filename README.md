@@ -33,7 +33,7 @@ To be able to run Bokeh Platform from the repository (and not from a pre-built p
 BUILDING PACKAGES
 -----------------
 
-For building Bokeh Platform's packages [Phing](http://www.phing.info/trac/), available via PEAR. You need to install `git-core`, `zip` libraries on an Ubuntu box.
+For building Bokeh Platform's packages you need to use [Phing](http://www.phing.info/trac/), available via PEAR. You need to install `git-core`, `zip` libraries on an Ubuntu box.
 
 From the build directory, run:
 
