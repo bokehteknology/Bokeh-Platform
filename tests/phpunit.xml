@@ -26,12 +26,5 @@
 	<php>
 		<var name="root_path" value="Bokeh-Platform/" />
 		<var name="phpEx" value="php" />
-
-		<server name="BP_DB_TYPE" value="mysql" />
-		<server name="BP_DB_HOST" value="localhost" />
-		<server name="BP_DB_PORT" value="3306" />
-		<server name="BP_DB_NAME" value="bokeh_platform" />
-		<server name="BP_DB_USER" value="root" />
-		<server name="BP_DB_PASS" value="" />
 	</php>
 </phpunit>
