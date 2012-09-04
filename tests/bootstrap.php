@@ -16,9 +16,14 @@ if (!@ob_start()) die("Output Buffering is required.");
 # JSON
 if (!function_exists('json_decode') || !function_exists('json_encode')) die("JSON is required.");
 
+# Composer
+if (!file_exists($root_path . 'vendor/autoload.' . $phpEx)) die("You have not set up composer dependencies. See http://getcomposer.org/.");
+
 # Setting some constants
-define('SMARTY_DIR', $root_path . 'includes/smarty/');
 define('STRIP', (get_magic_quotes_gpc()) ? true : false);
+
+# Load dependencies
+require($root_path . 'vendor/autoload.' . $phpEx);
 
 # Load classes
 require($root_path . 'includes/classes/config.' . $phpEx);
@@ -28,7 +33,6 @@ require($root_path . 'includes/classes/log.' . $phpEx);
 require($root_path . 'includes/classes/plugin.' . $phpEx);
 
 # Require system files
-require($root_path . 'includes/smarty/Smarty.class.' . $phpEx);
 require($root_path . 'includes/functions/application_base.' . $phpEx);
 require($root_path . 'includes/functions/bt_api.' . $phpEx);
 require($root_path . 'includes/functions/error_handler.' . $phpEx);
