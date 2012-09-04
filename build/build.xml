@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Bokeh Platform" description="Bokeh Platform is a simple and faster PHP platform for develop websites" default="package" basedir="../">
+	<!-- BP Packages configuration -->
+	<property name="new_version" value="1.0.0-b5" />
+	<property name="prev_version" value="1.0.0-b4" />
+	<property name="older_versions" value="1.0.0-b1, 1.0.0-b2, 1.0.0-b3" />
+	<!-- END -->
+
+	<property name="repository" value="git://github.com/bokehteknology/Bokeh-Platform.git" />
+
+	<property name="old_versions" value="${older_versions}, ${prev_version}" />
+	<property name="versions" value="${old_versions}, ${new_version}" />
+
+	<property name="file_prefix" value="Bokeh_Platform_" />
+	<property name="filename" value="${file_prefix}${new_version}.zip" />
+
+	<!-- Main Targets -->
+	<target name="package" depends="clean,prepare,clone,create-diff,checkout-tag,install-dependencies,phpunit,create-package,purge-tmp" />
+
+	<target name="clean">
+		<delete dir="build/files" />
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="build/files" />
+		<mkdir dir="build/files/${new_version}" />
+		<mkdir dir="build/files/tmp" />
+	</target>
+
+	<target name="clone">
+		<echo msg="Cloning repository..." />
+		<exec command="git clone -q ${repository} build/files/tmp" passthru="true" />
+	</target>
+
+	<target name="create-diff">
+		<foreach list="${old_versions}" param="version" target="old-version-diff" />
+	</target>
+
+	<target name="old-version-diff">
+		<echo msg="Retrieving DIFF for version ${version}..." />
+		<exec dir="build/files/tmp/Bokeh-Platform" command="git diff ${version} ${new_version} > ../../${new_version}/${file_prefix}${version}_to_${new_version}.diff" passthru="true" />
+	</target>
+
+	<target name="checkout-tag">
+		<echo msg="Retrieving version ${new_version}..." />
+		<exec dir="build/files/tmp" command="git checkout -q tags/${new_version}" passthru="true" />
+	</target>
+
+	<target name="install-dependencies">
+		<exec dir="build/files/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
+		<exec dir="build/files/tmp/Bokeh-Platform" command="php ../composer.phar install" passthru="true" />
+	</target>
+
+	<target name="phpunit">
+		<exec dir="build/files/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
+	</target>
+
+	<target name="create-package">
+		<echo msg="Creating package..." />
+		<exec dir="build/files/tmp" command="zip -r -q ../${new_version}/${filename} ./Bokeh-Platform/*" passthru="true" />
+	</target>
+
+	<target name="purge-tmp">
+		<delete dir="build/files/tmp" />
+	</target>
+
+</project>
