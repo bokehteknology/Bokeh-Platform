@@ -20,6 +20,16 @@ You need to replace `12345` with your ticket ID.
 You can also use [Travis CI](http://travis-ci.org/) or your own [PHPUnit](http://www.phpunit.de/manual/current/en/index.html) installation for test a build with your commits before opening a pull request.
 
 
+INSTALLING DEPENDENCIES
+-----------------------
+
+To be able to run Bokeh Platform from the repository (and not from a pre-built package) you need to run the following commands to install dependencies.
+
+	curl -s https://getcomposer.org/installer | php
+	cd Bokeh-Platform
+	php ../composer.phar install
+
+
 CONTINUOS INTEGRATION
 ---------------------
 
