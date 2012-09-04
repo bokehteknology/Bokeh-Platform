@@ -7,6 +7,9 @@
 *
 */
 
+/**
+* @group database
+*/
 class bp_database_tests extends PHPUnit_Framework_TestCase
 {
 	private $db;
