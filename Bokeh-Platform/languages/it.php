@@ -13,7 +13,8 @@
 /**
 * DO NOT CHANGE
 */
-if (!defined('IN_BOKEH')) {
+if (!defined('IN_BOKEH'))
+{
 	exit;
 }
 
