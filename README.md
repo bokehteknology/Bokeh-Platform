@@ -35,7 +35,9 @@ $ php ../composer.phar install
 BUILDING PACKAGES
 -----------------
 
-For building Bokeh Platform's packages you need to use [Phing](http://www.phing.info/trac/), available via PEAR. You need to install `git-core`, `zip` libraries on an Ubuntu box.
+For building Bokeh Platform's packages you need to use [Phing](http://www.phing.info/trac/), available via PEAR.
+
+You need to install `git-core` and `zip` packages on an Ubuntu box.
 
 From the build directory, run:
 
