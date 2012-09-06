@@ -242,6 +242,8 @@ class bp_config
 	*/
 	private function parseValue($value, $to_cfg = false)
 	{
+		global $root_path;
+
 		if ($to_cfg)
 		{
 			if ($value === true)
@@ -255,6 +257,10 @@ class bp_config
 			else if (is_numeric($value))
 			{
 				return $value;
+			}
+			else if (is_string($value))
+			{
+				$value = str_replace($root_path, '%root_path%', $value);
 			}
 
 			return '"' . $value . '"';
@@ -272,6 +278,10 @@ class bp_config
 			else if ($value == 'false')
 			{
 				return false;
+			}
+			else if (is_string($value))
+			{
+				$value = str_replace('%root_path%', $root_path, $value);
 			}
 
 			return (string) $value;

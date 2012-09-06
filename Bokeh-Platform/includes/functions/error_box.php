@@ -25,7 +25,7 @@ if (!defined('IN_BOKEH'))
 */
 function error_box($msg = '', $params = array(), $title = false)
 {
-	global $lang, $smarty, $log;
+	global $lang, $smarty;
 
 	if ($msg != '')
 	{
@@ -49,12 +49,15 @@ function error_box($msg = '', $params = array(), $title = false)
 			case 'ERR_NO_TEMPLATE_FILE':
 			case 'ERR_TEMPLATE_IF_PARSING':
 				$_msg .= ' [<b>' . $params[0] . '</b>]';
-				break;
+			break;
+
 			case 'ERR_SQL_QUERY':
 				$_msg .= '<br /><br /><code>' . htmlspecialchars($params[0], ENT_QUOTES) . '</code><br /><br />' . $lang['ERR_SQL_QUERY_ERR'] . '<br /><code>' . $params[1];
-				break;
+			break;
+
 			default:
-				break;
+				# Nothing to do
+			break;
 		}
 
 		$user['page_title'] = (($title === false) ? $lang['ERROR'] : (($title == strtoupper($title) && isset($lang[$title])) ? $lang[$title] : $title));

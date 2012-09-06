@@ -62,7 +62,10 @@ $config = new bp_config();
 
 # BP Object
 $bp = new stdClass();
-$bp->log = new bp_log();
+
+# BP Logger
+$bp->log = new bp_log('bp_logger');
+$bp->log->pushHandler('Stream', array($config->sys->log_file));
 
 # Set default timezone
 date_default_timezone_set($config->sys->timezone);

@@ -16,81 +16,128 @@ if (!defined('IN_BOKEH'))
 }
 
 /**
+* Libraries used:
+*   - monolog/monolog
+*/
+use Monolog\Logger;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SyslogHandler;
+
+/**
 * Log system class
+*
+* Our interface for Monolog
 */
 class bp_log
 {
 	/**
-	* Logging files
+	* Logger
 	*
-	* @var array
+	* @var Logger
 	*/
-	private $files = array();
+	private $logger;
 
 	/**
-	* Files Handlers
+	* Logger Handlers
 	*
 	* @var array
 	*/
 	private $handlers = array();
 
 	/**
-	* Date/time format for logs
+	* Handers ID
 	*
-	* @var string
+	* @var int
 	*/
-	private $date_format = 'd/m/Y H:i:s';
+	private $handlers_id = 0;
 
 	/**
 	* Constructor
+	*
+	* @param string $channel Name for the logger channel
 	*/
-	public function __construct()
+	public function __construct($channel)
 	{
-		global $root_path;
+		$this->logger = new Logger($channel);
+	}
 
-		$this->files = array(
-			'errors'	=> $root_path . 'configs/error_log.txt',
-			'standard'	=> $root_path . 'configs/standard_log.txt'
-		);
-
-		foreach($this->files as $type => $file)
+	/**
+	* Add handler to the logger channel
+	*
+	* @param string $type Handler type
+	* @param string $file File used for StreamHandler
+	* @return int Key of handlers array
+	*/
+	public function pushHandler($type, $params = array())
+	{
+		switch($type)
 		{
-			$this->open($type, $file);
+			/**
+			* 0 - Filename
+			* 1 - Max files
+			* 2 - Level
+			*/
+			case 'RotatingFile':
+				$params[2] = isset($params[2]) ? $params[2] : Logger::DEBUG;
+
+				$this->handlers[$this->handlers_id] = new RotatingFileHandler($params[0], $params[1], $params[2]);
+			break;
+
+			/**
+			* 0 - Filename
+			* 1 - Level
+			*/
+			case 'Stream':
+				$params[1] = isset($params[1]) ? $params[1] : Logger::DEBUG;
+
+				$this->handlers[$this->handlers_id] = new StreamHandler($params[0], $params[1]);
+			break;
+
+			/**
+			* 0 - Ident
+			* 1 - Facility
+			* 2 - Level
+			*/
+			case 'Syslog':
+				$params[1] = isset($params[1]) ? $params[1] : LOG_USER;
+				$params[2] = isset($params[2]) ? $params[2] : Logger::DEBUG;
+
+				$this->handlers[$this->handlers_id] = new SyslogHandler($params[0], $params[1], $params[2]);
+			break;
 		}
-	}
 
-	/**
-	* Open log file for writing
-	*
-	* @param string $type Log type
-	* @param string $file File of log
-	*/
-	public function open($type, $file)
-	{
-		$this->handlers[$type] = @fopen($file, 'ab');
+		$this->logger->pushHandler($this->handlers[$this->handlers_id]);
 
-		return (bool) $this->handlers[$type];
-	}
+		$this->handlers_id++;
 
-	/**
-	* Close log file for writing
-	*
-	* @param string $type Log type
-	*/
-	public function close($type)
-	{
-		return @fclose($this->handlers[$type]);
+		return ($this->handlers_id - 1);
 	}
 
 	/**
 	* Write log
 	*
-	* @param string $type Log type
+	* @param string $level Log level
 	* @param string $message Log message
 	* @return bool
 	*/
-	public function write($type, $message)
+	public function write($level, $message, $context = array())
 	{
-		return (bool) @fwrite($this->handlers[$type], ('[' . date($this->date_format) . '] ' . $message . "\n"));
+		switch($level)
+		{
+			case 'error':
+				$write = $this->logger->addError($message, $context);
+			break;
+
+			case 'info':
+				$write = $this->logger->addInfo($message, $context);
+			break;
+
+			default:
+				$write = $this->logger->addWarning($message, $context);
+			break;
+		}
+
+		return (bool) $write;
 	}
 }

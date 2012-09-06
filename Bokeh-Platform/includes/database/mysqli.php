@@ -38,7 +38,7 @@ class database_mysqli
 	/**
 	* Initialize MySQL class
 	*/
-	function database_mysqli()
+	function __construct()
 	{
 		# Nothing for now
 	}
@@ -55,12 +55,16 @@ class database_mysqli
 	*/
 	function sql_connect($dbhost, $dbport, $dbuser, $dbpass, $dbname)
 	{
+		global $bp;
+
 		$dbhost = empty($dbhost) ? 'localhost' : $dbhost;
 		$dbuser = empty($dbuser) ? 'root' : $dbuser;
 
-		if (($this->db_connect_id = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport)) === false)
+		if (($this->db_connect_id = @mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport)) === false)
 		{
-			error_box('ERR_SQL_CONNECT', array($dbhost));
+			$bp->log->write('error', "Could not connect to database server: {$dbhost}:{$dbport} || Error: " . mysqli_connect_error(), array('dbal' => 'mysqli'));
+
+			error_box('ERR_SQL_CONNECT', array($dbhost . ':' . $dbport));
 		}
 		else
 		{
@@ -86,7 +90,7 @@ class database_mysqli
 	*/
 	function sql_query($query = '')
 	{
-		global $starttime;
+		global $starttime, $bp;
 
 		if ($query != '')
 		{
@@ -95,7 +99,11 @@ class database_mysqli
 
 			if (($this->query_result = @mysqli_query($this->db_connect_id, $query)) === false)
 			{
-				error_box('ERR_SQL_QUERY', array($query, mysqli_error()));
+				$db_error = mysqli_error($this->db_connect_id);
+
+				$bp->log->write('error', "There was an error executing the query: \"{$query}\" || Error: \"{$db_error}\"", array('dbal' => 'mysqli'));
+
+				error_box('ERR_SQL_QUERY', array($query, $db_error));
 			}
 
 			$finish_sql = explode(' ', microtime());
