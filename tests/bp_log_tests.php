@@ -9,26 +9,30 @@
 
 class bp_log_tests extends PHPUnit_Framework_TestCase
 {
-	# Log loading test
-	public function test_load()
+	# Write to log (RotatingFileHandler)
+	public function test_write_rotatingfile()
 	{
-		global $root_path;
+		$log = new bp_log('log_test');
+		$log->pushHandler('RotatingFile', array('../Bokeh-Platform/logs/RotatingFileHandler.txt', 0));
 
-		$log = new bp_log();
-
-		$log->close('errors');
-		$log->close('standard');
-
-		$this->assertTrue($log->open('errors', $root_path . 'configs/error_log.txt'));
-		$this->assertTrue($log->close('errors'));
+		$this->assertTrue($log->write('info', 'testing logging');
 	}
 
-	# Write to log
-	public function test_write_log()
+	# Write to log (StreamHandler)
+	public function test_write_stream()
 	{
-		$log = new bp_log();
+		$log = new bp_log('log_test');
+		$log->pushHandler('Stream', array('../Bokeh-Platform/logs/StreamHandler.txt'));
 
-		$this->assertTrue($log->write('errors', 'Testing error'));
-		$this->assertTrue($log->write('standard', 'Testing standard log message'));
+		$this->assertTrue($log->write('info', 'testing logging');
+	}
+
+	# Write to log (SyslogHandler)
+	public function test_write_syslog()
+	{
+		$log = new bp_log('log_test');
+		$log->pushHandler('Syslog', array('SyslogHandler', 'local6'));
+
+		$this->assertTrue($log->write('info', 'testing logging');
 	}
 }
