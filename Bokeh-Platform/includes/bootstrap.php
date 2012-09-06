@@ -89,16 +89,22 @@ if (!function_exists('error_box'))
 	require($root_path . 'includes/functions/error_box.' . $phpEx);
 }
 
-# Load default language
-require($root_path . 'languages/' . $config->sys->default_language . '.' . $phpEx);
+# Load default language files
+foreach(glob($root_path . 'languages/' . $config->sys->default_language . '/*.' . $phpEx) as $lang_file)
+{
+	require($lang_file);
+}
 
 # Require user language
 $client_lang = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : $config->sys->default_language;
 $client_lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : $client_lang;
 
-if (file_exists($root_path . 'languages/' . $client_lang . '.' . $phpEx))
+if (file_exists($root_path . 'languages/' . $client_lang . '/bp.' . $phpEx))
 {
-	require_once($root_path . 'languages/' . $client_lang . '.' . $phpEx);
+	foreach(glob($root_path . 'languages/' . $client_lang . '/*.' . $phpEx) as $lang_file)
+	{
+		require_once($lang_file);
+	}
 }
 
 # Initialize database class
