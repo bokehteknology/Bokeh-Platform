@@ -15,7 +15,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 		$log = new bp_log('log_test');
 		$log->pushHandler('RotatingFile', array('../Bokeh-Platform/logs/RotatingFileHandler.txt', 0));
 
-		$this->assertTrue($log->write('info', 'testing logging');
+		$this->assertTrue($log->write('info', 'testing logging'));
 	}
 
 	# Write to log (StreamHandler)
@@ -24,7 +24,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 		$log = new bp_log('log_test');
 		$log->pushHandler('Stream', array('../Bokeh-Platform/logs/StreamHandler.txt'));
 
-		$this->assertTrue($log->write('info', 'testing logging');
+		$this->assertTrue($log->write('info', 'testing logging'));
 	}
 
 	# Write to log (SyslogHandler)
@@ -33,6 +33,6 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 		$log = new bp_log('log_test');
 		$log->pushHandler('Syslog', array('SyslogHandler', 'local6'));
 
-		$this->assertTrue($log->write('info', 'testing logging');
+		$this->assertTrue($log->write('info', 'testing logging'));
 	}
 }
