@@ -13,7 +13,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 	public function test_write_rotatingfile()
 	{
 		$log = new bp_log('log_test');
-		$log->pushHandler('RotatingFile', array('../Bokeh-Platform/logs/RotatingFileHandler.txt', 0));
+		$log->pushHandler('RotatingFile', array('./Bokeh-Platform/logs/RotatingFileHandler.txt', 0));
 
 		$this->assertTrue($log->write('info', 'testing logging'));
 	}
@@ -22,7 +22,7 @@ class bp_log_tests extends PHPUnit_Framework_TestCase
 	public function test_write_stream()
 	{
 		$log = new bp_log('log_test');
-		$log->pushHandler('Stream', array('../Bokeh-Platform/logs/StreamHandler.txt'));
+		$log->pushHandler('Stream', array('./Bokeh-Platform/logs/StreamHandler.txt'));
 
 		$this->assertTrue($log->write('info', 'testing logging'));
 	}
