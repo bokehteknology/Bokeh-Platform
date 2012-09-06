@@ -108,11 +108,9 @@ class database_mysql
 
 			if (($this->query_result = @mysql_query($query, $this->db_connect_id)) === false)
 			{
-				$db_error = mysql_error();
+				$bp->log->write('error', "There was an error executing the query: \"{$query}\" || Error: " . mysql_error(), array('dbal' => 'mysql'));
 
-				$bp->log->write('error', "There was an error executing the query: \"{$query}\" || Error: \"{$db_error}\"", array('dbal' => 'mysql'));
-
-				error_box('ERR_SQL_QUERY', array($query, $db_error));
+				error_box('ERR_SQL_QUERY');
 			}
 
 			$finish_sql = explode(' ', microtime());

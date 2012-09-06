@@ -99,11 +99,9 @@ class database_mysqli
 
 			if (($this->query_result = @mysqli_query($this->db_connect_id, $query)) === false)
 			{
-				$db_error = mysqli_error($this->db_connect_id);
+				$bp->log->write('error', "There was an error executing the query: \"{$query}\" || Error: " . mysqli_error($this->db_connect_id), array('dbal' => 'mysqli'));
 
-				$bp->log->write('error', "There was an error executing the query: \"{$query}\" || Error: \"{$db_error}\"", array('dbal' => 'mysqli'));
-
-				error_box('ERR_SQL_QUERY', array($query, $db_error));
+				error_box('ERR_SQL_QUERY');
 			}
 
 			$finish_sql = explode(' ', microtime());

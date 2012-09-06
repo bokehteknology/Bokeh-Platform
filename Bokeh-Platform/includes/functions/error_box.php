@@ -51,10 +51,6 @@ function error_box($msg = '', $params = array(), $title = false)
 				$_msg .= ' [<b>' . $params[0] . '</b>]';
 			break;
 
-			case 'ERR_SQL_QUERY':
-				$_msg .= '<br /><br /><code>' . htmlspecialchars($params[0], ENT_QUOTES) . '</code><br /><br />' . $lang['ERR_SQL_QUERY_ERR'] . '<br /><code>' . $params[1];
-			break;
-
 			default:
 				# Nothing to do
 			break;
