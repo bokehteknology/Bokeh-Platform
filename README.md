@@ -25,11 +25,11 @@ INSTALLING DEPENDENCIES
 
 To be able to run Bokeh Platform from the repository (and not from a pre-built package) you need to run the following commands to install dependencies.
 
-	``` sh
-	$ curl -s https://getcomposer.org/installer | php
-	$ cd Bokeh-Platform
-	$ php ../composer.phar install
-	```
+    ``` sh
+    $ curl -s https://getcomposer.org/installer | php
+    $ cd Bokeh-Platform
+    $ php ../composer.phar install
+    ```
 
 
 BUILDING PACKAGES
@@ -39,9 +39,9 @@ For building Bokeh Platform's packages you need to use [Phing](http://www.phing.
 
 From the build directory, run:
 
-	``` sh
-	$ phing
-	```
+    ``` sh
+    $ phing
+    ```
 
 
 CONTINUOS INTEGRATION
