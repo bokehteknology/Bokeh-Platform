@@ -16,6 +16,10 @@
 
 	<!-- MAIN TARGET - Build latest packages! -->
 	<target name="latest">
+		<phingcall target="create-diff">
+			<property name="version" value="${new_version}" />
+		</phingcall>
+
 		<phingcall target="package">
 			<property name="version" value="${new_version}" />
 		</phingcall>
@@ -78,8 +82,8 @@
 
 		<!-- create directories -->
 		<mkdir dir="build/packages" />
-		<mkdir dir="build/packages/${tag_version}" />
-		<mkdir dir="build/packages/${tag_version}/diff" />
+		<mkdir dir="build/packages/${version}" />
+		<mkdir dir="build/packages/${version}/diff" />
 		<mkdir dir="build/tmp" />
 
 		<!-- clone repository -->
@@ -88,16 +92,16 @@
 
 		<!-- create diff -->
 		<echo msg="Creating DIFF files..." />
-		<foreach list="${old_versions}" param="version" target="old-version-diff" />
+		<foreach list="${old_versions}" param="from_version" target="old-version-diff" />
 
 		<!-- delete temporary files -->
 		<delete dir="build/tmp" />
 	</target>
 
 	<target name="old-version-diff">
-		<echo msg="- Retrieving DIFF for version ${version}..." />
-		<delete file="build/packages/${new_version}/diff/${file_prefix}${version}_to_${new_version}.diff" />
-		<exec dir="build/tmp/Bokeh-Platform" command="git diff ${version} ${new_version} > ../packages/${new_version}/diff/${file_prefix}${version}_to_${new_version}.diff" passthru="true" />
+		<echo msg="- Retrieving DIFF for version ${from_version}..." />
+		<delete file="build/packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" />
+		<exec dir="build/tmp/Bokeh-Platform" command="git diff ${from_version} ${new_version} > ../packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" passthru="true" />
 	</target>
 
 </project>
