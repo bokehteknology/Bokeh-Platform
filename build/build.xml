@@ -54,14 +54,6 @@
 			</then>
 		</if>
 
-		<!-- create docs (REQUIRE: phpdocumentor) -->
-		<!-- disabled for now
-		<mkdir dir="build/tmp/Bokeh-Platform/docs" />
-		<exec dir="build/tmp/Bokeh-Platform" command="phpdoc project:run -q -d ./ -t ./docs_tmp/ -i 'cache/*,configs/*,controllers/*,docs/*,languages/*,plugins/*,public/*,views/*,vendor/*,includes/bootstrap.php,index.php' --title='Bokeh Platform ${version}' --force --defaultpackagename='BokehPlatform'" passthru="true" />
-		<exec dir="build/tmp/Bokeh-Platform" command="phpdoc project:transform -q -s docs_tmp -t docs" passthru="true" />
-		<delete dir="build/tmp/Bokeh-Platform/docs_tmp" />
-		-->
-
 		<!-- do tests with PHPUnit -->
 		<available file="build/tmp/tests/phpunit.xml" property="run_phpunit" />
 		<if>
