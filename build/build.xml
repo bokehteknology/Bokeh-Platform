@@ -40,13 +40,19 @@
 		<exec command="git clone -q ${repository} build/tmp" passthru="true" />
 
 		<!-- checkout tag -->
-		<echo msg="Retrieving version ${version}..." />
+		<echo msg="Checkout tag ${version}..." />
 		<exec dir="build/tmp" command="git checkout -q tags/${version}" passthru="true" />
 
 		<!-- install dependencies -->
-		<echo msg="Installing dependencies..." />
-		<exec dir="build/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
-		<exec dir="build/tmp/Bokeh-Platform" command="php ../composer.phar install" passthru="true" />
+		<available file="build/tmp/Bokeh-Platform/composer.json" property="use_composer" />
+		<if>
+			<istrue value="${use_composer}">
+			<then>
+				<echo msg="Installing dependencies..." />
+				<exec dir="build/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
+				<exec dir="build/tmp/Bokeh-Platform" command="php ../composer.phar install" passthru="true" />
+			</then>
+		</if>
 
 		<!-- create docs (REQUIRE: phpdocumentor) -->
 		<mkdir dir="build/tmp/Bokeh-Platform/docs" />
@@ -55,7 +61,13 @@
 		<delete dir="build/tmp/Bokeh-Platform/docs_tmp" />
 
 		<!-- do tests with PHPUnit -->
-		<exec dir="build/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
+		<available file="build/tmp/tests/phpunit.xml" property="run_phpunit" />
+		<if>
+			<istrue value="${run_phpunit}">
+			<then>
+				<exec dir="build/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
+			</then>
+		</if>
 
 		<!-- create full package -->
 		<echo msg="Creating package..." />
@@ -63,7 +75,7 @@
 		<exec dir="build/tmp" command="zip -r -q ../packages/${version}/${file_prefix}${version}.zip ./Bokeh-Platform/*" passthru="true" />
 
 		<!-- delete temporary files -->
-		<delete dir="build/files/tmp" />
+		<delete dir="build/tmp" />
 
 		<echo msg="Bokeh Platform packages created!" />
 	</target>
@@ -74,8 +86,8 @@
 
 		<!-- create directories -->
 		<mkdir dir="build/packages" />
-		<mkdir dir="build/packages/${version}" />
-		<mkdir dir="build/packages/${version}/diff" />
+		<mkdir dir="build/packages/${tag_version}" />
+		<mkdir dir="build/packages/${tag_version}/diff" />
 		<mkdir dir="build/tmp" />
 
 		<!-- clone repository -->
@@ -87,7 +99,7 @@
 		<foreach list="${old_versions}" param="version" target="old-version-diff" />
 
 		<!-- delete temporary files -->
-		<delete dir="build/files/tmp" />
+		<delete dir="build/tmp" />
 	</target>
 
 	<target name="old-version-diff">
