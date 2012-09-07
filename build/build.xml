@@ -46,7 +46,7 @@
 		<!-- install dependencies -->
 		<available file="build/tmp/Bokeh-Platform/composer.json" property="use_composer" />
 		<if>
-			<istrue value="${use_composer}">
+			<istrue value="${use_composer}" />
 			<then>
 				<echo msg="Installing dependencies..." />
 				<exec dir="build/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
@@ -55,15 +55,17 @@
 		</if>
 
 		<!-- create docs (REQUIRE: phpdocumentor) -->
+		<!-- disabled for now
 		<mkdir dir="build/tmp/Bokeh-Platform/docs" />
 		<exec dir="build/tmp/Bokeh-Platform" command="phpdoc project:run -q -d ./ -t ./docs_tmp/ -i 'cache/*,configs/*,controllers/*,docs/*,languages/*,plugins/*,public/*,views/*,vendor/*,includes/bootstrap.php,index.php' --title='Bokeh Platform ${version}' --force --defaultpackagename='BokehPlatform'" passthru="true" />
 		<exec dir="build/tmp/Bokeh-Platform" command="phpdoc project:transform -q -s docs_tmp -t docs" passthru="true" />
 		<delete dir="build/tmp/Bokeh-Platform/docs_tmp" />
+		-->
 
 		<!-- do tests with PHPUnit -->
 		<available file="build/tmp/tests/phpunit.xml" property="run_phpunit" />
 		<if>
-			<istrue value="${run_phpunit}">
+			<istrue value="${run_phpunit}" />
 			<then>
 				<exec dir="build/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
 			</then>
