@@ -44,9 +44,8 @@
 		<exec dir="build/tmp" command="git checkout -q tags/${version}" passthru="true" />
 
 		<!-- install dependencies -->
-		<available file="build/tmp/Bokeh-Platform/composer.json" property="use_composer" />
 		<if>
-			<istrue value="${use_composer}" />
+			<available file="build/tmp/Bokeh-Platform/composer.json" />
 			<then>
 				<echo msg="Installing dependencies..." />
 				<exec dir="build/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
@@ -55,9 +54,8 @@
 		</if>
 
 		<!-- do tests with PHPUnit -->
-		<available file="build/tmp/tests/phpunit.xml" property="run_phpunit" />
 		<if>
-			<istrue value="${run_phpunit}" />
+			<available file="build/tmp/tests/phpunit.xml" />
 			<then>
 				<exec dir="build/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
 			</then>
