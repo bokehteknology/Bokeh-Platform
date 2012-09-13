@@ -100,7 +100,14 @@
 
 	<target name="old-version-diff">
 		<echo msg="- Retrieving DIFF for version ${from_version}..." />
-		<delete file="build/packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" />
+
+		<if>
+			<available file="build/packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" />
+			<then>
+				<delete file="build/packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" />
+			</then>
+		</if>
+
 		<exec dir="build/tmp/Bokeh-Platform" command="git diff ${from_version} ${new_version} > ../packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" passthru="true" />
 	</target>
 
