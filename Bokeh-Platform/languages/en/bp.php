@@ -6,7 +6,7 @@
 * @package language
 * @copyright (c) 2012 Bokeh Teknology
 * @author Bokeh Teknology
-* @version 1.0.0-b5
+* @version 1.0.0-b6
 * @license http://opensource.org/licenses/gpl-3.0.html GNU GPL v3
 */
 

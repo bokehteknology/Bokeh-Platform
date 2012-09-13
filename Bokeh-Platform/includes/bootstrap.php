@@ -133,7 +133,7 @@ if (defined('DEBUG') && DEBUG)
 }
 
 # Setting Bokeh version
-define('BOKEH_VERSION', '1.0.0-b5');
+define('BOKEH_VERSION', '1.0.0-b6');
 define('BOKEH_STABLE', false);
 
 # Set template default vars
