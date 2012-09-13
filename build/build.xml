@@ -108,7 +108,7 @@
 			</then>
 		</if>
 
-		<exec dir="build/tmp/Bokeh-Platform" command="git diff ${from_version} ${new_version} > ../packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" passthru="true" />
+		<exec dir="build/tmp/Bokeh-Platform" command="git diff ${from_version} ${new_version} > ../../packages/${new_version}/diff/${file_prefix}${from_version}_to_${new_version}.diff" passthru="true" />
 	</target>
 
 </project>
