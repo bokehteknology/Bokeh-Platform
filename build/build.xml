@@ -2,9 +2,9 @@
 
 <project name="Bokeh Platform" description="Bokeh Platform is a simple and faster PHP platform for develop websites" default="latest" basedir="../">
 	<!-- BP Packages configuration -->
-	<property name="new_version" value="1.0.0-b5" />
-	<property name="prev_version" value="1.0.0-b4" />
-	<property name="older_versions" value="1.0.0-b1, 1.0.0-b2, 1.0.0-b3" />
+	<property name="new_version" value="1.0.0-b6" />
+	<property name="prev_version" value="1.0.0-b5" />
+	<property name="older_versions" value="1.0.0-b1, 1.0.0-b2, 1.0.0-b3, 1.0.0-b4" />
 	<!-- END -->
 
 	<property name="repository" value="git://github.com/bokehteknology/Bokeh-Platform.git" />
