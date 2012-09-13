@@ -1,0 +1,21 @@
+{
+    "hash": "2f2762ff9ea01c0e7b2aaa3a0a82ff38",
+    "packages": [
+        {
+            "package": "monolog/monolog",
+            "version": "1.2.1"
+        },
+        {
+            "package": "smarty/smarty",
+            "version": "v3.1.11"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
+}
