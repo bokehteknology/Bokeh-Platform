@@ -54,7 +54,7 @@
 				<!-- create full package without vendors -->
 				<echo msg="Creating package without vendors..." />
 				<delete file="build/packages/${version}/${file_prefix}${version}_standard.zip" />
-				<exec dir="build/tmp" command="zip -r -q ../packages/${version}/${file_prefix}${version}_standard.zip ./Bokeh-Platform/*" passthru="true" />
+				<exec dir="build/tmp" command="zip -r -q ../packages/${version}/${file_prefix}${version}_standard.zip ./Bokeh-Platform/" passthru="true" />
 
 				<echo msg="Installing dependencies..." />
 				<exec dir="build/tmp" command="wget -q -O composer.phar http://getcomposer.org/composer.phar" passthru="true" />
