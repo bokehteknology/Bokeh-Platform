@@ -62,16 +62,6 @@
 			</then>
 		</if>
 
-		<!-- do tests with PHPUnit -->
-		<!--
-		<if>
-			<available file="build/tmp/tests/phpunit.xml" />
-			<then>
-				<exec dir="build/tmp" command="phpunit --configuration tests/phpunit.xml" passthru="true" />
-			</then>
-		</if>
-		-->
-
 		<!-- create full package -->
 		<echo msg="Creating package..." />
 		<delete file="build/packages/${version}/${file_prefix}${version}.zip" />
