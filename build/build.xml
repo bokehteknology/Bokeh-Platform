@@ -65,7 +65,7 @@
 		<!-- create full package -->
 		<echo msg="Creating package..." />
 		<delete file="build/packages/${version}/${file_prefix}${version}.zip" />
-		<exec dir="build/tmp" command="zip -r -q ../packages/${version}/${file_prefix}${version}.zip ./Bokeh-Platform/*" passthru="true" />
+		<exec dir="build/tmp" command="zip -r -q ../packages/${version}/${file_prefix}${version}.zip ./Bokeh-Platform/" passthru="true" />
 
 		<!-- delete temporary files -->
 		<delete dir="build/tmp" />
