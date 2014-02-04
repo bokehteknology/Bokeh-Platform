@@ -1,0 +1,40 @@
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">{$lang.plugin_plugin_manager_download}</h2>
+					</div>
+					<!-- End Box Head -->	
+
+					<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<th>{$lang.plugin_plugin_manager_name}</th>
+								<th>{$lang.plugin_plugin_manager_author}</th>
+								<th class="ac">{$lang.plugin_plugin_manager_downloads}</th>
+								<th width="110" class="ac">{$lang.plugin_plugin_manager_options}</th>
+							</tr>
+							{foreach from=$plugins_installable name=plugin_id item=plugin_data}
+							<tr>
+								<td><h3><a href="{bp_path c="plugin_manager" p="details_download" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_data.plugin_id}">{$plugin_data.name}</a></h3><br />{$plugin_data.description}</td>
+								<td><a href="http://www.bokehteknology.net/community/memberlist.php?mode=viewprofile&u={$plugin_data.user_id}">{$plugin_data.username}</a></td>
+								<td class="ac">{$plugin_data.downloads}</td>
+								<td class="ac"><a href="{bp_path c="plugin_manager" p="start_install" params=$url_passkey|cat:"&plugin_id="|cat:$plugin_data.plugin_id}" class="ico edit">{$lang.plugin_plugin_manager_install}</a></td>
+							</tr>
+							{/foreach}
+						</table>
+						
+						
+						<!-- Pagging -->
+						<div class="pagging">
+							<div class="left">{$downloads_string}</div>
+						</div>
+						<!-- End Pagging -->
+						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->

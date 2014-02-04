@@ -1,0 +1,24 @@
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">{$plugin_title}</h2>
+					</div>
+					<!-- End Box Head -->	
+
+					<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							{foreach $plugin_info as $value}
+							<tr>
+								<td><strong>{$value@key}:</strong></td>
+								<td>{$value}</th>
+							</tr>
+							{/foreach}
+						</table>						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->
